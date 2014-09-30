@@ -30,7 +30,6 @@ public class UserController {
 
     public String remove(User user) {
         userRepository.remove(user);
-//        return "users";
         return "users?faces-redirect=true";
     }
 }
