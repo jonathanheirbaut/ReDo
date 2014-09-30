@@ -22,7 +22,7 @@
 
 	<build>
         <!-- Allows exploded deployment on JBoss and WildFly in IntelliJ IDEA -->
-        <finalName>registration.war</finalName>
+        <finalName>travel.war</finalName>
 
         <plugins>
 			<plugin>
