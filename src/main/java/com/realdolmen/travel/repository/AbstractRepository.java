@@ -11,7 +11,6 @@ import java.util.Map.Entry;
 
 import javax.ejb.TransactionAttribute;
 import javax.ejb.TransactionAttributeType;
-import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
@@ -23,8 +22,7 @@ import javax.persistence.criteria.Root;
 
 public abstract class AbstractRepository<T extends AbstractEntity> {
 
-
-    @PersistenceContext(unitName="travel")
+    @PersistenceContext(unitName = "travel")
     EntityManager em;
 
     @TransactionAttribute(TransactionAttributeType.REQUIRED)
