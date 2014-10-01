@@ -1,4 +1,4 @@
-package com.realdolmen.travel.dao;
+package com.realdolmen.travel.repository;
 
 import com.realdolmen.travel.domain.AbstractEntity;
 
@@ -21,7 +21,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 
-public abstract class AbstractDAO<T extends AbstractEntity> {
+public abstract class AbstractRepository<T extends AbstractEntity> {
 
 
     @PersistenceContext(unitName="travel")

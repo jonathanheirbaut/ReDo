@@ -1,7 +1,7 @@
 package com.realdolmen.travel.script;
 
 
-import com.realdolmen.travel.dao.RegionDao;
+import com.realdolmen.travel.repository.RegionRepository;
 import com.realdolmen.travel.domain.Region;
 
 import javax.ejb.Stateless;
@@ -11,7 +11,7 @@ import javax.inject.Inject;
 public class DatabaseScript {
 
     @Inject
-    RegionDao dao;
+    RegionRepository dao;
 
     public DatabaseScript() {
     }
