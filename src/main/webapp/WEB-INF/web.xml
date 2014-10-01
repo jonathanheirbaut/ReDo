@@ -10,14 +10,32 @@
 		<servlet-class>javax.faces.webapp.FacesServlet</servlet-class>
 		<load-on-startup>1</load-on-startup>
 	</servlet>
-	
-	<servlet-mapping>
-		<servlet-name>facesServlet</servlet-name>
-		<url-pattern>*.faces</url-pattern>
-	</servlet-mapping>
 
+    <!-- welcome files -->
     <welcome-file-list>
-        <welcome-file>users.faces</welcome-file>
+        <welcome-file>index.xhtml</welcome-file>
     </welcome-file-list>
-		
+
+    <session-config>
+        <session-timeout>
+            30
+        </session-timeout>
+    </session-config>
+
+    <!--  Mappings -->
+    <servlet-mapping>
+        <servlet-name>facesServlet</servlet-name>
+        <url-pattern>*.xhtml</url-pattern>
+    </servlet-mapping>
+
+<!--    <error-page>
+        <error-code>404</error-code>
+        <location>/error/404.xhtml</location>
+    </error-page>
+
+    <error-page>
+        <error-code>500</error-code>
+        <location>/error/500.xhtml</location>
+    </error-page>-->
+
 </web-app>

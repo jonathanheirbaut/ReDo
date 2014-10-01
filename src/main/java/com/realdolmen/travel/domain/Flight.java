@@ -14,20 +14,20 @@ public class Flight {
     private Date departureDate;
     @Temporal(TemporalType.TIMESTAMP)
     private Date arrivalDate;
-    private double price;
-    private double overriddenPrice;
+    private Double price;
+    private Double overriddenPrice;
     @ManyToOne
     private Location destination;
     @ManyToOne
     private Location departure;
     @ManyToOne
     private Partner partner;
-    private int maxSeats;
+    private Integer maxSeats;
 
     public Flight() {
     }
 
-    public Flight(Date departureDate, Date arrivalDate, double price, double overriddenPrice, Location departure, Location destination, Partner partner, int maxSeats) {
+    public Flight(Date departureDate, Date arrivalDate, Double price, Double overriddenPrice, Location departure, Location destination, Partner partner, Integer maxSeats) {
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.price = price;
@@ -54,11 +54,11 @@ public class Flight {
         return arrivalDate;
     }
 
-    public double getPrice() {
+    public Double getPrice() {
         return price;
     }
 
-    public double getOverriddenPrice() {
+    public Double getOverriddenPrice() {
         return overriddenPrice;
     }
 
@@ -74,7 +74,15 @@ public class Flight {
         return partner;
     }
 
-    public int getMaxSeats() {
+    public Integer getMaxSeats() {
         return maxSeats;
+    }
+
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }

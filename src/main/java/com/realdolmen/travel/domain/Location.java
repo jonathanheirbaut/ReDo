@@ -20,7 +20,7 @@ public class Location {
     @OneToMany(mappedBy = "destination")
     private List<Flight> outgoingFlights = new ArrayList<Flight>();
 
-    public Location() {
+    protected Location() {
     }
 
     public Location(String name, String code, Region region, List<Flight> outgoingFlights, List<Flight> incomingFlights) {
