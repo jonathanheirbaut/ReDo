@@ -4,12 +4,8 @@ import javax.persistence.*;
 import java.util.Date;
 
 @Entity
-public class Flight {
-    @Version
-    private Long version;
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Flight extends AbstractEntity{
+
     @Temporal(TemporalType.TIMESTAMP)
     private Date departureDate;
     @Temporal(TemporalType.TIMESTAMP)
@@ -17,6 +13,7 @@ public class Flight {
     private Double price;
     private Double overriddenPrice;
     @ManyToOne
+    @JoinColumn(name="location_fk")
     private Location destination;
     @ManyToOne
     private Location departure;
@@ -40,10 +37,6 @@ public class Flight {
 
     public Long getVersion() {
         return version;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public Date getDepartureDate() {

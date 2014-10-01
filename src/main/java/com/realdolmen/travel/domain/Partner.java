@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Partner {
+public class Partner extends AbstractEntity {
 
-    @Version
-    private Long version;
-    @Id @GeneratedValue
-    private Integer id;
     private String name;
     @OneToMany(mappedBy = "partner")
     private List<Flight> flights = new ArrayList<Flight>();
@@ -28,10 +24,6 @@ public class Partner {
 
     public Long getVersion() {
         return version;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {

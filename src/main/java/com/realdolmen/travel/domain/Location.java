@@ -5,12 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Location {
+public class Location extends AbstractEntity {
 
-    @Version
-    private Long version;
-    @Id @GeneratedValue
-    private Integer id;
     private String name;
     private String code;
     @ManyToOne

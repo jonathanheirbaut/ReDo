@@ -6,12 +6,8 @@ import javax.persistence.Id;
 import javax.persistence.Version;
 
 @Entity
-public class Discount {
+public class Discount extends AbstractEntity {
 
-    @Version
-    private Long version;
-    @Id @GeneratedValue
-    private Integer id;
     private Integer threshold;
     private Integer discount;
 
@@ -25,10 +21,6 @@ public class Discount {
 
     public Long getVersion() {
         return version;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public Integer getThreshold() {

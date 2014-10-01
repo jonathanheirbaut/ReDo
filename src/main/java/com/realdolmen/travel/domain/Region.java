@@ -5,13 +5,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-public class Region {
-    //JPA optimistic locking
-    @Version
-    private Long version;
-    @Id
-    @GeneratedValue
-    private Integer id;
+public class Region extends AbstractEntity {
+
     private String name;
     private String code;
     @OneToMany(mappedBy="region")
@@ -28,10 +23,6 @@ public class Region {
 
     public Long getVersion() {
         return version;
-    }
-
-    public Integer getId() {
-        return id;
     }
 
     public String getName() {

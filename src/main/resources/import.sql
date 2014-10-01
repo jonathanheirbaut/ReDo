@@ -52,8 +52,17 @@ insert into location(id, code, name, region_fk) values(39, 'SAO', 'Sao Paulo', 7
 insert into location(id, code, name, region_fk) values(40, 'SAL', 'Salvador', 7);
 
 insert into location(id, code, name, region_fk) values(41, 'SYD', 'Sydney', 5);
-insert into location(id, code, name, region_fk) values(41, 'ALB', 'Albury', 5);
-insert into location(id, code, name, region_fk) values(41, 'NEW', 'Newcastle', 5);
+insert into location(id, code, name, region_fk) values(42, 'ALB', 'Albury', 5);
+insert into location(id, code, name, region_fk) values(43, 'NEW', 'Newcastle', 5);
+
+insert into partner(id, name) values(1, 'Neckermann');
+insert into partner(id, name) values(2, 'Thomas Cook');
+insert into partner(id, name) values(3, 'Your Travel');
+insert into partner(id, name) values(4, 'Sunweb');
+insert into partner(id, name) values(5, 'Jetair');
+
+
+
 
 
 
