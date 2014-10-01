@@ -3,8 +3,23 @@
 <faces-config version="2.0"
               xmlns="http://java.sun.com/xml/ns/javaee"
               xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+              xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+              http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
 
+
+    <application>
+        <locale-config>
+            <default-locale>en</default-locale>
+            <supported-locale>nl</supported-locale>
+        </locale-config>
+        <resource-bundle>
+            <base-name>com.realdolmen.travel.messages</base-name>
+            <var>msg</var>
+        </resource-bundle>
+        <message-bundle>
+            com.realdolmen.travel.messages
+        </message-bundle>
+    </application>
 
     <navigation-rule>
     <navigation-case>

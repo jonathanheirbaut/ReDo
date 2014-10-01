@@ -35,6 +35,6 @@ public class FlightController {
 
     public String test() {
         flights.add(FlightBuilder.flight().withDepartureDate(new Date()).withPrice(15.15).build());
-        return "test";
+        return "";
     }
 }
