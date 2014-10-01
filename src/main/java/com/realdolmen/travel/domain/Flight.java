@@ -17,7 +17,6 @@ public class Flight {
     private double price;
     private double overriddenPrice;
     @ManyToOne
-    @JoinColumn(name="flight_fk")
     private Location destination;
     @ManyToOne
     private Location departure;
