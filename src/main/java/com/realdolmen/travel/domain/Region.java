@@ -17,7 +17,7 @@ public class Region {
     @OneToMany(mappedBy="region")
     private List<Location> locations = new ArrayList<Location>();
 
-    public Region() {
+    protected Region() {
     }
 
     public Region(String name, String code, List<Location> locations) {

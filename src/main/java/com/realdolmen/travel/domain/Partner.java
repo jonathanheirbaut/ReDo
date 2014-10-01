@@ -17,7 +17,7 @@ public class Partner {
     @OneToMany
     private List<Discount> discounts = new ArrayList<Discount>();
 
-    public Partner() {
+    protected Partner() {
     }
 
     public Partner(String name, List<Flight> flights, List<Discount> discounts) {

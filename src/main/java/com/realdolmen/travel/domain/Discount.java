@@ -12,13 +12,13 @@ public class Discount {
     private Long version;
     @Id @GeneratedValue
     private Integer id;
-    private int threshold;
-    private int discount;
+    private Integer threshold;
+    private Integer discount;
 
-    public Discount() {
+    protected Discount() {
     }
 
-    public Discount(int threshold, int discount) {
+    public Discount(Integer threshold, Integer discount) {
         this.threshold = threshold;
         this.discount = discount;
     }
@@ -31,11 +31,11 @@ public class Discount {
         return id;
     }
 
-    public int getThreshold() {
+    public Integer getThreshold() {
         return threshold;
     }
 
-    public int getDiscount() {
+    public Integer getDiscount() {
         return discount;
     }
 }
