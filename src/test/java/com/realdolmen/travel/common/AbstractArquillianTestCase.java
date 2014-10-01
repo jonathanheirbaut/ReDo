@@ -11,11 +11,10 @@ import org.jboss.shrinkwrap.api.spec.JavaArchive;
 public class AbstractArquillianTestCase {
     @Deployment
     public static JavaArchive createTestArchive() {
-        return ShrinkWrap.create(JavaArchive.class)
-                .addPackage("com.realdolmen.travel.builder")
-                .addPackage("com.realdolmen.travel.domain")
-                .addPackage("com.realdolmen.travel.repository")
-                .addAsResource("META-INF/persistence.xml")
+        return ShrinkWrap.create(JavaArchive.class, "test.jar")
+                .addPackages(true, "com.realdolmen.travel")
+                .addAsResource("META-INF/test-persistence.xml",
+                        "META-INF/persistence.xml")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 }
