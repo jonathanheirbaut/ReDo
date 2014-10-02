@@ -17,21 +17,21 @@
 
 <h:body>
 
-<h:form>
-    <p:dataTable id="flights" var="flight" value="#{flightController.flights}">
-        <p:column headerText="DepartureDate" style="width:16px">
-            <h:outputText value="#{flight.departureDate}"/>
-        </p:column>
+<!--<h:form>-->
+    <!--<p:dataTable id="flights" var="flight" value="#{flightController.flights}">-->
+        <!--<p:column headerText="DepartureDate" style="width:16px">-->
+            <!--<h:outputText value="#{flight.departureDate}"/>-->
+        <!--</p:column>-->
 
-        <p:column headerText="#{msg.price}">
-            <h:outputText value="#{flight.price}"/>
-        </p:column>
+        <!--<p:column headerText="#{msg.price}">-->
+            <!--<h:outputText value="#{flight.price}"/>-->
+        <!--</p:column>-->
 
-    </p:dataTable>
-    <p:commandButton action="#{flightController.test()}" value="Redirect to index" icon="ui-icon-disk" update="flights"/>
-    <p:button outcome="test" value="test"/>
+    <!--</p:dataTable>-->
+    <!--<p:commandButton action="#{flightController.test()}" value="Redirect to index" icon="ui-icon-disk" update="flights"/>-->
+    <!--<p:button outcome="test" value="test"/>-->
 
-</h:form>
+<!--</h:form>-->
 
 
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">

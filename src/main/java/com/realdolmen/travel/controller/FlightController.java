@@ -25,8 +25,7 @@ public class FlightController {
 
     @PostConstruct
     public void initialize() {
-        flights = new ArrayList<>();
-        flights.add(FlightBuilder.flight().withDepartureDate(new Date()).withPrice(99.95).build());
+      flights = flightRepository.findAll();
     }
 
     public Collection<Flight> getFlights() {
