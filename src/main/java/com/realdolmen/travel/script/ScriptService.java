@@ -17,7 +17,7 @@ public class ScriptService {
 
     }
 
-    public void createFlight(Flight flight) {
+    public void createRandomFlights(int number) {
         EntityManagerFactory entityManagerFactory = null;
         EntityManager entityManager = null;
 
@@ -28,7 +28,7 @@ public class ScriptService {
             transaction.begin();
             locations = findAllLocations(entityManager);
             partners = findAllPartners(entityManager);
-            persistFlights(entityManager, 10000);
+            persistFlights(entityManager, number);
             transaction.commit();
         } finally {
             if (entityManager != null) {

@@ -28,7 +28,7 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
 
     @Test
     public void canPersistAFlight() {
-        Flight flight = FlightBuilder.flight().withDepartureDate(new Date()).withPrice(6565.0).build();
+        Flight flight = FlightBuilder.flight().withDepartureDate(new Date()).withPrice(100.0).build();
         flightRepository.create(flight);
         assertNotNull("Flight could not be persisted", flight.getId());
     }
@@ -37,8 +37,8 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
     public void canUpdateAFlight() {
         Flight flight = FlightBuilder.flight().withDepartureDate(new Date()).withPrice(0.0).build();
         flightRepository.create(flight);
-        flight.setPrice(200.0);
+        flight.setPrice(250.0);
         flightRepository.update(flight);
-        assertEquals("Flight could not be updated", new Double(200.0), flight.getPrice());
+        assertEquals("Flight could not be updated", new Double(250.0), flight.getPrice());
     }
 }
