@@ -17,4 +17,4 @@ public class FlightRepository extends AbstractRepository<Flight> {
     public Double calculateMaximumPrice(){
         return em.createQuery("select max(f.price) from Flight f", Double.class).getSingleResult();
     }
-}
+ }

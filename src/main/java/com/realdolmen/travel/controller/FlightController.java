@@ -3,6 +3,7 @@ package com.realdolmen.travel.controller;
 import com.realdolmen.travel.builder.FlightBuilder;
 import com.realdolmen.travel.domain.Flight;
 import com.realdolmen.travel.repository.FlightRepository;
+import com.realdolmen.travel.service.FlightService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -18,14 +19,14 @@ import java.util.Date;
 @RequestScoped
 public class FlightController {
     @Inject
-    private FlightRepository flightRepository;
+    FlightService flightService;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     private Collection<Flight> flights;
 
     @PostConstruct
     public void initialize() {
-      flights = flightRepository.findAll();
+      flights = flightService.findAll();
     }
 
     public Collection<Flight> getFlights() {
@@ -38,13 +39,12 @@ public class FlightController {
     }
 
     public Double calculateAveragePrice() {
-        return flightRepository.calculateAveragePrice();
+        return flightService.calculateAveragePrice();
     }
-
     public Double calculateMinimumPrice(){
-        return flightRepository.calculateMinimumPrice();
+        return flightService.calculateMinimumPrice();
     }
     public Double calculateMaximumPrice(){
-        return flightRepository.calculateMaximumPrice();
+        return flightService.calculateMaximumPrice();
     }
 }
