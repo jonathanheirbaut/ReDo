@@ -61,7 +61,11 @@ insert into partner(id, name) values(3, 'Your Travel');
 insert into partner(id, name) values(4, 'Sunweb');
 insert into partner(id, name) values(5, 'Jetair');
 
-
+insert into flight(id, price, departure_id, location_fk) values(1, 10.0, 1, 2);
+insert into flight(id, price, departure_id, location_fk) values(2, 5.0, 1, 2);
+insert into flight(id, price, departure_id, location_fk) values(3, 20.0, 5, 1);
+insert into flight(id, price, departure_id, location_fk) values(4, 10.0, 3, 2);
+insert into flight(id, price, departure_id, location_fk) values(5, 5.0, 2, 5);
 
 
 

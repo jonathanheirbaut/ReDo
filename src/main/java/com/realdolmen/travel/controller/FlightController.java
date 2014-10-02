@@ -2,6 +2,8 @@ package com.realdolmen.travel.controller;
 
 import com.realdolmen.travel.builder.FlightBuilder;
 import com.realdolmen.travel.domain.Flight;
+import com.realdolmen.travel.domain.Location;
+import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.FlightRepository;
 import com.realdolmen.travel.service.FlightService;
 import org.slf4j.Logger;
@@ -46,5 +48,8 @@ public class FlightController {
     }
     public Double calculateMaximumPrice(){
         return flightService.calculateMaximumPrice();
+    }
+    public Double testCalculateAveragePrice(Location departure, Location destination, Region departureRegion, Region destinationRegion) {
+    return flightService.testCalculateAveragePrice(departure, destination, departureRegion, destinationRegion);
     }
 }

@@ -1,6 +1,8 @@
 package com.realdolmen.travel.service;
 
 import com.realdolmen.travel.domain.Flight;
+import com.realdolmen.travel.domain.Location;
+import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.FlightRepository;
 
 import javax.ejb.Stateless;
@@ -25,6 +27,9 @@ public class FlightService {
     }
     public Collection<Flight> findAll() {
         return flightRepository.findAll();
+    }
+    public Double testCalculateAveragePrice(Location departure, Location destination, Region departureRegion, Region destinationRegion) {
+       return flightRepository.testCalculateAveragePrice(departure,destination, departureRegion, destinationRegion);
     }
 }
 

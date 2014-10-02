@@ -15,6 +15,7 @@ public class AbstractArquillianTestCase {
                 .addPackages(true, "com.realdolmen.travel")
                 .addAsResource("META-INF/test-persistence.xml",
                         "META-INF/persistence.xml")
+                .addAsResource("import.sql", "import.sql")
                 .addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
     }
 }
