@@ -4,12 +4,16 @@ import com.realdolmen.travel.builder.FlightBuilder;
 import com.realdolmen.travel.common.AbstractArquillianTestCase;
 import com.realdolmen.travel.domain.Flight;
 import org.jboss.arquillian.junit.Arquillian;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import javax.annotation.Resource;
 import javax.ejb.EJB;
 import javax.inject.Inject;
+import javax.transaction.*;
 
 import java.util.Date;
 
@@ -25,6 +29,20 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
 
     @Inject
     private FlightRepository flightRepository;
+
+
+    @Resource
+    private UserTransaction tx;
+
+    @Before
+    public void init() throws SystemException, NotSupportedException {
+        tx.begin();
+    }
+
+    @After
+    public void destroy() throws HeuristicRollbackException, RollbackException, HeuristicMixedException, SystemException {
+        tx.rollback();
+    }
 
     @Test
     public void canPersistAFlight() {
