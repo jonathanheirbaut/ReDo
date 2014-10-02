@@ -40,18 +40,7 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
     @Inject
     private RegionRepository regionRepository;
 
-    @Resource
-    private UserTransaction tx;
 
-    @Before
-    public void init() throws SystemException, NotSupportedException {
-        tx.begin();
-    }
-
-    @After
-    public void destroy() throws HeuristicRollbackException, RollbackException, HeuristicMixedException, SystemException {
-        tx.rollback();
-    }
 
     @Test
     public void canPersistAFlight() {
