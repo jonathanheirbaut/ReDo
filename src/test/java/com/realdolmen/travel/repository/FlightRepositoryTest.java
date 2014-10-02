@@ -41,4 +41,8 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
         flightRepository.update(flight);
         assertEquals("Flight could not be updated", new Double(250.0), flight.getPrice());
     }
+    @Test
+    public void canCalculateAveragePrice() {
+        flightRepository.calculateAveragePrice();
+    }
 }

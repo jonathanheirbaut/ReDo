@@ -97,3 +97,4 @@ insert into partner(id, name) values(5, 'Jetair');
 
 
 
+

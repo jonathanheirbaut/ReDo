@@ -36,4 +36,15 @@ public class FlightController {
         flights.add(FlightBuilder.flight().withDepartureDate(new Date()).withPrice(15.15).build());
         return "";
     }
+
+    public Double calculateAveragePrice() {
+        return flightRepository.calculateAveragePrice();
+    }
+
+    public Double calculateMinimumPrice(){
+        return flightRepository.calculateMinimumPrice();
+    }
+    public Double calculateMaximumPrice(){
+        return flightRepository.calculateMaximumPrice();
+    }
 }

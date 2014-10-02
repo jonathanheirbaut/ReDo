@@ -24,9 +24,9 @@
 
             <div id="menu" class="navbar navbar-default navbar-fixed-top">
                 <div class="navbar-header">
-                <div id="logo">
-                    <img src="resources/img/ReDo_logo.jpg" height="60"></img>
-                </div>
+                    <div id="logo">
+                        <img src="resources/img/ReDo_logo.jpg" height="60"></img>
+                    </div>
                 </div>
                 <ul class="nav navbar-nav col-md-5">
                     <li><a href="">Home</a></li>
@@ -47,35 +47,24 @@
         </header>
 
         <section id="body" class="container">
-        <div class="page-header">
-            <h1>Overview Flights</h1>
-        </div>
-            <div id="form" class="col-md-8">
-                <h:form prependId="false">
-
-                    <p:dataTable var="flight" value="#{flightController.flights}" paginator="true" rows="10">
-
-                        <p:column filterBy="#{flight.departureDate}" headerText="#{msg.departureDate}">
-                            <h:outputText value="#{flight.departureDate}">
-                                <f:convertDateTime pattern="dd-MM-yyyy"/>
-                            </h:outputText>
-                        </p:column>
-
-                        <p:column headerText="#{msg.arrivalDate}">
-                            <h:outputText value="#{flight.arrivalDate}">
-                                <f:convertDateTime pattern="dd-MM-yyyy"/>
-                            </h:outputText>
-                        </p:column>
-
-                        <p:column filterBy="#{flight.departure.name}" headerText="#{msg.departure}">
-                            <h:outputText value="#{flight.departure.name}"/>
-                        </p:column>
-                        <p:column headerText="#{msg.destination}">
-                            <h:outputText value="#{flight.destination.name}"/>
-                        </p:column>
-                    </p:dataTable>
-                </h:form>
+            <div class="page-header">
+                <h1>Overview Flights</h1>
             </div>
+            <table class="table table-responsive">
+                <tr>
+                    <td>#{msg.averagePrice}:</td>
+                    <td>#{flightController.calculateAveragePrice()}</td>
+                </tr>
+                <tr>
+                    <td>#{msg.minimumPrice}:</td>
+                    <td>#{flightController.calculateMinimumPrice()}</td>
+                </tr>
+                <tr>
+                    <td>#{msg.maximumPrice}:</td>
+                    <td>#{flightController.calculateMaximumPrice()}</td>
+                </tr>
+
+            </table>
 
         </section>
         <footer class="container">
