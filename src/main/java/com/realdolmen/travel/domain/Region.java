@@ -49,10 +49,6 @@ public class Region extends AbstractEntity {
         this.locations = locations;
     }
 
-    @Override
-    public String toString() {
-        return this.getId().toString();
-    }
 
     @Override
     public boolean equals(Object o) {
@@ -64,6 +60,8 @@ public class Region extends AbstractEntity {
         if (code != null ? !code.equals(region.code) : region.code != null) return false;
         if (locations != null ? !locations.equals(region.locations) : region.locations != null) return false;
         if (name != null ? !name.equals(region.name) : region.name != null) return false;
+
+        if (((Region)o).getId() == this.getId()) return true;
 
         return true;
     }

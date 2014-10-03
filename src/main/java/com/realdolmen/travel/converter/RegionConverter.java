@@ -24,8 +24,10 @@ public class RegionConverter implements Converter {
     }
 
     @Override
-    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object o) {
+    public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
 
-        return o.toString();
+        if (value == null || value.toString().isEmpty() || !(value instanceof Region))
+            return "";
+        return String.valueOf(((Region) value).getId());
     }
 }

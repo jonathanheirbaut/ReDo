@@ -10,13 +10,14 @@ import org.slf4j.LoggerFactory;
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
 import javax.enterprise.context.RequestScoped;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class RegionController {
     @Inject
     RegionService regionService;
@@ -41,13 +42,13 @@ public class RegionController {
     public void setRegions(Collection<Region> regions) {
         this.regions = regions;
     }
+
     public Collection<Region> getRegions() {
         return regions;
     }
 
-    public void doSomeThing(){
-        System.out.println(getRegion().getName());
-        logger.info("blabla");
+    public void doSomeThing() {
+        System.out.println(getTest());
     }
 
     public String getTest() {
