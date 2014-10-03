@@ -1,7 +1,10 @@
 package com.realdolmen.travel.filter;
 
+import com.realdolmen.travel.controller.UserController;
 import com.realdolmen.travel.domain.User;
+import com.realdolmen.travel.domain.UserType;
 
+import javax.inject.Inject;
 import javax.servlet.*;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +17,8 @@ import java.util.Enumeration;
  */
 @WebFilter("/restricted/*")
 public class AuthenticationFilter implements Filter {
-
+    @Inject
+    private UserController userController;
 
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
@@ -24,35 +28,23 @@ public class AuthenticationFilter implements Filter {
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
-        final User user = (User) httpRequest.getSession().getAttribute("user");
-        System.out.println(httpRequest.getSession().getCreationTime());
-        Enumeration<String> attributeNames = httpRequest.getSession().getAttributeNames();
-        while (attributeNames.hasMoreElements()) {
-            System.out.println(attributeNames.nextElement());
-        }
-        System.out.println(httpRequest.getSession().getAttributeNames());
-
         final String path = httpRequest.getRequestURL().toString().toLowerCase();
-        boolean isAuthed = false;
-        if (user != null) {
-            System.out.println(user.getUserType());
-        } else {
-            System.out.println("user is null");
-        }
+        boolean isAuthed = true;
 
-    /*    if (role != null) {
-            if (path.contains("/restricted/") && role.equals(Role.USER)) {
+        if (userController.getUser() != null) {
+            UserType userType = userController.getUser().getUserType();
+            if (path.contains("/restricted/customer/") && !userType.equals(UserType.CUSTOMER)) {
                 isAuthed = false;
             }
-            if (path.contains("/restricted/client/") && !role.equals(Role.CLIENT)) {
+            if (path.contains("/restricted/employee/") && !userType.equals(UserType.EMPLOYEE)) {
                 isAuthed = false;
             }
-            if (path.contains("/restricted/repairer/") && !role.equals(Role.REPAIRER)) {
+            if (path.contains("/restricted/partner/") && !userType.equals(UserType.PARTNER)) {
                 isAuthed = false;
             }
         } else {
             isAuthed = false;
-        }*/
+        }
 
         if (!isAuthed) {
             final HttpServletResponse httpResponse = (HttpServletResponse) response;

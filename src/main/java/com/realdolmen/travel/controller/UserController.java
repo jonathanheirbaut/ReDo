@@ -24,7 +24,7 @@ public class UserController implements Serializable {
     @EJB
     private UserService userService;
 
-    private User user = new User("","", UserType.CUSTOMER);
+    private User user;
 
     public UserController() {
     }
@@ -33,7 +33,7 @@ public class UserController implements Serializable {
         try {
             userService.checkLogin(username, password);
             user = userService.getUser(username);
-            return "1";
+            return "2";
         } catch (UserServiceException ex) {
             // ResourceBundle bundle = ResourceBundle.getBundle("be.kdg.repaircafe.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
@@ -48,5 +48,13 @@ public class UserController implements Serializable {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public UserService getUserService() {
+        return userService;
+    }
+
+    public void setUserService(UserService userService) {
+        this.userService = userService;
     }
 }
