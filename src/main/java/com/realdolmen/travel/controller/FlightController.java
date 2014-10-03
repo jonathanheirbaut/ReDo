@@ -23,6 +23,10 @@ public class FlightController {
     @Inject
     FlightService flightService;
     private Logger logger = LoggerFactory.getLogger(getClass());
+    private Location departure;
+    private Location destination;
+    private Region departureRegion;
+    private Region destinationRegion;
 
     private Collection<Flight> flights;
 
@@ -51,5 +55,41 @@ public class FlightController {
     }
     public Double testCalculateAveragePrice(Location departure, Location destination, Region departureRegion, Region destinationRegion) {
     return flightService.testCalculateAveragePrice(departure, destination, departureRegion, destinationRegion);
+    }
+
+    public Location getDeparture() {
+        return departure;
+    }
+
+    public void setDeparture(Location departure) {
+        this.departure = departure;
+    }
+
+    public Location getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Location destination) {
+        this.destination = destination;
+    }
+
+    public Region getDepartureRegion() {
+        return departureRegion;
+    }
+
+    public void setDepartureRegion(Region departureRegion) {
+        this.departureRegion = departureRegion;
+    }
+
+    public Region getDestinationRegion() {
+        return destinationRegion;
+    }
+
+    public void setDestinationRegion(Region destinationRegion) {
+        this.destinationRegion = destinationRegion;
+    }
+
+    public void setFlights(Collection<Flight> flights) {
+        this.flights = flights;
     }
 }

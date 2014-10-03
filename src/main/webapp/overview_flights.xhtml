@@ -11,14 +11,14 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="resources/css/darkly-bootstrap.min.css"/>
     <link rel="stylesheet" href="resources/css/site.css"/>
     <title>Overview Flights</title>
 
 </h:head>
 
 <h:body>
-    <p:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
+
+
 
     <div id="page">
         <header class="container">
@@ -53,30 +53,21 @@
                 <h1>Overview Flights</h1>
             </div>
             <section id="sidebar" class="col-md-4">
+
                 <h:form>
-                    <p:panel header="Filter" style="margin-bottom:10px;">
-                        <h:panelGrid columns="2" cellpadding="5">
-                            <p:outputLabel for="departure_list" value="Departure Region: "/>
 
-                            <p:selectOneMenu id="departure_list" value="#{regionController.region}" >
-                                <f:selectItems value="#{regionController.regions}" var="region"
-                                               itemLabel="#{region.name}"  />
-                                <f:ajax execute="departure_list" />
-                            </p:selectOneMenu>
-
-
-
-                        </h:panelGrid>
-
-
-                    </p:panel>
+                    <p:selectOneListbox value="#{regionController.region}" converter="regionConverter">
+                        <f:selectItems value="#{regionController.regions}" var="region" itemLabel="#{region.name}" />
+                    </p:selectOneListbox>
+                    <p:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
                 </h:form>
+
             </section>
             <section id="sTable" class="col-md-8">
                 <table id="myTable" class="table table-responsive">
                     <tr>
                         <td>#{msg.averagePrice}:</td>
-                        <td>#{flightController.testCalculateAveragePrice(null, null, null, null)}</td>
+                        <td>#{flightController.testCalculateAveragePrice(null, null, regionController.region, null)}</td>
                     </tr>
                     <tr>
                         <td>#{msg.minimumPrice}:</td>
@@ -98,9 +89,6 @@
     </div>
 
     <p id="test">test + #{regionController.region}</p>
-
-
-
 
     <!-- /container -->
     <script src="resources/js/bootstrap.min.js"></script>

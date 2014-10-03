@@ -12,7 +12,7 @@ public class Region extends AbstractEntity {
     @OneToMany(mappedBy="region")
     private List<Location> locations = new ArrayList<Location>();
 
-    protected Region() {
+    public Region() {
     }
 
     public Region(String name, String code, List<Location> locations) {
@@ -47,5 +47,32 @@ public class Region extends AbstractEntity {
 
     public void setLocations(List<Location> locations) {
         this.locations = locations;
+    }
+
+    @Override
+    public String toString() {
+        return this.getId().toString();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Region region = (Region) o;
+
+        if (code != null ? !code.equals(region.code) : region.code != null) return false;
+        if (locations != null ? !locations.equals(region.locations) : region.locations != null) return false;
+        if (name != null ? !name.equals(region.name) : region.name != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (code != null ? code.hashCode() : 0);
+        result = 31 * result + (locations != null ? locations.hashCode() : 0);
+        return result;
     }
 }

@@ -22,6 +22,7 @@ public class RegionController {
     RegionService regionService;
     protected Logger logger = LoggerFactory.getLogger(getClass());
     private Region region;
+    private String test;
     private Collection<Region> regions;
 
     @PostConstruct
@@ -45,8 +46,15 @@ public class RegionController {
     }
 
     public void doSomeThing(){
-        System.out.println("test");
+        System.out.println(getRegion().getName());
         logger.info("blabla");
     }
 
+    public String getTest() {
+        return test;
+    }
+
+    public void setTest(String test) {
+        this.test = test;
+    }
 }
