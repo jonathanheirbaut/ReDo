@@ -21,7 +21,7 @@ public class UserRepositoryTest extends AbstractArquillianTestCase {
 
     @Test
     public void canPersistAUser() throws Exception {
-        User user = new User("Jonathan", "jonathan", UserType.CUSTOMER);
+        User user = new User("ikke", "ikke", UserType.CUSTOMER);
         userRepository.create(user);
         assertNotNull("User could not be peristed", user.getId());
     }

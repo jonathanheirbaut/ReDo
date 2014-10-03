@@ -12,9 +12,14 @@ import javax.persistence.TypedQuery;
 public class UserRepository extends AbstractRepository<User> {
 
     public User findUserByUsername(String username) {
-        TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.userName = :uName", User.class);
-        query.setParameter("uName", username);
-        return query.getSingleResult();
+        User user = null;
+        try {
+            TypedQuery<User> query = em.createQuery("SELECT u FROM User u WHERE u.userName = :uName", User.class);
+            query.setParameter("uName", username);
+            user = query.getSingleResult();
+        } catch (Exception e){
 
+        }
+        return user;
     }
 }

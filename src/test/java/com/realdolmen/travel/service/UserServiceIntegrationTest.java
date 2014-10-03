@@ -21,7 +21,7 @@ public class UserServiceIntegrationTest extends AbstractArquillianTestCase {
 
     @Test
     public void canPersistAUser() throws Exception {
-        User user = new User("Jonathan", "jonathan", UserType.CUSTOMER);
+        User user = new User("ikke", "ikke", UserType.PARTNER);
         userService.addUser(user);
         logger.info(user.getPassword());
         assertNotNull("User could not be peristed", user.getId());

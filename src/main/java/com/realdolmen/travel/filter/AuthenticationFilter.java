@@ -7,12 +7,13 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Enumeration;
 
 /**
  * Created by JHRAU70 on 2/10/2014.
  */
 @WebFilter("/restricted/*")
-public class AuthenticationFilter implements Filter{
+public class AuthenticationFilter implements Filter {
 
 
     @Override
@@ -24,12 +25,18 @@ public class AuthenticationFilter implements Filter{
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
         final User user = (User) httpRequest.getSession().getAttribute("user");
+        System.out.println(httpRequest.getSession().getCreationTime());
+        Enumeration<String> attributeNames = httpRequest.getSession().getAttributeNames();
+        while (attributeNames.hasMoreElements()) {
+            System.out.println(attributeNames.nextElement());
+        }
+        System.out.println(httpRequest.getSession().getAttributeNames());
+
         final String path = httpRequest.getRequestURL().toString().toLowerCase();
         boolean isAuthed = false;
-        if (user != null){
+        if (user != null) {
             System.out.println(user.getUserType());
-        }
-        else {
+        } else {
             System.out.println("user is null");
         }
 
