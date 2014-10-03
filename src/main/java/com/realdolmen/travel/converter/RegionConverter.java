@@ -3,12 +3,14 @@ package com.realdolmen.travel.converter;
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.RegionRepository;
 
+import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
+@Stateless
 @FacesConverter(value = "regionConverter")
 public class RegionConverter implements Converter {
     @Inject
@@ -26,8 +28,10 @@ public class RegionConverter implements Converter {
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
 
-        if (value == null || value.toString().isEmpty() || !(value instanceof Region))
+        if (value == null || value.toString().isEmpty() || !(value instanceof Region)){
+            System.out.printf("I shouldn't be here");
             return "";
+        }
         return String.valueOf(((Region) value).getId());
     }
 }

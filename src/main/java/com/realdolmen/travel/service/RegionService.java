@@ -8,7 +8,7 @@ import javax.inject.Inject;
 import java.io.Serializable;
 import java.util.Collection;
 @Stateless
-public class RegionService{
+public class RegionService implements Serializable{
 
     private Collection<Region> regions;
     @Inject

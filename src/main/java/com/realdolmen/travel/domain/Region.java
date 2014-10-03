@@ -9,16 +9,13 @@ public class Region extends AbstractEntity {
 
     private String name;
     private String code;
-    @OneToMany(mappedBy="region")
-    private List<Location> locations = new ArrayList<Location>();
 
     public Region() {
     }
 
-    public Region(String name, String code, List<Location> locations) {
+    public Region(String name, String code) {
         this.name = name;
         this.code = code;
-        this.locations = locations;
     }
 
     public Long getVersion() {
@@ -33,10 +30,6 @@ public class Region extends AbstractEntity {
         return code;
     }
 
-    public List<Location> getLocations() {
-        return locations;
-    }
-
     public void setName(String name) {
         this.name = name;
     }
@@ -44,11 +37,6 @@ public class Region extends AbstractEntity {
     public void setCode(String code) {
         this.code = code;
     }
-
-    public void setLocations(List<Location> locations) {
-        this.locations = locations;
-    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -58,10 +46,7 @@ public class Region extends AbstractEntity {
         Region region = (Region) o;
 
         if (code != null ? !code.equals(region.code) : region.code != null) return false;
-        if (locations != null ? !locations.equals(region.locations) : region.locations != null) return false;
         if (name != null ? !name.equals(region.name) : region.name != null) return false;
-
-        if (((Region)o).getId() == this.getId()) return true;
 
         return true;
     }
@@ -70,7 +55,6 @@ public class Region extends AbstractEntity {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (code != null ? code.hashCode() : 0);
-        result = 31 * result + (locations != null ? locations.hashCode() : 0);
         return result;
     }
 }

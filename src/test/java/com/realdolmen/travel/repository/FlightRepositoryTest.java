@@ -3,25 +3,14 @@ package com.realdolmen.travel.repository;
 import com.realdolmen.travel.builder.FlightBuilder;
 import com.realdolmen.travel.common.AbstractArquillianTestCase;
 import com.realdolmen.travel.domain.Flight;
-import com.realdolmen.travel.domain.Location;
-import com.realdolmen.travel.domain.Partner;
 import com.realdolmen.travel.domain.Region;
 import org.jboss.arquillian.junit.Arquillian;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import javax.annotation.Resource;
-import javax.ejb.EJB;
 import javax.inject.Inject;
-import javax.transaction.*;
 
 import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotEquals;
@@ -62,12 +51,10 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
     @Test
     public void canCalculateAveragePrice() {
 
-        Location departure = locationRepository.find(2L);
-        Location destination = locationRepository.find(5L);
         Region departureRegion = regionRepository.find(1L);
         Region destinationRegion = regionRepository.find(1L);
 
-       assertEquals(new Double(5.0), flightRepository.testCalculateAveragePrice(departure, destination, departureRegion, destinationRegion));
+       assertEquals(new Double(5.0), flightRepository.calculateAveragePrice(departureRegion, destinationRegion));
 
     }
 

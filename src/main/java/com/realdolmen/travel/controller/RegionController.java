@@ -8,21 +8,20 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
-import javax.enterprise.context.ConversationScoped;
-import javax.enterprise.context.RequestScoped;
-import javax.faces.bean.ViewScoped;
+import javax.enterprise.context.SessionScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.Collection;
 
 @Named
-@ViewScoped
-public class RegionController {
+@SessionScoped
+public class RegionController implements Serializable {
     @Inject
     RegionService regionService;
     protected Logger logger = LoggerFactory.getLogger(getClass());
-    private Region region;
+    private Region departureRegion;
+    private Region locationRegion;
     private String test;
     private Collection<Region> regions;
 
@@ -31,12 +30,20 @@ public class RegionController {
         regions = regionService.findAll();
     }
 
-    public Region getRegion() {
-        return region;
+    public Region getDepartureRegion() {
+        return departureRegion;
     }
 
-    public void setRegion(Region region) {
-        this.region = region;
+    public void setDepartureRegion(Region departureRegion) {
+        this.departureRegion = departureRegion;
+    }
+
+    public Region getLocationRegion() {
+        return locationRegion;
+    }
+
+    public void setLocationRegion(Region locationRegion) {
+        this.locationRegion = locationRegion;
     }
 
     public void setRegions(Collection<Region> regions) {
@@ -48,7 +55,7 @@ public class RegionController {
     }
 
     public void doSomeThing() {
-        System.out.println(getTest());
+        System.out.println(getDepartureRegion().getName() + " " + getLocationRegion().getName());
     }
 
     public String getTest() {

@@ -44,17 +44,14 @@ public class FlightController {
         return "";
     }
 
-    public Double calculateAveragePrice() {
-        return flightService.calculateAveragePrice();
-    }
     public Double calculateMinimumPrice(){
         return flightService.calculateMinimumPrice();
     }
     public Double calculateMaximumPrice(){
         return flightService.calculateMaximumPrice();
     }
-    public Double testCalculateAveragePrice(Location departure, Location destination, Region departureRegion, Region destinationRegion) {
-    return flightService.testCalculateAveragePrice(departure, destination, departureRegion, destinationRegion);
+    public Double calculateAveragePrice(Region departureRegion, Region destinationRegion) {
+    return flightService.calculateAveragePrice(departureRegion, destinationRegion);
     }
 
     public Location getDeparture() {

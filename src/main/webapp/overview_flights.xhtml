@@ -55,19 +55,26 @@
             <section id="sidebar" class="col-md-4">
 
                 <h:form>
+                    <label for="depMenu">Departure Region </label>
+                    <h:selectOneMenu id="depMenu" value="#{regionController.departureRegion}" converter="regionConverter">
+                        <f:selectItems value="#{regionController.regions}" itemValue="#{regionDep}" var="regionDep" itemLabel="#{regionDep.name}" />
+                    </h:selectOneMenu>
+                    <label for="locMenu">Departure Region </label>
+                    <h:selectOneMenu id="locMenu" value="#{regionController.locationRegion}" converter="regionConverter">
+                        <f:selectItems value="#{regionController.regions}" itemValue="#{regionLoc}" var="regionLoc" itemLabel="#{regionLoc.name}" />
+                    </h:selectOneMenu>
 
-                    <p:selectOneListbox value="#{regionController.region}" converter="regionConverter">
-                        <f:selectItems value="#{regionController.regions}" var="region" itemLabel="#{region.name}" />
-                    </p:selectOneListbox>
-                    <p:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
+                    <h:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
                 </h:form>
+
+
 
             </section>
             <section id="sTable" class="col-md-8">
                 <table id="myTable" class="table table-responsive">
                     <tr>
                         <td>#{msg.averagePrice}:</td>
-                        <td>#{flightController.testCalculateAveragePrice(null, null, regionController.region, null)}</td>
+                        <td>#{flightController.calculateAveragePrice(regionController.departureRegion, regionController.locationRegion)}</td>
                     </tr>
                     <tr>
                         <td>#{msg.minimumPrice}:</td>
@@ -87,8 +94,6 @@
 
         </footer>
     </div>
-
-    <p id="test">test + #{regionController.region}</p>
 
     <!-- /container -->
     <script src="resources/js/bootstrap.min.js"></script>

@@ -9,8 +9,9 @@ public class Location extends AbstractEntity {
 
     private String name;
     private String code;
+
+
     @ManyToOne
-    @JoinColumn(name="region_fk")
     private Region region;
 
     @OneToMany(mappedBy = "destination")

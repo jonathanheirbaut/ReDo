@@ -1,7 +1,6 @@
 package com.realdolmen.travel.service;
 
 import com.realdolmen.travel.domain.Flight;
-import com.realdolmen.travel.domain.Location;
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.FlightRepository;
 
@@ -16,9 +15,6 @@ public class FlightService {
     @Inject
     private FlightRepository flightRepository;
 
-    public Double calculateAveragePrice() {
-        return flightRepository.calculateAveragePrice();
-    }
     public Double calculateMinimumPrice(){
         return flightRepository.calculateMinimumPrice();
     }
@@ -28,8 +24,8 @@ public class FlightService {
     public Collection<Flight> findAll() {
         return flightRepository.findAll();
     }
-    public Double testCalculateAveragePrice(Location departure, Location destination, Region departureRegion, Region destinationRegion) {
-       return flightRepository.testCalculateAveragePrice(departure,destination, departureRegion, destinationRegion);
+    public Double calculateAveragePrice(Region departureRegion, Region destinationRegion) {
+       return flightRepository.calculateAveragePrice(departureRegion, destinationRegion);
     }
 }
 
