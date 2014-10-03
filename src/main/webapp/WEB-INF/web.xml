@@ -11,6 +11,15 @@
 		<load-on-startup>1</load-on-startup>
 	</servlet>
 
+    <context-param>
+        <param-name>javax.faces.DEFAULT_SUFFIX</param-name>
+        <param-value>.xhtml</param-value>
+    </context-param>
+
+    <context-param>
+        <param-name>javax.faces.CONFIG_FILES</param-name>
+        <param-value>/WEB-INF/faces-config.xml</param-value>
+    </context-param>
     <!-- welcome files -->
     <welcome-file-list>
         <welcome-file>index.xhtml</welcome-file>

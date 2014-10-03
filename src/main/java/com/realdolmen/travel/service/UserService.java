@@ -17,6 +17,18 @@ public class UserService {
     @Inject
     private UserRepository userRepository;
 
+    public void addUser(User user)
+    {
+        user.setPassword(encryptPassword(user.getPassword()));
+        userRepository.create(user);
+    }
+
+
+    public User getUser(String username) {
+        return userRepository.findUserByUsername(username);
+    }
+
+
     public void checkLogin(String username, String password) throws UserServiceException
     {
         User user;
@@ -34,12 +46,6 @@ public class UserService {
             throw new UserServiceException(("Invalid username or password"));
         }
 
-    }
-
-    public void addUser(User user)
-    {
-        user.setPassword(encryptPassword(user.getPassword()));
-        userRepository.create(user);
     }
 
     private String encryptPassword(String password) {
