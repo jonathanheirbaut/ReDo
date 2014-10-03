@@ -8,4 +8,5 @@ import javax.ejb.Stateless;
 
 @Stateless
 public class RegionRepository extends AbstractRepository<Region> {
+
 }

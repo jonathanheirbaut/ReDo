@@ -67,14 +67,9 @@ public class FlightRepositoryTest extends AbstractArquillianTestCase {
         Region departureRegion = regionRepository.find(1L);
         Region destinationRegion = regionRepository.find(1L);
 
-
-        System.out.println(departure.getName());
-        System.out.println(destination.getName());
-        System.out.println(departureRegion.getName());
-        System.out.println(destinationRegion.getName());
-
-        System.out.println("average = " + flightRepository.testCalculateAveragePrice(departure, destination, departureRegion, destinationRegion));
+       assertEquals(new Double(5.0), flightRepository.testCalculateAveragePrice(departure, destination, departureRegion, destinationRegion));
 
     }
+
 
 }

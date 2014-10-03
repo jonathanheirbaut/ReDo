@@ -47,32 +47,59 @@
         </header>
 
         <section id="body" class="container">
+
             <div class="page-header">
                 <h1>Overview Flights</h1>
             </div>
-            <table class="table table-responsive">
-                <tr>
-                    <td>#{msg.averagePrice}:</td>
-                    <td>#{flightController.calculateAveragePrice()}</td>
-                </tr>
-                <tr>
-                    <td>#{msg.minimumPrice}:</td>
-                    <td>#{flightController.calculateMinimumPrice()}</td>
-                </tr>
-                <tr>
-                    <td>#{msg.maximumPrice}:</td>
-                    <td>#{flightController.calculateMaximumPrice()}</td>
-                </tr>
+            <section id="sidebar" class="col-md-4">
+                <h:form>
+                    <p:panel header="Filter" style="margin-bottom:10px;">
+                        <h:panelGrid columns="2" cellpadding="5">
+                            <p:outputLabel for="departure_list" value="Departure Region: "/>
 
-            </table>
+                            <p:selectOneMenu id="departure_list" value="#{regionController.region}" binding="#{foo}" >
+                                <f:selectItems value="#{regionController.regions}" var="region"
+                                               itemLabel="#{region.name}"  />
+                                <f:ajax execute="departure_list" />
+                            </p:selectOneMenu>
+
+
+
+                        </h:panelGrid>
+                    </p:panel>
+                </h:form>
+            </section>
+            <section id="sTable" class="col-md-8">
+                <table id="myTable" class="table table-responsive">
+                    <tr>
+                        <td>#{msg.averagePrice}:</td>
+                        <td>#{flightController.testCalculateAveragePrice(null, null, null, null)}</td>
+                    </tr>
+                    <tr>
+                        <td>#{msg.minimumPrice}:</td>
+                        <td>#{flightController.calculateMinimumPrice()}</td>
+                    </tr>
+                    <tr>
+                        <td>#{msg.maximumPrice}:</td>
+                        <td>#{flightController.calculateMaximumPrice()}</td>
+                    </tr>
+
+                </table>
+            </section>
+
 
         </section>
         <footer class="container">
 
         </footer>
     </div>
+
+    <p id="test">test + #{foo.value.name}</p>
+
+
+
+
     <!-- /container -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="resources/js/bootstrap.min.js"></script>
 </h:body>
 
