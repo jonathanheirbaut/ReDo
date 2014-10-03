@@ -18,6 +18,7 @@
 </h:head>
 
 <h:body>
+    <p:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
 
     <div id="page">
         <header class="container">
@@ -57,7 +58,7 @@
                         <h:panelGrid columns="2" cellpadding="5">
                             <p:outputLabel for="departure_list" value="Departure Region: "/>
 
-                            <p:selectOneMenu id="departure_list" value="#{regionController.region}" binding="#{foo}" >
+                            <p:selectOneMenu id="departure_list" value="#{regionController.region}" >
                                 <f:selectItems value="#{regionController.regions}" var="region"
                                                itemLabel="#{region.name}"  />
                                 <f:ajax execute="departure_list" />
@@ -66,6 +67,8 @@
 
 
                         </h:panelGrid>
+
+
                     </p:panel>
                 </h:form>
             </section>
@@ -94,7 +97,7 @@
         </footer>
     </div>
 
-    <p id="test">test + #{foo.value.name}</p>
+    <p id="test">test + #{regionController.region}</p>
 
 
 

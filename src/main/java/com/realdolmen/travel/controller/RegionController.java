@@ -1,8 +1,11 @@
 package com.realdolmen.travel.controller;
 
+import com.mysql.jdbc.log.LogFactory;
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.service.FlightService;
 import com.realdolmen.travel.service.RegionService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.ConversationScoped;
@@ -17,7 +20,7 @@ import java.util.Collection;
 public class RegionController {
     @Inject
     RegionService regionService;
-
+    protected Logger logger = LoggerFactory.getLogger(getClass());
     private Region region;
     private Collection<Region> regions;
 
@@ -39,6 +42,11 @@ public class RegionController {
     }
     public Collection<Region> getRegions() {
         return regions;
+    }
+
+    public void doSomeThing(){
+        System.out.println("test");
+        logger.info("blabla");
     }
 
 }
