@@ -23,10 +23,10 @@ public class FlightController {
     @Inject
     FlightService flightService;
     private Logger logger = LoggerFactory.getLogger(getClass());
-    private Location departure;
-    private Location destination;
     private Region departureRegion;
     private Region destinationRegion;
+    private Date departureDate;
+
 
     private Collection<Flight> flights;
 
@@ -40,34 +40,18 @@ public class FlightController {
     }
 
     public String test() {
-        flights.add(FlightBuilder.flight().withDepartureDate(new Date()).withPrice(15.15).build());
+       flights.add(FlightBuilder.flight().withDepartureDate(new Date()).withPrice(15.15).build());
         return "";
     }
 
     public Double calculateMinimumPrice(){
-        return flightService.calculateMinimumPrice();
+        return flightService.calculateMinimumPrice(departureRegion,destinationRegion);
     }
     public Double calculateMaximumPrice(){
-        return flightService.calculateMaximumPrice();
+        return flightService.calculateMaximumPrice(departureRegion,destinationRegion);
     }
-    public Double calculateAveragePrice(Region departureRegion, Region destinationRegion) {
+    public Double calculateAveragePrice() {
     return flightService.calculateAveragePrice(departureRegion, destinationRegion);
-    }
-
-    public Location getDeparture() {
-        return departure;
-    }
-
-    public void setDeparture(Location departure) {
-        this.departure = departure;
-    }
-
-    public Location getDestination() {
-        return destination;
-    }
-
-    public void setDestination(Location destination) {
-        this.destination = destination;
     }
 
     public Region getDepartureRegion() {
@@ -88,5 +72,13 @@ public class FlightController {
 
     public void setFlights(Collection<Flight> flights) {
         this.flights = flights;
+    }
+
+    public Date getDepartureDate() {
+        return departureDate;
+    }
+
+    public void setDepartureDate(Date departureDate) {
+        this.departureDate = departureDate;
     }
 }

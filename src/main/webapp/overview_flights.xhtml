@@ -55,26 +55,28 @@
             <section id="sidebar" class="col-md-4">
 
                 <h:form>
+
+                    <p:outputLabel for="depTime" value="Departure:" />
+                    <p:calendar id="depTime" value="#{calendarView.date3}" showOn="button" />
+
                     <label for="depMenu">Departure Region </label>
-                    <h:selectOneMenu id="depMenu" value="#{regionController.departureRegion}" converter="regionConverter">
+                    <h:selectOneMenu id="depMenu" value="#{flightController.departureRegion}" converter="regionConverter">
                         <f:selectItems value="#{regionController.regions}" itemValue="#{regionDep}" var="regionDep" itemLabel="#{regionDep.name}" />
                     </h:selectOneMenu>
-                    <label for="locMenu">Departure Region </label>
-                    <h:selectOneMenu id="locMenu" value="#{regionController.locationRegion}" converter="regionConverter">
+                    <label for="destMenu">Destination Region </label>
+                    <h:selectOneMenu id="destMenu" value="#{flightController.destinationRegion}" converter="regionConverter">
                         <f:selectItems value="#{regionController.regions}" itemValue="#{regionLoc}" var="regionLoc" itemLabel="#{regionLoc.name}" />
                     </h:selectOneMenu>
 
                     <h:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
                 </h:form>
 
-
-
             </section>
             <section id="sTable" class="col-md-8">
                 <table id="myTable" class="table table-responsive">
                     <tr>
                         <td>#{msg.averagePrice}:</td>
-                        <td>#{flightController.calculateAveragePrice(regionController.departureRegion, regionController.locationRegion)}</td>
+                        <td>#{flightController.calculateAveragePrice()}</td>
                     </tr>
                     <tr>
                         <td>#{msg.minimumPrice}:</td>

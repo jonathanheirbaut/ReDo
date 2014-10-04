@@ -20,8 +20,8 @@ public class RegionController implements Serializable {
     @Inject
     RegionService regionService;
     protected Logger logger = LoggerFactory.getLogger(getClass());
-    private Region departureRegion;
-    private Region locationRegion;
+//    private Region departureRegion;
+//    private Region locationRegion;
     private String test;
     private Collection<Region> regions;
 
@@ -30,21 +30,21 @@ public class RegionController implements Serializable {
         regions = regionService.findAll();
     }
 
-    public Region getDepartureRegion() {
-        return departureRegion;
-    }
-
-    public void setDepartureRegion(Region departureRegion) {
-        this.departureRegion = departureRegion;
-    }
-
-    public Region getLocationRegion() {
-        return locationRegion;
-    }
-
-    public void setLocationRegion(Region locationRegion) {
-        this.locationRegion = locationRegion;
-    }
+//    public Region getDepartureRegion() {
+//        return departureRegion;
+//    }
+//
+//    public void setDepartureRegion(Region departureRegion) {
+//        this.departureRegion = departureRegion;
+//    }
+//
+//    public Region getLocationRegion() {
+//        return locationRegion;
+//    }
+//
+//    public void setLocationRegion(Region locationRegion) {
+//        this.locationRegion = locationRegion;
+//    }
 
     public void setRegions(Collection<Region> regions) {
         this.regions = regions;
@@ -55,7 +55,7 @@ public class RegionController implements Serializable {
     }
 
     public void doSomeThing() {
-        System.out.println(getDepartureRegion().getName() + " " + getLocationRegion().getName());
+     //   logger.info("I'm doing something, the name of the region is " + getDepartureRegion().getName());
     }
 
     public String getTest() {

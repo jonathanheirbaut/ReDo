@@ -15,11 +15,11 @@ public class FlightService {
     @Inject
     private FlightRepository flightRepository;
 
-    public Double calculateMinimumPrice(){
-        return flightRepository.calculateMinimumPrice();
+    public Double calculateMinimumPrice(Region departureRegion, Region destinationRegion){
+        return flightRepository.calculateMinimumPrice(departureRegion,destinationRegion);
     }
-    public Double calculateMaximumPrice(){
-        return flightRepository.calculateMaximumPrice();
+    public Double calculateMaximumPrice(Region departureRegion, Region destinationRegion){
+        return flightRepository.calculateMaximumPrice(departureRegion,destinationRegion);
     }
     public Collection<Flight> findAll() {
         return flightRepository.findAll();

@@ -2,6 +2,8 @@ package com.realdolmen.travel.converter;
 
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.RegionRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.faces.component.UIComponent;
@@ -15,13 +17,13 @@ import javax.inject.Inject;
 public class RegionConverter implements Converter {
     @Inject
     RegionRepository repository;
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String value) {
-        System.out.println("ik kom hier!");
         Long id = Long.parseLong(value);
         Region region = repository.find(id);
-        System.out.println(region.getName());
+        logger.info("The name of the region is " + region.getName());
         return region;
     }
 
@@ -29,7 +31,7 @@ public class RegionConverter implements Converter {
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
 
         if (value == null || value.toString().isEmpty() || !(value instanceof Region)){
-            System.out.printf("I shouldn't be here");
+            logger.info("I shouldn't be here");
             return "";
         }
         return String.valueOf(((Region) value).getId());
