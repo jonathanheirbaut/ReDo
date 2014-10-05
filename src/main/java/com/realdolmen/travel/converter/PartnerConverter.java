@@ -1,6 +1,8 @@
 package com.realdolmen.travel.converter;
 
+import com.realdolmen.travel.domain.Partner;
 import com.realdolmen.travel.domain.Region;
+import com.realdolmen.travel.repository.PartnerRepository;
 import com.realdolmen.travel.repository.RegionRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,26 +15,27 @@ import javax.faces.convert.FacesConverter;
 import javax.inject.Inject;
 
 @Stateless
-@FacesConverter(value = "regionConverter")
-public class RegionConverter implements Converter {
+@FacesConverter(value = "partnerConverter")
+public class PartnerConverter implements Converter {
     @Inject
-    RegionRepository repository;
+    PartnerRepository repository;
     private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Override
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String value) {
         Long id = Long.parseLong(value);
-        Region region = repository.find(id);
-        logger.info("The name of the region is " + region.getName());
-        return region;
+        Partner partner = repository.find(id);
+        logger.info("The name of the partner is " + partner.getName());
+        return partner;
     }
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
 
-        if (value == null || value.toString().isEmpty() || !(value instanceof Region)){
+        if (value == null || value.toString().isEmpty() || !(value instanceof Partner)){
+            logger.info("I shouldn't be here");
             return "";
         }
-        return String.valueOf(((Region) value).getId());
+        return String.valueOf(((Partner) value).getId());
     }
 }

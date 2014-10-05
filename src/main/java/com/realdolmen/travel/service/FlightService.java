@@ -1,12 +1,14 @@
 package com.realdolmen.travel.service;
 
 import com.realdolmen.travel.domain.Flight;
+import com.realdolmen.travel.domain.Partner;
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.FlightRepository;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.Collection;
+import java.util.Date;
 
 @Stateless
 public class FlightService {
@@ -15,17 +17,17 @@ public class FlightService {
     @Inject
     private FlightRepository flightRepository;
 
-    public Double calculateMinimumPrice(Region departureRegion, Region destinationRegion){
-        return flightRepository.calculateMinimumPrice(departureRegion,destinationRegion);
+    public Double calculateMinimumPrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner){
+        return flightRepository.calculateMinimumPrice(departureRegion,destinationRegion, startDate,endDate, partner);
     }
-    public Double calculateMaximumPrice(Region departureRegion, Region destinationRegion){
-        return flightRepository.calculateMaximumPrice(departureRegion,destinationRegion);
+    public Double calculateMaximumPrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner){
+        return flightRepository.calculateMaximumPrice(departureRegion,destinationRegion, startDate, endDate, partner);
     }
     public Collection<Flight> findAll() {
         return flightRepository.findAll();
     }
-    public Double calculateAveragePrice(Region departureRegion, Region destinationRegion) {
-       return flightRepository.calculateAveragePrice(departureRegion, destinationRegion);
+    public Double calculateAveragePrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner) {
+       return flightRepository.calculateAveragePrice(departureRegion, destinationRegion, startDate, endDate, partner);
     }
 }
 

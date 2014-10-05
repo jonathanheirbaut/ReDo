@@ -1,8 +1,10 @@
 package com.realdolmen.travel.controller;
 
 import com.mysql.jdbc.log.LogFactory;
+import com.realdolmen.travel.domain.Partner;
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.service.FlightService;
+import com.realdolmen.travel.service.PartnerService;
 import com.realdolmen.travel.service.RegionService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,34 +19,23 @@ import java.util.Collection;
 
 @Named
 @ViewScoped
-public class RegionController {
+public class PartnerController {
     @Inject
-    RegionService regionService;
+    PartnerService partnerService;
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    private String test;
-    private Collection<Region> regions;
+    private Collection<Partner> partners;
 
     @PostConstruct
     public void initialize() {
-        regions = regionService.findAll();
+        partners = partnerService.findAll();
     }
 
-
-
-    public void setRegions(Collection<Region> regions) {
-        this.regions = regions;
+    public Collection<Partner> getPartners() {
+        return partners;
     }
 
-    public Collection<Region> getRegions() {
-        return regions;
-    }
-
-    public String getTest() {
-        return test;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
+    public void setPartners(Collection<Partner> partners) {
+        this.partners = partners;
     }
 }

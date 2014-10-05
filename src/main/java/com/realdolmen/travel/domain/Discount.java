@@ -7,7 +7,7 @@ import javax.persistence.Version;
 
 @Entity
 public class Discount extends AbstractEntity {
-
+    //HIER PARTNER BIJHOUDEN???
     private Integer threshold;
     private Integer discount;
 
