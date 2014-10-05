@@ -33,7 +33,6 @@ public class PartnerConverter implements Converter {
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
 
         if (value == null || value.toString().isEmpty() || !(value instanceof Partner)){
-            logger.info("I shouldn't be here");
             return "";
         }
         return String.valueOf(((Partner) value).getId());
