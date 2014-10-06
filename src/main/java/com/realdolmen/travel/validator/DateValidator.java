@@ -1,4 +1,4 @@
-package com.realdolmen.travel.converter;
+package com.realdolmen.travel.validator;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -10,7 +10,7 @@ import javax.faces.validator.ValidatorException;
 import java.util.Date;
 
 @FacesValidator("dateRangeValidator")
-public class DateConverter implements Validator {
+public class DateValidator implements Validator {
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {

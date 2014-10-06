@@ -20,31 +20,7 @@
 
 
     <div id="page">
-        <header class="container">
-
-            <div id="menu" class="navbar navbar-default navbar-fixed-top">
-                <div class="navbar-header">
-                    <div id="logo">
-                        <img src="resources/img/ReDo_logo.jpg" height="60"></img>
-                    </div>
-                </div>
-                <ul class="nav navbar-nav col-md-5">
-                    <li><a href="">Home</a></li>
-                    <li><a href="">Flights</a></li>
-                    <li><a href="">About</a></li>
-                </ul>
-                <form class="navbar-form navbar-right" role="form">
-                    <div class="form-group">
-                        <input type="text" placeholder="Email" class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <input type="password" placeholder="Password" class="form-control"/>
-                    </div>
-                    <button type="submit" class="btn btn-danger">Sign in</button>
-                </form>
-
-            </div>
-        </header>
+            <ui:include src="/resources/template/header.xhtml"/>
 
         <section id="body" class="container">
 
@@ -57,51 +33,51 @@
                     <p:messages></p:messages>
                     <p:panel id="panel" header="Filter" style="margin-bottom:10px;">
                         <h:panelGrid columns="2" style="margin: 5px;">
-                            <p:row  >
+                            <p:row>
                                 <p:outputLabel for="datetime" value="Start date:"/>
-                                <p:calendar id="datetime" binding="#{startDateComponent}" value="#{flightController.startDate}"
+                                <p:calendar id="datetime" binding="#{startDateComponent}"
+                                            value="#{flightController.startDate}"
                                             pattern="MM/dd/yyyy HH:mm:ss"/><br/>
                             </p:row>
                             <p:row>
                                 <p:outputLabel for="datetime2" value="End date:"/>
                                 <p:calendar id="datetime2" value="#{flightController.endDate}"
                                             pattern="MM/dd/yyyy HH:mm:ss">
-                                <f:validator validatorId="dateRangeValidator" />
-                                <f:attribute name="startDateComponent" value="#{startDateComponent}" />
+                                    <f:validator validatorId="dateRangeValidator"/>
+                                    <f:attribute name="startDateComponent" value="#{startDateComponent}"/>
                                 </p:calendar><br/>
                             </p:row>
                             <p:row>
-                            <label for="depMenu">Departure Region </label>
-                            <h:selectOneMenu id="depMenu" value="#{flightController.departureRegion}"
-                                             converter="regionConverter">
-                                <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
-                                <f:selectItems value="#{regionController.regions}" itemValue="#{regionDep}"
-                                               var="regionDep"
-                                               itemLabel="#{regionDep.name}"/>
-                            </h:selectOneMenu><br/>
+                                <label for="depMenu">Departure Region </label>
+                                <h:selectOneMenu id="depMenu" value="#{flightController.departureRegion}"
+                                                 converter="regionConverter">
+                                    <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
+                                    <f:selectItems value="#{regionController.regions}" itemValue="#{regionDep}"
+                                                   var="regionDep"
+                                                   itemLabel="#{regionDep.name}"/>
+                                </h:selectOneMenu><br/>
                             </p:row>
                             <p:row>
-                            <label for="destMenu">Destination Region </label>
-                            <h:selectOneMenu id="destMenu" value="#{flightController.destinationRegion}"
-                                             converter="regionConverter">
-                                <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
-                                <f:selectItems value="#{regionController.regions}" itemValue="#{regionLoc}"
-                                               var="regionLoc"
-                                               itemLabel="#{regionLoc.name}"/>
-                            </h:selectOneMenu><br/>
+                                <label for="destMenu">Destination Region </label>
+                                <h:selectOneMenu id="destMenu" value="#{flightController.destinationRegion}"
+                                                 converter="regionConverter">
+                                    <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
+                                    <f:selectItems value="#{regionController.regions}" itemValue="#{regionLoc}"
+                                                   var="regionLoc"
+                                                   itemLabel="#{regionLoc.name}"/>
+                                </h:selectOneMenu><br/>
                             </p:row>
                             <p:row>
-                            <label for="partnerMenu">Partner: </label>
-                            <h:selectOneMenu id="partnerMenu" value="#{flightController.partner}"
-                                             converter="partnerConverter"
-                                    >
-                                <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
-                                <f:selectItems value="#{partnerController.partners}" itemValue="#{partner}"
-                                               var="partner"
-                                               itemLabel="#{partner.name}"/>
-                            </h:selectOneMenu><br/>
+                                <label for="partnerMenu">Partner: </label>
+                                <h:selectOneMenu id="partnerMenu" value="#{flightController.partner}"
+                                                 converter="partnerConverter"
+                                        >
+                                    <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
+                                    <f:selectItems value="#{partnerController.partners}" itemValue="#{partner}"
+                                                   var="partner"
+                                                   itemLabel="#{partner.name}"/>
+                                </h:selectOneMenu><br/>
                             </p:row>
-
 
 
                         </h:panelGrid>
