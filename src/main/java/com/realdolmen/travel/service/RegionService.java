@@ -10,7 +10,6 @@ import java.util.Collection;
 @Stateless
 public class RegionService{
 
-    private Collection<Region> regions;
     @Inject
     private RegionRepository regionRepository;
 

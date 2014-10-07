@@ -1,13 +1,19 @@
 package com.realdolmen.travel.controller;
 
 import com.realdolmen.travel.domain.Flight;
+import com.realdolmen.travel.domain.Location;
 import com.realdolmen.travel.domain.Partner;
+import com.realdolmen.travel.repository.LocationRepository;
 import com.realdolmen.travel.service.FlightService;
+import com.realdolmen.travel.service.LocationService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Calendar;
+import java.util.Collection;
 import java.util.Date;
 
 @Named
@@ -25,16 +31,20 @@ public class AddFlightController {
     private Date duration;
     private Date arrivalDate;
     private Double price;
+    private Location departure;
+    private Location destination;
 
-
-    public void create(){
+    Logger logger = LoggerFactory.getLogger(AddFlightController.class);
+    public void createFlight() {
         flight = new Flight();
         flight.setMaxSeats(maxSeats);
         flight.setDepartureDate(departureDate);
-        System.out.println("arrival date is = " + addDurationToDate(departureDate, duration));
         flight.setArrivalDate(addDurationToDate(departureDate, duration));
+        logger.info(departure.getName());
         flight.setPrice(price);
-        flightService.create(flight);}
+        flight.setDeparture(departure);
+        flightService.create(flight);
+    }
 
     public Integer getMaxSeats() {
         return maxSeats;
@@ -84,7 +94,25 @@ public class AddFlightController {
         this.price = price;
     }
 
-    private Date addDurationToDate(Date departureDate, Date duration){
+    public Location getDeparture() {
+        System.out.println("i'm getting the departure");
+        return departure;
+    }
+
+    public void setDeparture(Location departure) {
+        System.out.println("i'm setting the departure");
+        this.departure = departure;
+    }
+
+    public Location getDestination() {
+        return destination;
+    }
+
+    public void setDestination(Location destination) {
+        this.destination = destination;
+    }
+
+    private Date addDurationToDate(Date departureDate, Date duration) {
         Calendar dep = Calendar.getInstance();
         dep.setTime(departureDate);
         Calendar dur = Calendar.getInstance();

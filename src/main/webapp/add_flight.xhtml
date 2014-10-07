@@ -57,11 +57,20 @@
                                      label="Price: "/>
                         <p:message for="price"/>
                     </div>
+                    <div class="form-group">
+                        <label for="destMenu">Departure </label>
+                        <h:selectOneMenu id="destMenu" value="#{addFlightController.departure}"
+                                         converter="locationConverter">
 
-                    <h:commandButton value="Submit" action="#{addFlightController.create()}"/>
+                            <f:selectItems value="#{regionController.findAll()}" itemValue="#{location}"
+                                           var="location"
+                                           itemLabel="#{location.name}"/>
+                        </h:selectOneMenu>
+                    </div>
+
+                    <h:commandButton value="Submit" action="#{addFlightController.createFlight()}"/>
                 </h:form>
             </section>
-
 
         </section>
         <footer class="container">
