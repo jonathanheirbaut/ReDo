@@ -63,7 +63,7 @@ insert into flight(version, id, price, departure_id, location_fk) values(0, 3, 2
 insert into flight(version, id, price, departure_id, location_fk) values(0, 4, 10.0, 3, 2);
 insert into flight(version, id, price, departure_id, location_fk) values(0, 5, 5.0, 2, 5);
 
-insert into user(id, version, password, userName, userType, partner_id) values(1, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'ikke', 'PARTNER' , 1);
+insert into user(DTYPE, id, version, password, userName, partner_id) values('AirlineEmployee', 1, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'ikke', 1);
 
 
 

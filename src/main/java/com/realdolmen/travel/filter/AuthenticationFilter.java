@@ -1,8 +1,7 @@
 package com.realdolmen.travel.filter;
 
 import com.realdolmen.travel.controller.UserController;
-import com.realdolmen.travel.domain.User;
-import com.realdolmen.travel.domain.UserType;
+import com.realdolmen.travel.domain.*;
 
 import javax.inject.Inject;
 import javax.servlet.*;
@@ -31,15 +30,15 @@ public class AuthenticationFilter implements Filter {
         final String path = httpRequest.getRequestURL().toString().toLowerCase();
         boolean isAuthed = true;
 
-        if (userController.getUser() != null) {
-            UserType userType = userController.getUser().getUserType();
-            if (path.contains("/restricted/customer/") && !userType.equals(UserType.CUSTOMER)) {
+        User user = userController.getUser();
+        if (user != null) {
+            if (path.contains("/restricted/customer/") && !(user instanceof Customer)) {
                 isAuthed = false;
             }
-            if (path.contains("/restricted/employee/") && !userType.equals(UserType.EMPLOYEE)) {
+            if (path.contains("/restricted/employee/") && !(user instanceof RDAirEmployee)) {
                 isAuthed = false;
             }
-            if (path.contains("/restricted/partner/") && !userType.equals(UserType.PARTNER)) {
+            if (path.contains("/restricted/partner/") && !(user instanceof AirlineEmployee)) {
                 isAuthed = false;
             }
         } else {

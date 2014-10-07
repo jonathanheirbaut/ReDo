@@ -17,7 +17,7 @@
 </h:head>
 
 <h:body>
-
+    <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
 
     <div id="page">
             <ui:include src="/resources/template/header.xhtml"/>
@@ -30,7 +30,6 @@
             <section id="sidebar" class="col-md-8">
 
                 <h:form>
-                    <p:messages></p:messages>
                     <p:panel id="panel" header="Filter" style="margin-bottom:10px;">
                         <h:panelGrid columns="2" style="margin: 5px;">
                             <p:row>

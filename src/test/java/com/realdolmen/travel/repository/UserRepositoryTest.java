@@ -1,6 +1,7 @@
 package com.realdolmen.travel.repository;
 
 import com.realdolmen.travel.common.AbstractArquillianTestCase;
+import com.realdolmen.travel.domain.Customer;
 import com.realdolmen.travel.domain.User;
 import com.realdolmen.travel.domain.UserType;
 import org.jboss.arquillian.junit.Arquillian;
@@ -20,10 +21,10 @@ public class UserRepositoryTest extends AbstractArquillianTestCase {
     private UserRepository userRepository;
 
     @Test
-    public void canPersistAUser() throws Exception {
-        User user = new User("ikke", "ikke", UserType.CUSTOMER);
-        userRepository.create(user);
-        assertNotNull("User could not be peristed", user.getId());
+    public void canPersistACustomer() throws Exception {
+        User customer = new Customer("ikke", "ikke");
+        userRepository.create(customer);
+        assertNotNull("User could not be peristed", customer.getId());
     }
 
 }

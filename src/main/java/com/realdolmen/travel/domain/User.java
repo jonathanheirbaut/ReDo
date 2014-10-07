@@ -9,19 +9,17 @@ import javax.persistence.*;
 public class User extends AbstractEntity {
     private String userName;
     private String password;
-    @Enumerated(EnumType.STRING)
+/*    @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private UserType userType;
-    @ManyToOne
-    private Partner partner;
+    private UserType userType;*/
+
 
     protected User() {
     }
 
-    public User(String userName, String password, UserType userType) {
+    public User(String userName, String password) {
         this.userName = userName;
         this.password = password;
-        this.userType = userType;
     }
 
     public String getUserName() {
@@ -30,14 +28,6 @@ public class User extends AbstractEntity {
 
     public String getPassword() {
         return password;
-    }
-
-    public UserType getUserType() {
-        return userType;
-    }
-
-    public Partner getPartner() {
-        return partner;
     }
 
     public void setPassword(String password) {
