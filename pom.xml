@@ -15,6 +15,12 @@
 
     <repositories>
         <repository>
+            <id>prime-repo</id>
+            <name>PrimeFaces Maven Repository</name>
+            <url>http://repository.primefaces.org</url>
+            <layout>default</layout>
+        </repository>
+        <repository>
             <id>JBoss Public Repository</id>
             <url>https://repository.jboss.org/nexus/content/repositories/public</url>
         </repository>
@@ -55,6 +61,8 @@
 
     <dependencyManagement>
         <dependencies>
+
+
             <dependency>
                 <groupId>org.jboss.arquillian</groupId>
                 <artifactId>arquillian-bom</artifactId>
@@ -66,7 +74,11 @@
     </dependencyManagement>
 
     <dependencies>
-
+        <dependency>
+            <groupId>org.primefaces.themes</groupId>
+            <artifactId>all-themes</artifactId>
+            <version>1.0.10</version>
+        </dependency>
         <!-- Arquillian JUnit integration -->
         <dependency>
             <groupId>org.jboss.arquillian.junit</groupId>

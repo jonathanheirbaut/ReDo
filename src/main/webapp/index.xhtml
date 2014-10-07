@@ -1,120 +1,57 @@
-<?xml version='1.0' encoding='UTF-8' ?>
+<?xml version="1.0" encoding="UTF-8"?>
+
+
 <!DOCTYPE html>
+
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jstl/core">
 <h:head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-
-    <title>Flight</title>
+    <link rel="stylesheet" href="resources/css/site.css"/>
+    <title>Overview Flights</title>
 
 </h:head>
 
 <h:body>
 
-    <!--<h:form>-->
-    <!--<p:dataTable id="flights" var="flight" value="#{flightController.flights}">-->
-    <!--<p:column headerText="DepartureDate" style="width:16px">-->
-    <!--<h:outputText value="#{flight.startDate}"/>-->
-    <!--</p:column>-->
 
-    <!--<p:column headerText="#{msg.price}">-->
-    <!--<h:outputText value="#{flight.price}"/>-->
-    <!--</p:column>-->
+    <div id="page">
+            <c:if test="#{userController.userIsOfTypeAirlineEmployee()}">
+                <ui:include src="/resources/template/header_partner.xhtml"/>
 
-    <!--</p:dataTable>-->
-    <!--<p:commandButton action="#{flightController.test()}" value="Redirect to index" icon="ui-icon-disk" update="flights"/>-->
-    <!--<p:button outcome="test" value="test"/>-->
-
-    <!--</h:form>-->
+            </c:if>
+        <c:if test="#{!userController.userIsOfTypeAirlineEmployee()}">
+            <ui:include src="/resources/template/header.xhtml"/>
+        </c:if>
 
 
-    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-        <div class="container">
-            <div class="navbar-header">
-                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
-                        data-target=".navbar-collapse">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="#">#{msg.projectName}</a>
+        <section id="body" class="container">
+
+            <div class="page-header">
+                <h1>Home</h1>
             </div>
-            <div class="navbar-collapse collapse">
-                <h:form styleClass="navbar-form navbar-right">
-                    <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
-                    <p:messages id="messages" showDetail="true" autoUpdate="true" closable="true"/>
+            <section id="sidebar" class="col-md-8">
 
-                    <div class="form-group">
-                        <p:inputText binding="#{username}" required="true" autocomplete="off"
-                                     placeholder="Email"
-                                     requiredMessage="jup"
-                                     class="form-control"/>
-                    </div>
-                    <div class="form-group">
-                        <p:password binding="#{password}" required="true" autocomplete="off"
-                                    placeholder="password"
-                                    requiredMessage="jup"
-                                    class="form-control"/>
-                    </div>
-                    <h:commandLink value="Sign in" styleClass="btn btn-success"
-                                   action="#{userController.login(username.value, password.value)}"/>
-                </h:form>
-            </div>
-            <!--/.navbar-collapse -->
-        </div>
-    </div>
 
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-        <div class="container">
-            <h1>Hello, world! K</h1>
+            </section>
+            <section id="sTable" class="col-md-10">
 
-            <p>This is a template for a simple marketing or informational website. It includes a large callout called a jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.</p>
+            </section>
 
-            <p><a class="btn btn-primary btn-lg" role="button">Learn more</a></p>
-        </div>
-    </div>
 
-    <div class="container">
-        <!-- Example row of columns -->
-        <div class="row">
-            <div class="col-md-4">
-                <h2>Heading</h2>
+        </section>
+        <footer class="container">
 
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-
-                <p><a class="btn btn-default" href="#" role="button">View details</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-
-                <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-
-                <p><a class="btn btn-default" href="#" role="button">View details</a></p>
-            </div>
-            <div class="col-md-4">
-                <h2>Heading</h2>
-
-                <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
-
-                <p><a class="btn btn-default" href="#" role="button">View details</a></p>
-            </div>
-        </div>
-
-        <hr/>
-
-        <footer>
-            <p>Company 2014</p>
         </footer>
     </div>
-    <script src="resources/js/bootstrap.min.js"></script>
-    <script src="resources/js/jquery-1.9.1.js"></script>
 
+    <!-- /container -->
+    <script src="../../resources/js/bootstrap.min.js"></script>
 </h:body>
 
 </html>

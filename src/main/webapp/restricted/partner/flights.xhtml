@@ -9,10 +9,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="resources/css/site.css"/>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../resources/css/site.css"/>
     <title>Overview Flights</title>
 
 </h:head>
@@ -21,7 +21,7 @@
 
 
     <div id="page">
-        <ui:include src="/resources/template/header.xhtml"/>
+        <ui:include src="/resources/template/header_partner.xhtml"/>
 
         <section id="body" class="container">
 
@@ -54,16 +54,18 @@
                     </p:column>
                 </p:dataTable>
             </section>
+            <div class="col-md-5"><h:link value="Add flight" outcome="add_flight"/></div>
 
 
         </section>
+
         <footer class="container">
 
         </footer>
     </div>
 
     <!-- /container -->
-    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="../../resources/js/bootstrap.min.js"></script>
 </h:body>
 
 </html>

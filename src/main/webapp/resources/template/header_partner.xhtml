@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+
+<ui:composition>
+
+    <header class="container">
+
+
+        <div id="menu" class="navbar navbar-default navbar-fixed-top">
+
+            <div class="navbar-header">
+                <div id="logo">
+                    <img src="../travel.war/resources/img/ReDo_logo.jpg" height="60"></img>
+                </div>
+            </div>
+            <ul class="nav navbar-nav col-md-5">
+               <li><h:link value="Home" outcome="index" /></li>
+                <li><h:link value="My Flights" outcome="flights"/> </li>
+            </ul>
+
+            <h:form styleClass="navbar-form navbar-right" rendered="#{!userController.loggedIn}">
+                <div class="form-group">
+                    <p:inputText binding="#{username}" required="true" autocomplete="off"
+                                 placeholder="Email"
+                                 requiredMessage="Username is required"
+                                 class="form-control"/>
+                </div>
+                <div class="form-group">
+                    <p:password binding="#{password}" required="true" autocomplete="off"
+                                placeholder="password"
+                                requiredMessage="Password is required"
+                                class="form-control"/>
+                </div>
+                <h:commandLink value="Sign in" styleClass="btn btn-danger" style="margin-right: 15px"
+                               action="#{userController.login(username.value, password.value)}"/>
+            </h:form>
+
+            <h:form styleClass="navbar-form navbar-right" rendered="#{userController.loggedIn}">
+                <h:outputText value="Welcome, #{userController.user.userName}" style="margin-right: 20px"/>
+                <h:commandLink styleClass="btn btn-danger" style="margin-right: 15px"
+                               value="Log out"
+                               action="#{userController.logout}" />
+
+            </h:form>
+
+
+
+        </div>
+    </header>
+</ui:composition>
+</html>

@@ -8,10 +8,10 @@
       xmlns:p="http://primefaces.org/ui"
       xmlns:ui="http://java.sun.com/jsf/facelets">
 <h:head>
-    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
-    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
-    <link rel="stylesheet" href="resources/css/site.css"/>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../resources/css/site.css"/>
     <title>Overview Flights</title>
 
 </h:head>
@@ -20,7 +20,7 @@
     <p>the partner is : #{userController.user.partner.name}</p>
 
     <div id="page">
-        <ui:include src="/resources/template/header.xhtml"/>
+        <ui:include src="/resources/template/header_partner.xhtml"/>
 
         <section id="body" class="container">
 
@@ -31,46 +31,46 @@
 
 
             </section>
-            <section id="sTable" class="col-md-10">
+            <section id="sTable" class="col-md-5">
                 <p:messages></p:messages>
                 <h:form role="form">
                     <div class="form-group">
-                        <h:outputLabel for="maxSeats" value="Maximum seats"/>
+                        <p:outputLabel for="maxSeats" value="Maximum seats"/>
                         <p:inputText class="form-control" id="maxSeats" value="#{addFlightController.maxSeats}"
-                                     label="Maximum seats" required="true" requiredMessage="You have to enter a maximum amount of seats" />
+                                     label="Maximum seats" required="true" requiredMessage="You have to enter a maximum amount of seats"/>
                     </div>
-                    <div class="form-group">
-                        <p:outputLabel for="datetime" value="Departure date:"/><br/>
+                    <div class="form-group" >
+                        <p:outputLabel for="datetime" value="Departure date"/><br/>
                         <p:calendar  id="datetime" binding="#{startDateComponent}"
                                     value="#{addFlightController.departureDate}"
                                     pattern="MM/dd/yyyy HH:mm" required="true" requiredMessage="You have to select a date"/>
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="datetime2" value="Duration:"/><br/>
+                        <p:outputLabel for="datetime2" value="Duration"/><br/>
                         <p:calendar  timeOnly="true"  pattern="HH:mm" id="datetime2" binding="#{endDateComponent}"
                                     value="#{addFlightController.duration}" validator="dateTimeValidator" required="true" requiredMessage="You have to give the duration of the flight"
                                 />
                     </div>
                     <div class="form-group">
-                        <h:outputLabel for="price" value="Price"/>
+                        <p:outputLabel for="price" value="Price"/>
                         <p:inputText class="form-control" id="price" value="#{addFlightController.price}"
                                      label="Price: " required="true" requiredMessage="You have to enter a price"/>
 
                     </div>
                     <div class="form-group">
-                        <label for="depMenu">Departure </label>
-                        <h:selectOneMenu id="depMenu" value="#{addFlightController.departure}"
+                        <p:outputLabel for="depMenu" value="Departure"/><br/>
+                        <p:selectOneMenu id="depMenu" value="#{addFlightController.departure}"
                                          converter="locationConverter" binding="#{departureComponent}">
 
                             <f:selectItems value="#{locationController.findAllLocations()}" itemValue="#{location}"
                                            var="location"
                                            itemLabel="#{location.name}" />
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
 
                     </div>
                     <div class="form-group">
-                        <label for="destMenu">Destination </label>
-                        <h:selectOneMenu id="destMenu" value="#{addFlightController.destination}"
+                        <p:outputLabel for="destMenu" value="Destination"/><br/>
+                        <p:selectOneMenu id="destMenu" value="#{addFlightController.destination}"
                                          converter="locationConverter">
 
                             <f:selectItems value="#{locationController.findAllLocations()}" itemValue="#{location}"
@@ -81,7 +81,7 @@
                                     </f:selectItems>
                             <f:attribute name="departureComponent" value="#{departureComponent}"/>
                             <f:validator validatorId="locationCantBeEqualValidator"/>
-                        </h:selectOneMenu>
+                        </p:selectOneMenu>
                     </div>
 
                     <h:commandButton value="Submit" action="#{addFlightController.createFlight()}"/>
@@ -95,7 +95,7 @@
     </div>
 
     <!-- /container -->
-    <script src="resources/js/bootstrap.min.js"></script>
+    <script src="../../resources/js/bootstrap.min.js"></script>
 </h:body>
 
 </html>

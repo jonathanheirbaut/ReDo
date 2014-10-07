@@ -25,10 +25,26 @@
         <navigation-case>
             <from-outcome>index</from-outcome>
             <to-view-id>/index.xhtml</to-view-id>
+            <redirect />
         </navigation-case>
         <navigation-case>
             <from-outcome>addbooking</from-outcome>
             <to-view-id>/restricted/customer/addbooking.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>flight_stats</from-outcome>
+            <to-view-id>/restricted/employee/flight_stats.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>flights</from-outcome>
+            <to-view-id>/restricted/partner/flights.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>add_flight</from-outcome>
+            <to-view-id>/restricted/partner/add_flight.xhtml</to-view-id>
             <redirect />
         </navigation-case>
 

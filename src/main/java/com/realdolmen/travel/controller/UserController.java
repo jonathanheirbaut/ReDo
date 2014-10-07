@@ -80,8 +80,8 @@ public class UserController implements Serializable {
             user = userService.getUser(username);
             loggedIn = true;
             if (userIsOfTypeCustomer()) return "addbooking";
-            if (userIsOfTypeAirlineEmployee()) return "";
-            if (userIsOfTypeRDAirEmployee()) return "";
+            if (userIsOfTypeAirlineEmployee()) return "flights";
+            if (userIsOfTypeRDAirEmployee()) return "flight_stats";
             if (userIsOfTypeRDTravelEmployee()) return "";
             return "";
         } catch (UserServiceException ex) {
