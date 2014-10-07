@@ -1,6 +1,6 @@
 package com.realdolmen.travel.controller;
 
-import com.realdolmen.travel.domain.User;
+import com.realdolmen.travel.domain.*;
 import com.realdolmen.travel.exception.UserServiceException;
 import com.realdolmen.travel.service.UserService;
 
@@ -9,6 +9,7 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
+import javax.servlet.http.HttpSession;
 import java.io.Serializable;
 
 /**
@@ -26,7 +27,54 @@ public class UserController implements Serializable {
     public UserController() {
     }
 
-    public String login(String username, String password){
+    public boolean userIsOfTypeAirlineEmployee() {
+        return (user instanceof AirlineEmployee);
+    }
+
+    public boolean userIsOfTypeCustomer() {
+        return (user instanceof Customer);
+    }
+
+
+    public boolean userIsOfTypeRDAirEmployee() {
+        return (user instanceof RDAirEmployee);
+    }
+
+
+    public boolean userIsOfTypeRDTravelEmployee() {
+        return (user instanceof RDTravelEmployee);
+    }
+
+    public AirlineEmployee getUserAsAirlineEmployee() {
+        if (userIsOfTypeAirlineEmployee()) {
+            return (AirlineEmployee) user;
+        }
+        throw new IllegalStateException("User is not of type AirlineEmployee");
+    }
+
+    public Customer getUserAsCustomer() {
+        if (userIsOfTypeCustomer()) {
+            return (Customer) user;
+        }
+        throw new IllegalStateException("User is not of type Customer");
+    }
+
+    public RDAirEmployee getUserAsRDAirEmployee() {
+        if (userIsOfTypeRDAirEmployee()) {
+            return (RDAirEmployee) user;
+        }
+        throw new IllegalStateException("User is not of type RDAirEmployee");
+    }
+
+    public RDTravelEmployee getUserAsRDTravelEmployee() {
+        if (userIsOfTypeRDTravelEmployee()) {
+            return (RDTravelEmployee) user;
+        }
+        throw new IllegalStateException("User is not of type RDTravelEmployee");
+    }
+
+
+    public String login(String username, String password) {
         try {
             userService.checkLogin(username, password);
             user = userService.getUser(username);
@@ -38,6 +86,13 @@ public class UserController implements Serializable {
                     FacesMessage.SEVERITY_ERROR, "Foutief wachtwoord of gebruikersnaam", ""));
             return "";
         }
+    }
+
+    public String logout() {
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpSession session = (HttpSession) context.getExternalContext().getSession(false);
+        session.invalidate();
+        return "index";
     }
 
     public User getUser() {
