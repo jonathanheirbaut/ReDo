@@ -79,7 +79,11 @@ public class UserController implements Serializable {
             userService.checkLogin(username, password);
             user = userService.getUser(username);
             loggedIn = true;
-            return "2";
+            if (userIsOfTypeCustomer()) return "addbooking";
+            if (userIsOfTypeAirlineEmployee()) return "";
+            if (userIsOfTypeRDAirEmployee()) return "";
+            if (userIsOfTypeRDTravelEmployee()) return "";
+            return "";
         } catch (UserServiceException ex) {
             // ResourceBundle bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
@@ -111,10 +115,4 @@ public class UserController implements Serializable {
         this.loggedIn = loggedIn;
     }
 
-    public String logout(){
-
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
-        return "index.xhtml";
-
-    }}
+}
