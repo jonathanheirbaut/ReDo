@@ -51,11 +51,12 @@ insert into location(version, id, code, name, region_id) values(0,41, 'SYD', 'Sy
 insert into location(version, id, code, name, region_id) values(0,42, 'ALB', 'Albury', 5);
 insert into location(version, id, code, name, region_id) values(0,43, 'NEW', 'Newcastle', 5);
 
-insert into partner(version, id, name) values(0, 1, 'Neckermann');
-insert into partner(version, id, name) values(0, 2, 'Thomas Cook');
-insert into partner(version, id, name) values(0, 3, 'Your Travel');
-insert into partner(version, id, name) values(0, 4, 'Sunweb');
-insert into partner(version, id, name) values(0, 5, 'Jetair');
+insert into partner(id,version, name) values( 1,0, 'Neckermann');
+insert into partner(id,version, name) values( 2,0, 'Thomas Cook');
+insert into partner(id,version, name) values( 3,0, 'Your Travel');
+insert into partner(id,version, name) values( 4,0, 'Sunweb');
+insert into partner(id,version, name) values( 5,0, 'Jetair');
+insert into partner(id,version, name) values( 6,0, 'ReDo Travel');
 
 insert into flight(version, id, price, departure_id, location_fk) values(0, 1, 10.0, 1, 2);
 insert into flight(version, id, price, departure_id, location_fk) values(0, 2, 5.0, 1, 2);

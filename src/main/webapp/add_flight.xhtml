@@ -32,39 +32,55 @@
 
             </section>
             <section id="sTable" class="col-md-10">
+                <p:messages></p:messages>
                 <h:form role="form">
                     <div class="form-group">
                         <h:outputLabel for="maxSeats" value="Maximum seats"/>
                         <p:inputText class="form-control" id="maxSeats" value="#{addFlightController.maxSeats}"
-                                     label="Maximum seats"/>
-                        <p:message for="maxSeats"/>
+                                     label="Maximum seats" required="true" requiredMessage="You have to enter a maximum amount of seats" />
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="datetime" value="Departure date:"/><br/>
                         <p:calendar  id="datetime" binding="#{startDateComponent}"
                                     value="#{addFlightController.departureDate}"
-                                    pattern="MM/dd/yyyy HH:mm"/>
+                                    pattern="MM/dd/yyyy HH:mm" required="true" requiredMessage="You have to select a date"/>
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="datetime2" value="Duration:"/><br/>
-                        <p:calendar timeOnly="true"  pattern="HH:mm" id="datetime2" binding="#{endDateComponent}"
-                                    value="#{addFlightController.duration}"
+                        <p:calendar  timeOnly="true"  pattern="HH:mm" id="datetime2" binding="#{endDateComponent}"
+                                    value="#{addFlightController.duration}" validator="dateTimeValidator" required="true" requiredMessage="You have to give the duration of the flight"
                                 />
                     </div>
                     <div class="form-group">
                         <h:outputLabel for="price" value="Price"/>
                         <p:inputText class="form-control" id="price" value="#{addFlightController.price}"
-                                     label="Price: "/>
-                        <p:message for="price"/>
+                                     label="Price: " required="true" requiredMessage="You have to enter a price"/>
+
                     </div>
                     <div class="form-group">
-                        <label for="destMenu">Departure </label>
-                        <h:selectOneMenu id="destMenu" value="#{addFlightController.departure}"
+                        <label for="depMenu">Departure </label>
+                        <h:selectOneMenu id="depMenu" value="#{addFlightController.departure}"
+                                         converter="locationConverter" binding="#{departureComponent}">
+
+                            <f:selectItems value="#{regionController.findAll()}" itemValue="#{location}"
+                                           var="location"
+                                           itemLabel="#{location.name}" />
+                        </h:selectOneMenu>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="destMenu">Destination </label>
+                        <h:selectOneMenu id="destMenu" value="#{addFlightController.destination}"
                                          converter="locationConverter">
 
                             <f:selectItems value="#{regionController.findAll()}" itemValue="#{location}"
                                            var="location"
-                                           itemLabel="#{location.name}"/>
+                                           itemLabel="#{location.name}">
+
+
+                                    </f:selectItems>
+                            <f:attribute name="departureComponent" value="#{departureComponent}"/>
+                            <f:validator validatorId="locationCantBeEqualValidator"/>
                         </h:selectOneMenu>
                     </div>
 
