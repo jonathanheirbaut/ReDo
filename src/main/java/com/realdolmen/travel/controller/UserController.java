@@ -111,10 +111,4 @@ public class UserController implements Serializable {
         this.loggedIn = loggedIn;
     }
 
-    public String logout(){
-
-        FacesContext.getCurrentInstance().getExternalContext().invalidateSession();
-
-        return "index.xhtml";
-
-    }}
+   }

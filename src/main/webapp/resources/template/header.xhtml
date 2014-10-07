@@ -40,13 +40,13 @@
                                 requiredMessage="Password is required"
                                 class="form-control"/>
                 </div>
-                <h:commandLink value="Sign in" styleClass="btn btn-danger"
+                <h:commandLink value="Sign in" styleClass="btn btn-danger" style="margin-right: 15px"
                                action="#{userController.login(username.value, password.value)}"/>
             </h:form>
 
             <h:form styleClass="navbar-form navbar-right" rendered="#{userController.loggedIn}">
                <h:outputText value="Welcome, #{userController.user.userName}" style="margin-right: 20px"/>
-                <h:commandLink styleClass="btn btn-danger"
+                <h:commandLink styleClass="btn btn-danger" style="margin-right: 15px"
                         value="Log out"
                         action="#{userController.logout}" />
 
