@@ -12,6 +12,8 @@ import org.slf4j.LoggerFactory;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.Future;
+import javax.validation.constraints.Min;
 import java.util.Calendar;
 import java.util.Collection;
 import java.util.Date;
@@ -25,11 +27,14 @@ public class AddFlightController {
     @Inject
     UserController userController;
     private Flight flight;
+    @Min(value = 1, message = "the minimal amount is 1")
     private Integer maxSeats;
     private Partner partner;
+    @Future
     private Date departureDate;
     private Date duration;
     private Date arrivalDate;
+    @Min(value = 1,message = "The minimum price is 1")
     private Double price;
     private Location departure;
     private Location destination;
@@ -42,7 +47,10 @@ public class AddFlightController {
         flight.setArrivalDate(addDurationToDate(departureDate, duration));
         logger.info(departure.getName());
         flight.setPrice(price);
+        System.out.println(userController.getUser().getPartner());
         flight.setDeparture(departure);
+        flight.setDestination(destination);
+        flight.setPartner(userController.getUser().getPartner());
         flightService.create(flight);
     }
 
