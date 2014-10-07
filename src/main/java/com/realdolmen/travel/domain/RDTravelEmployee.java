@@ -10,4 +10,8 @@ public class RDTravelEmployee extends User{
 
     protected RDTravelEmployee() {
     }
+
+    public RDTravelEmployee(String userName, String password) {
+        super(userName, password);
+    }
 }

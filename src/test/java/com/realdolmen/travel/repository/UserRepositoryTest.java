@@ -1,10 +1,7 @@
 package com.realdolmen.travel.repository;
 
 import com.realdolmen.travel.common.AbstractArquillianTestCase;
-import com.realdolmen.travel.domain.AirlineEmployee;
-import com.realdolmen.travel.domain.Customer;
-import com.realdolmen.travel.domain.User;
-import com.realdolmen.travel.domain.UserType;
+import com.realdolmen.travel.domain.*;
 import org.jboss.arquillian.junit.Arquillian;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -22,17 +19,31 @@ public class UserRepositoryTest extends AbstractArquillianTestCase {
     private UserRepository userRepository;
 
     @Test
-    public void canPersistACustomer() throws Exception {
+    public void canPersistCustomer() throws Exception {
         User customer = new Customer("ikke", "ikke");
         userRepository.create(customer);
         assertNotNull("Customer could not be peristed", customer.getId());
     }
 
     @Test
-    public void canPersistAArlineEmployee() throws Exception {
+    public void canPersistArlineEmployee() throws Exception {
         User airlineEmployee = new AirlineEmployee("ikke", "ikke", null);
         userRepository.create(airlineEmployee);
         assertNotNull("AirlineEmployee could not be peristed", airlineEmployee.getId());
+    }
+
+    @Test
+    public void canPersistRDAirEmployee() throws Exception {
+        User rdAirEmployee = new RDAirEmployee("ikke", "ikke");
+        userRepository.create(rdAirEmployee);
+        assertNotNull("RDAirEmployee could not be peristed", rdAirEmployee.getId());
+    }
+
+    @Test
+    public void canPersistRDTravelEmployee() throws Exception {
+        User rdTravelEmployee = new RDTravelEmployee("ikke", "ikke");
+        userRepository.create(rdTravelEmployee);
+        assertNotNull("RDTravelEmployee could not be peristed", rdTravelEmployee.getId());
     }
 
 }

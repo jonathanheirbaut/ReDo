@@ -10,4 +10,8 @@ public class RDAirEmployee extends User {
 
     protected RDAirEmployee() {
     }
+
+    public RDAirEmployee(String userName, String password) {
+        super(userName, password);
+    }
 }
