@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <link rel="icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="resources/css/site.css"/>
+    <title>Overview Flights</title>
+
+</h:head>
+
+<h:body>
+    <p>the partner is : #{userController.user.partner.name}</p>
+
+    <div id="page">
+        <ui:include src="/resources/template/header.xhtml"/>
+
+        <section id="body" class="container">
+
+            <div class="page-header">
+                <h1>Add a new flight</h1>
+            </div>
+            <section id="sidebar" class="col-md-8">
+
+
+            </section>
+            <section id="sTable" class="col-md-10">
+                <h:form role="form">
+                    <div class="form-group">
+                        <h:outputLabel for="maxSeats" value="Maximum seats"/>
+                        <p:inputText class="form-control" id="maxSeats" value="#{addFlightController.maxSeats}"
+                                     label="Maximum seats"/>
+                        <p:message for="maxSeats"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="datetime" value="Departure date:"/><br/>
+                        <p:calendar  id="datetime" binding="#{startDateComponent}"
+                                    value="#{addFlightController.departureDate}"
+                                    pattern="MM/dd/yyyy HH:mm"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="datetime2" value="Duration:"/><br/>
+                        <p:calendar timeOnly="true"  pattern="HH:mm" id="datetime2" binding="#{endDateComponent}"
+                                    value="#{addFlightController.duration}"
+                                />
+                    </div>
+                    <div class="form-group">
+                        <h:outputLabel for="price" value="Price"/>
+                        <p:inputText class="form-control" id="price" value="#{addFlightController.price}"
+                                     label="Price: "/>
+                        <p:message for="price"/>
+                    </div>
+
+                    <h:commandButton value="Submit" action="#{addFlightController.create()}"/>
+                </h:form>
+            </section>
+
+
+        </section>
+        <footer class="container">
+
+        </footer>
+    </div>
+
+    <!-- /container -->
+    <script src="resources/js/bootstrap.min.js"></script>
+</h:body>
+
+</html>

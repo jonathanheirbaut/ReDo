@@ -9,6 +9,7 @@ import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.util.Collection;
 import java.util.Date;
+import java.util.List;
 
 @Stateless
 public class FlightService {
@@ -17,18 +18,31 @@ public class FlightService {
     @Inject
     private FlightRepository flightRepository;
 
-    public Double calculateMinimumPrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner){
-        return flightRepository.calculateMinimumPrice(departureRegion,destinationRegion, startDate,endDate, partner);
+    public Double calculateMinimumPrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner) {
+        return flightRepository.calculateMinimumPrice(departureRegion, destinationRegion, startDate, endDate, partner);
     }
-    public Double calculateMaximumPrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner){
-        return flightRepository.calculateMaximumPrice(departureRegion,destinationRegion, startDate, endDate, partner);
+
+    public Double calculateMaximumPrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner) {
+        return flightRepository.calculateMaximumPrice(departureRegion, destinationRegion, startDate, endDate, partner);
     }
+
     public Collection<Flight> findAll() {
         return flightRepository.findAll();
     }
+
     public Double calculateAveragePrice(Region departureRegion, Region destinationRegion, Date startDate, Date endDate, Partner partner) {
-       return flightRepository.calculateAveragePrice(departureRegion, destinationRegion, startDate, endDate, partner);
+        return flightRepository.calculateAveragePrice(departureRegion, destinationRegion, startDate, endDate, partner);
     }
+
+    public List<Flight> findAllByPartner(Partner partner) { return flightRepository.findAllByPartner(partner);
+
+    }
+
+    public void create(Flight flight) {
+        flightRepository.create(flight);
+    }
+
+
 }
 
 

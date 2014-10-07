@@ -7,14 +7,14 @@ insert into region(id, code, name) values(6,'NA', 'North America');
 insert into region(id, code, name) values(7,'SA', 'South America');
 
 insert into location(id, code, name, region_id) values(1, 'LON', 'London', 1);
-insert into location(id, code, name, region_id) values(2, 'BRU', 'Brussels', 1);
 insert into location(id, code, name, region_id) values(3, 'PAR', 'Paris', 1);
 insert into location(id, code, name, region_id) values(4, 'MAD', 'Madrid', 1);
 insert into location(id, code, name, region_id) values(5, 'MIL', 'Milan', 1);
-insert into location(id, code, name, region_id) values(6, 'PRA', 'Prague', 1);
 insert into location(id, code, name, region_id) values(7, 'DUB', 'Dublin', 1);
+insert into location(id, code, name, region_id) values(6, 'PRA', 'Prague', 1);
 insert into location(id, code, name, region_id) values(8, 'LON', 'London', 1);
 insert into location(id, code, name, region_id) values(9, 'BER', 'Berlin', 1);
+insert into location(id, code, name, region_id) values(2, 'BRU', 'Brussels', 1);
 insert into location(id, code, name, region_id) values(10, 'ROM', 'Rome', 1);
 insert into location(id, code, name, region_id) values(11, 'STO', 'Stockholm', 1);
 insert into location(id, code, name, region_id) values(12, 'MAR', 'Marseille', 1);
@@ -67,7 +67,7 @@ insert into flight(id, price, departure_id, location_fk) values(3, 20.0, 5, 1);
 insert into flight(id, price, departure_id, location_fk) values(4, 10.0, 3, 2);
 insert into flight(id, price, departure_id, location_fk) values(5, 5.0, 2, 5);
 
-insert into user(id, version, password, userName, userType) values(1, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'ikke', 'PARTNER');
+insert into user(id, version, password, userName, userType, partner_id) values(1, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'ikke', 'PARTNER' , 1);
 
 
 

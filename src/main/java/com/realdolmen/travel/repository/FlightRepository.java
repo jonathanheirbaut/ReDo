@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.persistence.TypedQuery;
 import java.util.Date;
+import java.util.List;
 
 @Stateless
 public class FlightRepository extends AbstractRepository<Flight> {
@@ -51,5 +52,17 @@ public class FlightRepository extends AbstractRepository<Flight> {
         }
 
     }
+
+    public List<Flight> findAllByPartner(Partner partner) {
+
+        TypedQuery<Flight> query = null;
+        String jpqlQuery = "Select f from Flight f where f.partner.id = :partner_id";
+        query = em.createQuery(jpqlQuery, Flight.class);
+        query.setParameter("partner_id", partner.getId());
+
+        return query.getResultList();
+    }
+
+
 }
 

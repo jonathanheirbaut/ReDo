@@ -78,4 +78,28 @@ public class Flight extends AbstractEntity{
     public void setPrice(Double price) {
         this.price = price;
     }
+
+    public void setArrivalDate(Date arrivalDate) {
+        this.arrivalDate = arrivalDate;
+    }
+
+    public void setOverriddenPrice(Double overriddenPrice) {
+        this.overriddenPrice = overriddenPrice;
+    }
+
+    public void setDestination(Location destination) {
+        this.destination = destination;
+    }
+
+    public void setDeparture(Location departure) {
+        this.departure = departure;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
+    }
+
+    public void setMaxSeats(Integer maxSeats) {
+        this.maxSeats = maxSeats;
+    }
 }

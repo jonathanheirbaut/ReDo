@@ -33,6 +33,7 @@ public class UserController implements Serializable {
         try {
             userService.checkLogin(username, password);
             user = userService.getUser(username);
+
             return "2";
         } catch (UserServiceException ex) {
             // ResourceBundle bundle = ResourceBundle.getBundle("be.kdg.repaircafe.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
