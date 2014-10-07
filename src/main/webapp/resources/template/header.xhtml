@@ -26,7 +26,8 @@
                 <li><a href="">About</a></li>
             </ul>
 
-            <h:form styleClass="navbar-form navbar-right" rendered="#{userController.loggedIn}">
+
+            <h:form styleClass="navbar-form navbar-right" rendered="#{!userController.loggedIn}">
                 <div class="form-group">
                     <p:inputText binding="#{username}" required="true" autocomplete="off"
                                  placeholder="Email"
@@ -43,15 +44,15 @@
                                action="#{userController.login(username.value, password.value)}"/>
             </h:form>
 
-<!--          <form class="navbar-form navbar-right" role="form">
-                <div class="form-group">
-                    <input type="text" placeholder="Email" class="form-control"/>
-                </div>
-                <div class="form-group">
-                    <input type="password" placeholder="Password" class="form-control"/>
-                </div>
-                <button type="submit" class="btn btn-danger">Sign in</button>
-            </form>-->
+            <h:form styleClass="navbar-form navbar-right" rendered="#{userController.loggedIn}">
+               <h:outputText value="Welcome, #{userController.user.userName}" style="margin-right: 20px"/>
+                <h:commandLink styleClass="btn btn-danger"
+                        value="Log out"
+                        action="#{userController.logout}" />
+
+            </h:form>
+
+
         </div>
     </header>
 </ui:composition>

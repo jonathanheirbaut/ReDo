@@ -11,8 +11,8 @@
 <h:body>
 <h:outputText value="Departure Region: " />
 
-    <p:selectOneMenu value="#{regionController.region}">
-        <f:selectItems value="#{regionController.regions}" var="region" itemLabel="#{region.name}" />
+    <p:selectOneMenu value="#{locationController.region}">
+        <f:selectItems value="#{locationController.regions}" var="region" itemLabel="#{region.name}" />
     </p:selectOneMenu>
 </h:body>
 </html>

@@ -1,5 +1,6 @@
 package com.realdolmen.travel.controller;
 
+import com.realdolmen.travel.domain.AirlineEmployee;
 import com.realdolmen.travel.domain.Flight;
 import com.realdolmen.travel.domain.Location;
 import com.realdolmen.travel.domain.Partner;
@@ -47,10 +48,10 @@ public class AddFlightController {
         flight.setArrivalDate(addDurationToDate(departureDate, duration));
         logger.info(departure.getName());
         flight.setPrice(price);
-        System.out.println(userController.getUser().getPartner());
+        System.out.println(((AirlineEmployee)userController.getUser()).getPartner());
         flight.setDeparture(departure);
         flight.setDestination(destination);
-        flight.setPartner(userController.getUser().getPartner());
+        flight.setPartner(((AirlineEmployee)userController.getUser()).getPartner());
         flightService.create(flight);
     }
 

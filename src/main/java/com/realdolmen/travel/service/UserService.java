@@ -5,7 +5,9 @@ import com.realdolmen.travel.exception.UserServiceException;
 import com.realdolmen.travel.repository.UserRepository;
 
 import javax.ejb.Stateless;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -68,4 +70,6 @@ public class UserService {
         }
         return generatedPassword;
     }
+
+
 }

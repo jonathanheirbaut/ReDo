@@ -2,7 +2,9 @@ package com.realdolmen.travel.service;
 
 import com.realdolmen.travel.domain.Flight;
 import com.realdolmen.travel.domain.Location;
+import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.repository.LocationRepository;
+import com.realdolmen.travel.repository.RegionRepository;
 
 import javax.inject.Inject;
 import java.util.Collection;
@@ -15,9 +17,15 @@ public class LocationService {
 
     @Inject
     LocationRepository locationRepository;
+    @Inject
+    RegionRepository regionRepository;
 
-    public Collection<Location> findAll() {
+    public Collection<Location> findAllLocations() {
         return locationRepository.findAll();
     }
+    public Collection<Region> findAllRegions() {
+        return regionRepository.findAll();
+    }
+
 
 }

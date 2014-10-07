@@ -62,7 +62,7 @@
                         <h:selectOneMenu id="depMenu" value="#{addFlightController.departure}"
                                          converter="locationConverter" binding="#{departureComponent}">
 
-                            <f:selectItems value="#{regionController.findAll()}" itemValue="#{location}"
+                            <f:selectItems value="#{locationController.findAllLocations()}" itemValue="#{location}"
                                            var="location"
                                            itemLabel="#{location.name}" />
                         </h:selectOneMenu>
@@ -73,7 +73,7 @@
                         <h:selectOneMenu id="destMenu" value="#{addFlightController.destination}"
                                          converter="locationConverter">
 
-                            <f:selectItems value="#{regionController.findAll()}" itemValue="#{location}"
+                            <f:selectItems value="#{locationController.findAllLocations()}" itemValue="#{location}"
                                            var="location"
                                            itemLabel="#{location.name}">
 

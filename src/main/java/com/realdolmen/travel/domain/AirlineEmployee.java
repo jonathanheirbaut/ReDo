@@ -18,4 +18,12 @@ public class AirlineEmployee extends User{
         super(userName, password);
         this.partner = partner;
     }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
+    }
 }

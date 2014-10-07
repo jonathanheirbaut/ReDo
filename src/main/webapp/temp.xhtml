@@ -8,13 +8,13 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
     <h:form>
-        <h:selectOneMenu value="#{regionController.region}" converter="regionConverter">
-            <f:selectItems value="#{regionController.regions}" itemValue="#{region}" var="region" itemLabel="#{region.name}" />
+        <h:selectOneMenu value="#{locationController.region}" converter="regionConverter">
+            <f:selectItems value="#{locationController.regions}" itemValue="#{region}" var="region" itemLabel="#{region.name}" />
         </h:selectOneMenu>
-        <h:commandButton value="Submit" action="#{regionController.doSomeThing()}"/>
+        <h:commandButton value="Submit" action="#{locationController.doSomeThing()}"/>
     </h:form>
 
-    <p>#{regionController.region}</p>
+    <p>#{locationController.region}</p>
 
 </h:body>
 </html>

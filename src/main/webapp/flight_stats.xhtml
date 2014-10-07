@@ -51,7 +51,7 @@
                                 <h:selectOneMenu id="depMenu" value="#{flightController.departureRegion}"
                                                  converter="regionConverter">
                                     <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
-                                    <f:selectItems value="#{regionController.regions}" itemValue="#{regionDep}"
+                                    <f:selectItems value="#{locationController.regions}" itemValue="#{regionDep}"
                                                    var="regionDep"
                                                    itemLabel="#{regionDep.name}"/>
                                 </h:selectOneMenu><br/>
@@ -61,7 +61,7 @@
                                 <h:selectOneMenu id="destMenu" value="#{flightController.destinationRegion}"
                                                  converter="regionConverter">
                                     <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
-                                    <f:selectItems value="#{regionController.regions}" itemValue="#{regionLoc}"
+                                    <f:selectItems value="#{locationController.regions}" itemValue="#{regionLoc}"
                                                    var="regionLoc"
                                                    itemLabel="#{regionLoc.name}"/>
                                 </h:selectOneMenu><br/>

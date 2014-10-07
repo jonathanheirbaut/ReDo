@@ -20,7 +20,6 @@ import static org.junit.Assert.assertNotNull;
 public class UserServiceIntegrationTest extends AbstractArquillianTestCase {
     @Inject
     private UserService userService;
-    @Inject PartnerService partnerService;
 
     @Test
     public void canPersistAUser() throws Exception {
