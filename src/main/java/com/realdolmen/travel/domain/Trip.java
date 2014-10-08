@@ -1,10 +1,8 @@
 package com.realdolmen.travel.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,13 +11,23 @@ import java.util.List;
 @Entity
 public class Trip extends AbstractEntity {
     private String name;
+    private Integer emptyPlaces;
     @ManyToOne
-    private Location destination;
+    private Flight outwardFlight;
+    @ManyToOne
+    private Flight returnFlight;
     @OneToMany
-    @JoinColumn(name="booking_fk")
+    @JoinColumn(name="trip_id")
     private List<Booking> bookings = new ArrayList<>();
 
     protected Trip() {
+    }
+
+    public Trip(String name, Integer emptyPlaces, Flight outwardFlight, Flight returnFlight) {
+        this.name = name;
+        this.emptyPlaces = emptyPlaces;
+        this.outwardFlight = outwardFlight;
+        this.returnFlight = returnFlight;
     }
 
     public String getName() {
@@ -38,11 +46,27 @@ public class Trip extends AbstractEntity {
         this.bookings = bookings;
     }
 
-    public Location getDestination() {
-        return destination;
+    public Flight getOutwardFlight() {
+        return outwardFlight;
     }
 
-    public void setDestination(Location destination) {
-        this.destination = destination;
+    public void setOutwardFlight(Flight outwardFlight) {
+        this.outwardFlight = outwardFlight;
+    }
+
+    public Flight getReturnFlight() {
+        return returnFlight;
+    }
+
+    public void setReturnFlight(Flight returnFlight) {
+        this.returnFlight = returnFlight;
+    }
+
+    public Integer getEmptyPlaces() {
+        return emptyPlaces;
+    }
+
+    public void setEmptyPlaces(Integer emptyPlaces) {
+        this.emptyPlaces = emptyPlaces;
     }
 }

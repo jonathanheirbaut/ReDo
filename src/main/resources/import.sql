@@ -58,17 +58,25 @@ insert into partner(id,version, name) values( 4,0, 'Sunweb');
 insert into partner(id,version, name) values( 5,0, 'Jetair');
 insert into partner(id,version, name) values( 6,0, 'ReDo Travel');
 
-insert into flight(version, id, price, departure_id, location_fk) values(0, 1, 10.0, 1, 2);
-insert into flight(version, id, price, departure_id, location_fk) values(0, 2, 5.0, 1, 2);
-insert into flight(version, id, price, departure_id, location_fk) values(0, 3, 20.0, 5, 1);
-insert into flight(version, id, price, departure_id, location_fk) values(0, 4, 10.0, 3, 2);
-insert into flight(version, id, price, departure_id, location_fk) values(0, 5, 5.0, 2, 5);
-
 insert into user(DTYPE, id, version, password, userName, partner_id) values('AirlineEmployee', 1, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'partner', 1);
 insert into user(DTYPE, id, version, password, userName) values('Customer', 2, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'customer');
 insert into user(DTYPE, id, version, password, userName) values('RDAirEmployee', 3, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'airemp');
 insert into user(DTYPE, id, version, password, userName) values('RDTravelEmployee', 4, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'travelemp');
 
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 1,200,6,'2014-03-20 09:00','2014-03-20 15:00', 10.0, 1, 2);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 2,200,6,'2014-03-30 09:00','2014-03-30 15:00', 5.0, 2, 1);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 3,200,6,'2014-10-25 09:00','2014-10-25 15:00', 20.0, 5, 1);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 4,200,6,'2014-11-05 09:00','2014-11-05 15:00', 10.0, 1, 5);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 5,200,6,'2014-11-01 09:00','2014-11-01 15:00', 5.0, 2, 5);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 6,200,6,'2014-11-11 09:00','2014-11-11 15:00', 5.0, 2, 5);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 7,200,6,'2014-12-05 09:00','2014-12-05 15:00', 5.0, 2, 5);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 8,200,6,'2014-12-15 09:00','2014-12-15 15:00', 5.0, 2, 5);
+
+
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(1, 0, 60, 'Vakantie! Enjoy!', 1, 2);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(2, 0, 60, 'Vakantie! Enjoy!', 3, 4);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(3, 0, 60, 'Vakantie! Enjoy!', 5, 6);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(4, 0, 60, 'Vakantie! Enjoy!', 7, 8);
 
 
 

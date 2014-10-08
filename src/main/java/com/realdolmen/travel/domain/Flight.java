@@ -1,7 +1,5 @@
 package com.realdolmen.travel.domain;
 
-import org.hibernate.annotations.Cascade;
-
 import javax.persistence.*;
 import java.util.Date;
 
@@ -15,18 +13,17 @@ public class Flight extends AbstractEntity{
     private Double price;
     private Double overriddenPrice;
     @ManyToOne
-    @JoinColumn(name="location_fk")
     private Location destination;
     @ManyToOne
     private Location departure;
     @ManyToOne
     private Partner partner;
-    private Integer maxSeats;
+    private Integer emptySeats;
 
     public Flight() {
     }
 
-    public Flight(Date departureDate, Date arrivalDate, Double price, Double overriddenPrice, Location departure, Location destination, Partner partner, Integer maxSeats) {
+    public Flight(Date departureDate, Date arrivalDate, Double price, Double overriddenPrice, Location departure, Location destination, Partner partner, Integer emptySeats) {
         this.departureDate = departureDate;
         this.arrivalDate = arrivalDate;
         this.price = price;
@@ -34,7 +31,7 @@ public class Flight extends AbstractEntity{
         this.departure = departure;
         this.destination = destination;
         this.partner = partner;
-        this.maxSeats = maxSeats;
+        this.emptySeats = emptySeats;
     }
 
     public Long getVersion() {
@@ -69,8 +66,8 @@ public class Flight extends AbstractEntity{
         return partner;
     }
 
-    public Integer getMaxSeats() {
-        return maxSeats;
+    public Integer getEmptySeats() {
+        return emptySeats;
     }
 
     public void setDepartureDate(Date departureDate) {
@@ -101,7 +98,7 @@ public class Flight extends AbstractEntity{
         this.partner = partner;
     }
 
-    public void setMaxSeats(Integer maxSeats) {
-        this.maxSeats = maxSeats;
+    public void setEmptySeats(Integer emptySeats) {
+        this.emptySeats = emptySeats;
     }
 }
