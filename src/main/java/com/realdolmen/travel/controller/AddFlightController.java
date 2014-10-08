@@ -4,9 +4,7 @@ import com.realdolmen.travel.domain.AirlineEmployee;
 import com.realdolmen.travel.domain.Flight;
 import com.realdolmen.travel.domain.Location;
 import com.realdolmen.travel.domain.Partner;
-import com.realdolmen.travel.repository.LocationRepository;
 import com.realdolmen.travel.service.FlightService;
-import com.realdolmen.travel.service.LocationService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -16,7 +14,6 @@ import javax.inject.Named;
 import javax.validation.constraints.Future;
 import javax.validation.constraints.Min;
 import java.util.Calendar;
-import java.util.Collection;
 import java.util.Date;
 
 @Named

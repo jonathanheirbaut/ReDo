@@ -45,7 +45,6 @@ public class FlightService {
         return partnerRepository.findAll();
     }
 
-
     public void create(Flight flight) {
         flightRepository.create(flight);
     }

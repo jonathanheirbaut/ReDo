@@ -116,6 +116,8 @@ public class FlightController {
 
     public List<Flight> findAllByPartner(Partner partner)  { return flightService.findAllByPartner(partner);
     }
+    public Collection<Partner> findAllPartners(){return flightService.findAllPartners();}
+
     public void create(){flightService.create(flight);}
 
 

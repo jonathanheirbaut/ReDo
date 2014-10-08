@@ -72,7 +72,7 @@
                                                  converter="partnerConverter"
                                         >
                                     <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
-                                    <f:selectItems value="#{partnerController.partners}" itemValue="#{partner}"
+                                    <f:selectItems value="#{flightController.findAllPartners()}" itemValue="#{partner}"
                                                    var="partner"
                                                    itemLabel="#{partner.name}"/>
                                 </h:selectOneMenu><br/>
