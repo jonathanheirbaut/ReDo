@@ -30,7 +30,7 @@ public class LocationCantBeEqualValidator implements Validator {
         if (departure.getId()==destination.getId()) {
             departureComponent.setValid(false);
             throw new ValidatorException(new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Departure en destination can't be equal", null));
+                    FacesMessage.SEVERITY_ERROR, "Departure and destination can't be equal", null));
         }
     }
 

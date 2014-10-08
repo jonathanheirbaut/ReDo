@@ -17,7 +17,6 @@
 </h:head>
 
 <h:body>
-    <p>the partner is : #{userController.user.partner.name}</p>
 
     <div id="page">
         <ui:include src="/resources/template/header.xhtml"/>
@@ -83,8 +82,9 @@
                             <f:validator validatorId="locationCantBeEqualValidator"/>
                         </p:selectOneMenu>
                     </div>
-
                     <h:commandButton value="Submit" action="#{addFlightController.createFlight()}"/>
+                    <p:messages severity="info"></p:messages>
+
                 </h:form>
             </section>
 

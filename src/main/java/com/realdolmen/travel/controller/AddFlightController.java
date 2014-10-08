@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.Future;
@@ -38,7 +40,7 @@ public class AddFlightController {
     private Location destination;
 
     Logger logger = LoggerFactory.getLogger(AddFlightController.class);
-    public void createFlight() {
+    public String createFlight() {
         flight = new Flight();
         flight.setMaxSeats(maxSeats);
         flight.setDepartureDate(departureDate);
@@ -50,6 +52,20 @@ public class AddFlightController {
         flight.setDestination(destination);
         flight.setPartner(((AirlineEmployee)userController.getUser()).getPartner());
         flightService.create(flight);
+
+        FacesContext context = FacesContext.getCurrentInstance();
+
+        context.addMessage(null, new FacesMessage("Your flight has been submitted!"));
+        maxSeats=null;
+        price=null;
+        departureDate=null;
+        departure=null;
+        destination=null;
+        arrivalDate=null;
+        duration=null;
+
+
+        return null;
     }
 
     public Integer getMaxSeats() {
@@ -101,12 +117,10 @@ public class AddFlightController {
     }
 
     public Location getDeparture() {
-        System.out.println("i'm getting the departure");
         return departure;
     }
 
     public void setDeparture(Location departure) {
-        System.out.println("i'm setting the departure");
         this.departure = departure;
     }
 
