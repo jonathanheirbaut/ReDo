@@ -88,7 +88,7 @@ public class ScriptService {
         Date generatedDate = new Date();
         Calendar c = Calendar.getInstance();
         c.setTime(date);
-        c.add(Calendar.DATE, generateRandomNumber(1, 14));
+        c.add(Calendar.HOUR, generateRandomNumber(1, 12));
         generatedDate = c.getTime();
         return generatedDate;
     }
