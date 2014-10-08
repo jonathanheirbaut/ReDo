@@ -17,7 +17,6 @@
 </h:head>
 
 <h:body>
-    <p>the partner is : #{userController.user.partner.name}</p>
 
     <div id="page">
         <ui:include src="/resources/template/header.xhtml"/>
@@ -25,7 +24,7 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Add a new flight</h1>
+                <h1>#{msg.addFlightTitle}</h1>
             </div>
             <section id="sidebar" class="col-md-8">
 
@@ -35,30 +34,30 @@
                 <p:messages severity="error"></p:messages>
                 <h:form role="form">
                     <div class="form-group">
-                        <p:outputLabel for="maxSeats" value="Maximum seats"/>
+                        <p:outputLabel for="maxSeats" value="#{msg.maximumSeats}"/>
                         <p:inputText class="form-control" id="maxSeats" value="#{addFlightController.maxSeats}"
                                      label="Maximum seats" required="true" requiredMessage="You have to enter a maximum amount of seats"/>
                     </div>
                     <div class="form-group" >
-                        <p:outputLabel for="datetime" value="Departure date"/><br/>
+                        <p:outputLabel for="datetime" value="#{msg.departureDate}"/><br/>
                         <p:calendar  id="datetime" binding="#{startDateComponent}"
                                     value="#{addFlightController.departureDate}"
-                                    pattern="MM/dd/yyyy HH:mm" required="true" requiredMessage="You have to select a date"/>
+                                    pattern="dd-MM-yyyy HH:mm" required="true" requiredMessage="You have to select a date"/>
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="datetime2" value="Duration"/><br/>
+                        <p:outputLabel for="datetime2" value="#{msg.duration}"/><br/>
                         <p:calendar  timeOnly="true"  pattern="HH:mm" id="datetime2" binding="#{endDateComponent}"
                                     value="#{addFlightController.duration}" validator="dateTimeValidator" required="true" requiredMessage="You have to give the duration of the flight"
                                 />
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="price" value="Price"/>
+                        <p:outputLabel for="price" value="#{msg.price}"/>
                         <p:inputText class="form-control" id="price" value="#{addFlightController.price}"
-                                     label="Price: " required="true" requiredMessage="You have to enter a price"/>
+                                     label="Price: " required="true" requiredMessage="#{msg.errorPrice}"/>
 
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="depMenu" value="Departure"/><br/>
+                        <p:outputLabel for="depMenu" value="#{msg.departure}"/><br/>
                         <p:selectOneMenu id="depMenu" value="#{addFlightController.departure}"
                                          converter="locationConverter" binding="#{departureComponent}">
 
@@ -69,7 +68,7 @@
 
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="destMenu" value="Destination"/><br/>
+                        <p:outputLabel for="destMenu" value="#{msg.destination}"/><br/>
                         <p:selectOneMenu id="destMenu" value="#{addFlightController.destination}"
                                          converter="locationConverter">
 
@@ -83,8 +82,9 @@
                             <f:validator validatorId="locationCantBeEqualValidator"/>
                         </p:selectOneMenu>
                     </div>
+                    <h:commandButton value="#{msg.submit}" action="#{addFlightController.createFlight()}"/>
+                    <p:messages severity="info"></p:messages>
 
-                    <h:commandButton value="Submit" action="#{addFlightController.createFlight()}"/>
                 </h:form>
             </section>
 

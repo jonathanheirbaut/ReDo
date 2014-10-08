@@ -8,11 +8,21 @@ import javax.faces.validator.FacesValidator;
 import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 @FacesValidator("dateRangeValidator")
 public class DateValidator implements Validator {
+    private ResourceBundle bundle;
+    private FacesMessage msg;
+    public DateValidator() {
+        bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        msg = new FacesMessage();
+
+    }
 
     @Override
+
+
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if (value == null) {
             return; // Let required="true" handle.
@@ -34,8 +44,11 @@ public class DateValidator implements Validator {
 
         if (startDate.after(endDate)) {
             startDateComponent.setValid(false);
-            throw new ValidatorException(new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Start date may not be after end date.", null));
+            String errorMsg = bundle.getString("errorStartDateAfterEndDate");
+            msg.setSummary(errorMsg);
+            msg.setDetail(null);
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         }
     }
 

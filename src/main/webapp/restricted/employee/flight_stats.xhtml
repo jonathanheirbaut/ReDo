@@ -12,12 +12,11 @@
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../resources/css/site.css"/>
-    <title>Overview Flights</title>
+    <title>#{msg.flightStatsTitle}</title>
 
 </h:head>
 
 <h:body>
-    <p:growl id="growl" showDetail="true" sticky="false" autoUpdate="true"/>
 
     <div id="page">
             <ui:include src="/resources/template/header.xhtml"/>
@@ -25,29 +24,30 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Overview Flights</h1>
+                <h1>#{msg.flightStatsTitle}</h1>
             </div>
             <section id="sidebar" class="col-md-8">
 
                 <h:form>
                     <p:panel id="panel" header="Filter" style="margin-bottom:10px;">
+                      <p:messages severity="error"></p:messages>
                         <h:panelGrid columns="2" style="margin: 5px;">
                             <p:row>
-                                <p:outputLabel for="datetime" value="Start date:"/>
+                                <p:outputLabel for="datetime" value="#{msg.startDate}"/>
                                 <p:calendar id="datetime" binding="#{startDateComponent}"
                                             value="#{flightController.startDate}"
-                                            pattern="MM/dd/yyyy HH:mm:ss"/><br/>
+                                            pattern="dd/MM/yyyy HH:mm:ss"/><br/>
                             </p:row>
                             <p:row>
-                                <p:outputLabel for="datetime2" value="End date:"/>
+                                <p:outputLabel for="datetime2" value="#{msg.endDate}"/>
                                 <p:calendar id="datetime2" value="#{flightController.endDate}"
-                                            pattern="MM/dd/yyyy HH:mm:ss">
+                                            pattern="dd/MM/yyyy HH:mm:ss">
                                     <f:validator validatorId="dateRangeValidator"/>
                                     <f:attribute name="startDateComponent" value="#{startDateComponent}"/>
                                 </p:calendar><br/>
                             </p:row>
                             <p:row>
-                                <label for="depMenu">Departure Region </label>
+                                <label for="depMenu">#{msg.departureRegion}</label>
                                 <h:selectOneMenu id="depMenu" value="#{flightController.departureRegion}"
                                                  converter="regionConverter">
                                     <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
@@ -57,7 +57,7 @@
                                 </h:selectOneMenu><br/>
                             </p:row>
                             <p:row>
-                                <label for="destMenu">Destination Region </label>
+                                <label for="destMenu">#{msg.destinationRegion}</label>
                                 <h:selectOneMenu id="destMenu" value="#{flightController.destinationRegion}"
                                                  converter="regionConverter">
                                     <f:selectItem value="#{null}" itemLabel="All"></f:selectItem>
@@ -67,7 +67,7 @@
                                 </h:selectOneMenu><br/>
                             </p:row>
                             <p:row>
-                                <label for="partnerMenu">Partner: </label>
+                                <label for="partnerMenu">#{msg.partner}</label>
                                 <h:selectOneMenu id="partnerMenu" value="#{flightController.partner}"
                                                  converter="partnerConverter"
                                         >
@@ -80,7 +80,7 @@
 
 
                         </h:panelGrid>
-                        <h:commandButton value="Submit" action="#{flightController.doSomeThing()}"/>
+                        <h:commandButton value="#{msg.submit}" action="#{flightController.doSomeThing()}"/>
                     </p:panel>
                 </h:form>
 

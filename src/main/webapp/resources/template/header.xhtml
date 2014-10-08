@@ -21,33 +21,33 @@
                 </div>
             </div>
             <ul class="nav navbar-nav col-md-5">
-                <li><h:link value="Home" outcome="index" rendered="true"/></li>
-                <li><h:link value="My Flights" outcome="flights" rendered="#{userController.userIsOfTypeAirlineEmployee()}"/> </li>
-                <li><h:link value="Flight Statistics" outcome="flight_stats" rendered="#{userController.userIsOfTypeRDAirEmployee()}"/> </li>
-                <li><h:link value="Booking" outcome="addbooking" rendered="#{userController.userIsOfTypeCustomer()}"/> </li>
+                <li><h:link value="#{msg.homeNavigation}" outcome="index" rendered="true"/></li>
+                <li><h:link value="#{msg.flightsNavigation}" outcome="flights" rendered="#{userController.userIsOfTypeAirlineEmployee()}"/> </li>
+                <li><h:link value="#{msg.flightStatsNavigation}" outcome="flight_stats" rendered="#{userController.userIsOfTypeRDAirEmployee()}"/> </li>
+                <li><h:link value="#{msg.bookingNavigation}" outcome="addbooking" rendered="#{userController.userIsOfTypeCustomer()}"/> </li>
             </ul>
 
             <h:form styleClass="navbar-form navbar-right" rendered="#{!userController.loggedIn}">
                 <div class="form-group">
                     <p:inputText binding="#{username}" required="true" autocomplete="off"
-                                 placeholder="Email"
-                                 requiredMessage="Username is required"
+                                 placeholder="#{msg.userName}"
+                                 requiredMessage="#{msg.errorUsername}"
                                  class="form-control"/>
                 </div>
                 <div class="form-group">
                     <p:password binding="#{password}" required="true" autocomplete="off"
-                                placeholder="password"
-                                requiredMessage="Password is required"
+                                placeholder="#{msg.password}"
+                                requiredMessage="#{msg.errorPassword}"
                                 class="form-control"/>
                 </div>
-                <h:commandLink value="Sign in" styleClass="btn btn-danger" style="margin-right: 15px"
+                <h:commandLink value="#{msg.signIn}" styleClass="btn btn-danger" style="margin-right: 15px"
                                action="#{userController.login(username.value, password.value)}"/>
             </h:form>
 
             <h:form styleClass="navbar-form navbar-right" rendered="#{userController.loggedIn}">
-               <h:outputText value="Welcome, #{userController.user.userName}" style="margin-right: 20px"/>
+               <h:outputText value="#{msg.welcome}, #{userController.user.userName}" style="margin-right: 20px"/>
                 <h:commandLink styleClass="btn btn-danger" style="margin-right: 15px"
-                        value="Log out"
+                        value="#{msg.logOut}"
                         action="#{userController.logout}" />
 
             </h:form>
