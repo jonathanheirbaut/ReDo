@@ -33,15 +33,20 @@
             </section>
             <section id="sTable" class="col-md-10">
                 <p:dataTable paginator="true" rows="10" var="flight" value="#{flightController.findAllByPartner(userController.user.partner)}">
-                    <p:column headerText="Departure date:">
-                        <h:outputText value="#{flight.departureDate}" />
+                    <p:column headerText="Departure date">
+                        <h:outputText value="#{flight.departureDate}">
+                        <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm" />
+                        </h:outputText>
+
                     </p:column>
 
-                    <p:column headerText="Arrival date: ">
-                        <h:outputText value="#{flight.arrivalDate}" />
+                    <p:column headerText="Arrival date">
+                        <h:outputText value="#{flight.arrivalDate}">
+                        <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm" />
+                        </h:outputText>
                     </p:column>
 
-                    <p:column headerText="Departure: ">
+                    <p:column headerText="Departure">
                         <h:outputText value="#{flight.departure.name}" />
                     </p:column>
 
