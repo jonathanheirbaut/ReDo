@@ -73,10 +73,10 @@ insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDa
 insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 8,200,6,'2014-12-15 09:00','2014-12-15 15:00', 5.0, 2, 5);
 
 
-insert into trip(id,version, emptyPlaces, beginDate, endDate, name, outwardFlight_id, returnFlight_id) values(1, 0, 60, '20140320','20140330', 'Vakantie! Enjoy!', 1, 2);
-insert into trip(id,version, emptyPlaces, beginDate, endDate, name, outwardFlight_id, returnFlight_id) values(2, 0, 60, '20141025','20141105', 'Vakantie! Enjoy!', 3, 4);
-insert into trip(id,version, emptyPlaces, beginDate, endDate, name, outwardFlight_id, returnFlight_id) values(3, 0, 60, '20141101','20141111', 'Vakantie! Enjoy!', 5, 6);
-insert into trip(id,version, emptyPlaces, beginDate, endDate, name, outwardFlight_id, returnFlight_id) values(4, 0, 60, '20141205','20141215', 'Vakantie! Enjoy!', 7, 8);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(1, 0, 60, 'Vakantie! Enjoy!', 1, 2);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(2, 0, 60, 'Vakantie! Enjoy!', 3, 4);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(3, 0, 60, 'Vakantie! Enjoy!', 5, 6);
+insert into trip(id,version, emptyPlaces, name, outwardFlight_id, returnFlight_id) values(4, 0, 60, 'Vakantie! Enjoy!', 7, 8);
 
 
 

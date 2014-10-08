@@ -12,10 +12,6 @@ import java.util.List;
 public class Trip extends AbstractEntity {
     private String name;
     private Integer emptyPlaces;
-    @Temporal(TemporalType.DATE)
-    private Date beginDate;
-    @Temporal(TemporalType.DATE)
-    private Date endDate;
     @ManyToOne
     private Flight outwardFlight;
     @ManyToOne
@@ -27,11 +23,9 @@ public class Trip extends AbstractEntity {
     protected Trip() {
     }
 
-    public Trip(String name, Integer emptyPlaces, Date beginDate, Date endDate, Flight outwardFlight, Flight returnFlight) {
+    public Trip(String name, Integer emptyPlaces, Flight outwardFlight, Flight returnFlight) {
         this.name = name;
         this.emptyPlaces = emptyPlaces;
-        this.beginDate = beginDate;
-        this.endDate = endDate;
         this.outwardFlight = outwardFlight;
         this.returnFlight = returnFlight;
     }
@@ -50,22 +44,6 @@ public class Trip extends AbstractEntity {
 
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
-    }
-
-    public Date getBeginDate() {
-        return beginDate;
-    }
-
-    public void setBeginDate(Date beginDate) {
-        this.beginDate = beginDate;
-    }
-
-    public Date getEndDate() {
-        return endDate;
-    }
-
-    public void setEndDate(Date endDate) {
-        this.endDate = endDate;
     }
 
     public Flight getOutwardFlight() {
