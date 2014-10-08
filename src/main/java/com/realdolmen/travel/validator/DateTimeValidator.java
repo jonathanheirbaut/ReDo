@@ -9,9 +9,17 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 @FacesValidator("dateTimeValidator")
 public class DateTimeValidator implements Validator {
+    private ResourceBundle bundle;
+    private FacesMessage msg;
+
+    public DateTimeValidator() {
+        bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        msg = new FacesMessage();
+    }
 
     @Override
     public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
@@ -22,8 +30,11 @@ public class DateTimeValidator implements Validator {
         Calendar c = Calendar.getInstance();
         c.setTime(d);
         if(c.get(Calendar.MINUTE)<30 && c.get(Calendar.HOUR)==0){
-            throw new ValidatorException(new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "A flight has to take longer then 30 minutes", null));
+            String errorMsg = bundle.getString("errorDurationMinimum");
+            msg.setSummary(errorMsg);
+            msg.setDetail(null);
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);
         }
         }
 

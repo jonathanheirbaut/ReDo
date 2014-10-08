@@ -11,12 +11,21 @@ import javax.faces.validator.Validator;
 import javax.faces.validator.ValidatorException;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.ResourceBundle;
 
 @FacesValidator("locationCantBeEqualValidator")
 public class LocationCantBeEqualValidator implements Validator {
+    private ResourceBundle bundle;
+    private FacesMessage msg;
+
+    public LocationCantBeEqualValidator() {
+        bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
+        msg = new FacesMessage();
+
+    }
 
     @Override
-    public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
+        public void validate(FacesContext context, UIComponent component, Object value) throws ValidatorException {
         if (value == null) {
             return; // Let required="true" handle.
         }
@@ -29,9 +38,11 @@ public class LocationCantBeEqualValidator implements Validator {
         Location destination = (Location)value;
         if (departure.getId()==destination.getId()) {
             departureComponent.setValid(false);
-            throw new ValidatorException(new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Departure and destination can't be equal", null));
-        }
+            String errorMsg = bundle.getString("errorDepartureAndDestinationEqual");
+            msg.setSummary(errorMsg);
+            msg.setDetail(null);
+            msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+            throw new ValidatorException(msg);        }
     }
 
 }
