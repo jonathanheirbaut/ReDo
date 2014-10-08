@@ -69,6 +69,10 @@ insert into user(DTYPE, id, version, password, userName) values('Customer', 2, 0
 insert into user(DTYPE, id, version, password, userName) values('RDAirEmployee', 3, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'airemp');
 insert into user(DTYPE, id, version, password, userName) values('RDTravelEmployee', 4, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'travelemp');
 
+insert into trip(id,version, beginDate, endDate, name) values(1, 0, '20140320','20140330', 'Vakantie! Enjoy!');
+insert into trip(id,version, beginDate, endDate, name) values(2, 0, '20141025','20141105', 'Vakantie! Enjoy!');
+insert into trip(id,version, beginDate, endDate, name) values(3, 0, '20141101','20141111', 'Vakantie! Enjoy!');
+insert into trip(id,version, beginDate, endDate, name) values(4, 0, '20141205','20141215', 'Vakantie! Enjoy!');
 
 
 

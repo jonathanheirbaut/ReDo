@@ -15,7 +15,6 @@ public class Flight extends AbstractEntity{
     private Double price;
     private Double overriddenPrice;
     @ManyToOne
-    @JoinColumn(name="location_fk")
     private Location destination;
     @ManyToOne
     private Location departure;

@@ -1,10 +1,8 @@
 package com.realdolmen.travel.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,13 +11,25 @@ import java.util.List;
 @Entity
 public class Trip extends AbstractEntity {
     private String name;
+    @Temporal(TemporalType.DATE)
+    private Date beginDate;
+    @Temporal(TemporalType.DATE)
+    private Date endDate;
     @ManyToOne
-    private Location destination;
+    private Flight outwardFlight;
+    @ManyToOne
+    private Flight returnFlight;
     @OneToMany
-    @JoinColumn(name="booking_fk")
+    @JoinColumn(name="trip_id")
     private List<Booking> bookings = new ArrayList<>();
 
     protected Trip() {
+    }
+
+    public Trip(String name, Date beginDate, Date endDate) {
+        this.name = name;
+        this.beginDate = beginDate;
+        this.endDate = endDate;
     }
 
     public String getName() {
@@ -38,11 +48,35 @@ public class Trip extends AbstractEntity {
         this.bookings = bookings;
     }
 
-    public Location getDestination() {
-        return destination;
+    public Date getBeginDate() {
+        return beginDate;
     }
 
-    public void setDestination(Location destination) {
-        this.destination = destination;
+    public void setBeginDate(Date beginDate) {
+        this.beginDate = beginDate;
+    }
+
+    public Date getEndDate() {
+        return endDate;
+    }
+
+    public void setEndDate(Date endDate) {
+        this.endDate = endDate;
+    }
+
+    public Flight getOutwardFlight() {
+        return outwardFlight;
+    }
+
+    public void setOutwardFlight(Flight outwardFlight) {
+        this.outwardFlight = outwardFlight;
+    }
+
+    public Flight getReturnFlight() {
+        return returnFlight;
+    }
+
+    public void setReturnFlight(Flight returnFlight) {
+        this.returnFlight = returnFlight;
     }
 }
