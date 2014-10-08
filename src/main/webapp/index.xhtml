@@ -28,10 +28,27 @@
         <section id="body" class="container">
             <div class="page-header">
                 <h1>Home</h1>
-                <h3>#{msg.overviewTrips}</h3>
-            </div>
-            <section id="sidebar" class="col-md-8">
 
+            </div>
+            <h3>#{msg.overviewTrips}</h3>
+            <section id="sidebar" class="col-md-8">
+                <p:dataTable var="trip" value="#{dtBasicView.cars}">
+                    <p:column headerText="Id">
+                        <h:outputText value="#{car.id}" />
+                    </p:column>
+
+                    <p:column headerText="Year">
+                        <h:outputText value="#{car.year}" />
+                    </p:column>
+
+                    <p:column headerText="Brand">
+                        <h:outputText value="#{car.brand}" />
+                    </p:column>
+
+                    <p:column headerText="Color">
+                        <h:outputText value="#{car.color}" />
+                    </p:column>
+                </p:dataTable>
 
             </section>
             <section id="sTable" class="col-md-10">

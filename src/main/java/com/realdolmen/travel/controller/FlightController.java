@@ -16,8 +16,8 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 
-    @Named
-    @RequestScoped
+@Named
+@RequestScoped
 public class FlightController {
     @Inject
     FlightService flightService;
@@ -114,11 +114,17 @@ public class FlightController {
         this.flight = flight;
     }
 
-    public List<Flight> findAllByPartner(Partner partner)  { return flightService.findAllByPartner(partner);
+    public List<Flight> findAllByPartner(Partner partner) {
+        return flightService.findAllByPartner(partner);
     }
-    public Collection<Partner> findAllPartners(){return flightService.findAllPartners();}
 
-    public void create(){flightService.create(flight);}
+    public Collection<Partner> findAllPartners() {
+        return flightService.findAllPartners();
+    }
+
+    public void create() {
+        flightService.create(flight);
+    }
 
 
 }
