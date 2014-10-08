@@ -87,8 +87,8 @@ public class UserController implements Serializable {
         } catch (UserServiceException ex) {
             // ResourceBundle bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "Foutief wachtwoord of gebruikersnaam", ""));
-            return "";
+                    FacesMessage.SEVERITY_WARN, "Foutief wachtwoord of gebruikersnaam", ""));
+            return null;
         }
     }
 

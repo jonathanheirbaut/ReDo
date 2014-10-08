@@ -1,6 +1,9 @@
 body{
     margin-top: 70px;
 }
+@media screen and (max-width: 768px) {
+    body { padding-top: 175px; }
+}
 .ui-growl {
     right: 20px;
     top: 75px;

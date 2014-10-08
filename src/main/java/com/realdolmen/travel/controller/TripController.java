@@ -15,14 +15,22 @@ import java.util.List;
 @Named
 @RequestScoped
 public class TripController {
-@Inject
-private TripService tripService;
-   private List<Trip> trips;
+    @Inject
+    private TripService tripService;
+    private List<Trip> trips;
 
 
     @PostConstruct
     public void initialize() {
         trips = tripService.findAll();
+    }
+
+    public String saveTrip(){
+        return null;
+    }
+
+    public String searchTrip(){
+        return null;
     }
 
     public List<Trip> getTrips() {

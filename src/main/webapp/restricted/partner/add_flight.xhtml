@@ -31,7 +31,9 @@
 
             </section>
             <section id="sTable" class="col-md-5">
-                <p:messages severity="error"></p:messages>
+                <p:messages severity="error"/>
+                <p:messages severity="info"/>
+
                 <h:form role="form">
                     <div class="form-group">
                         <p:outputLabel for="maxSeats" value="#{msg.maximumSeats}"/>
@@ -83,7 +85,6 @@
                         </p:selectOneMenu>
                     </div>
                     <h:commandButton value="#{msg.submit}" action="#{addFlightController.createFlight()}"/>
-                    <p:messages severity="info"></p:messages>
 
                 </h:form>
             </section>
