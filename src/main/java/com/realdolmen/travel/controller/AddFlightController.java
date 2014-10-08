@@ -40,7 +40,7 @@ public class AddFlightController {
     Logger logger = LoggerFactory.getLogger(AddFlightController.class);
     public void createFlight() {
         flight = new Flight();
-        flight.setMaxSeats(maxSeats);
+        flight.setEmptySeats(maxSeats);
         flight.setDepartureDate(departureDate);
         flight.setArrivalDate(addDurationToDate(departureDate, duration));
         logger.info(departure.getName());

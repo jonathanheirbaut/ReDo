@@ -11,6 +11,7 @@ import java.util.List;
 @Entity
 public class Trip extends AbstractEntity {
     private String name;
+    private Integer emptyPlaces;
     @Temporal(TemporalType.DATE)
     private Date beginDate;
     @Temporal(TemporalType.DATE)
@@ -26,10 +27,13 @@ public class Trip extends AbstractEntity {
     protected Trip() {
     }
 
-    public Trip(String name, Date beginDate, Date endDate) {
+    public Trip(String name, Integer emptyPlaces, Date beginDate, Date endDate, Flight outwardFlight, Flight returnFlight) {
         this.name = name;
+        this.emptyPlaces = emptyPlaces;
         this.beginDate = beginDate;
         this.endDate = endDate;
+        this.outwardFlight = outwardFlight;
+        this.returnFlight = returnFlight;
     }
 
     public String getName() {
@@ -78,5 +82,13 @@ public class Trip extends AbstractEntity {
 
     public void setReturnFlight(Flight returnFlight) {
         this.returnFlight = returnFlight;
+    }
+
+    public Integer getEmptyPlaces() {
+        return emptyPlaces;
+    }
+
+    public void setEmptyPlaces(Integer emptyPlaces) {
+        this.emptyPlaces = emptyPlaces;
     }
 }
