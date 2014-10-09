@@ -61,7 +61,7 @@ public class AddTripController {
             name = null;
         }catch (TripServiceException ex){
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, "You have to select 2 flights", ""));
+                    FacesMessage.SEVERITY_ERROR,ex.getMessage(), ""));
             return null;
         }
 
@@ -112,7 +112,6 @@ public class AddTripController {
 
     }
     public void doSomething(){
-        logger.info("i'm here");
         logger.info("outward flight: " + getOutwardFlight());
 
     }

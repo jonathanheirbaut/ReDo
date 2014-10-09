@@ -27,15 +27,20 @@ public class TripService {
 
     public void create(Trip trip) throws TripServiceException {
 
-        try {
+
             if(trip.getOutwardFlight()==null || trip.getReturnFlight()==null){
                 throw new TripServiceException("You have to select 2 flights!");
             }
+            if(trip.getOutwardFlight().getId().equals(trip.getReturnFlight().getId())){
+                throw new TripServiceException("You have to select 2 different flights!");
+            }
+        if(trip.getOutwardFlight().getArrivalDate().compareTo(trip.getReturnFlight().getDepartureDate()) == 1 ||
+                trip.getOutwardFlight().getArrivalDate() == trip.getReturnFlight().getDepartureDate()){
+            throw new TripServiceException("The 2 dates don't match");
+        };
 
             tripRepository.create(trip);
-        } catch (Exception ex) {
-              throw new TripServiceException(("you have to select 2 flights"));
         }
 
     }
-}
+
