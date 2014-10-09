@@ -18,42 +18,73 @@
 </h:head>
 
 <h:body>
-
+    <p:growl id="growl" showDetail="false" showSummary="true" sticky="false" severity="warn"/>
 
     <div id="page">
 
         <ui:include src="/resources/template/header.xhtml"/>
+
         <section id="body" class="container">
             <div class="page-header">
                 <h1>#{msg.homeTitle}</h1>
             </div>
-            <h3>#{msg.overviewTrips}</h3>
-            <section id="sidebar" class="col-md-8">
-                <p:dataTable var="trip" value="#{dtBasicView.cars}">
-                    <p:column headerText="Id">
-                        <h:outputText value="#{car.id}" />
-                    </p:column>
+            <h3>#{msg.searchTrips}</h3>
 
-                    <p:column headerText="Year">
-                        <h:outputText value="#{car.year}" />
-                    </p:column>
+            <section id="sTable" class="col-md-5">
+                <p:messages severity="error"/>
+                <p:messages severity="info"/>
+                <h:form role="form">
+                    <div class="form-group">
+                        <p:outputLabel for="departureRegion" value="Departure Region"/><br/>
+                        <p:selectOneMenu id="departureRegion" binding="#{departureRegion}" converter="regionConverter">
+                            <p:ajax update="departureLocation"/>
+                            <f:selectItem itemLabel="Select Region" noSelectionOption="true"/>
+                            <f:selectItems value="#{locationController.regions}" itemValue="#{region}"
+                                           var="region"
+                                           itemLabel="#{region.name}"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="departureLocation" value="Departure Location"/><br/>
+                        <p:selectOneMenu id="departureLocation" value="#{tripController.departureLocation}"
+                                         converter="locationConverter">
+                            <f:selectItem itemLabel="Select Location" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{locationController.getLocationsByRegion(departureRegion.value)}"
+                                           itemValue="#{location}"
+                                           var="location"
+                                           itemLabel="#{location.name}"/>
+                        </p:selectOneMenu>
+                    </div>
 
-                    <p:column headerText="Brand">
-                        <h:outputText value="#{car.brand}" />
-                    </p:column>
 
-                    <p:column headerText="Color">
-                        <h:outputText value="#{car.color}" />
-                    </p:column>
-                </p:dataTable>
-
+                    <h:commandButton value="Search Trips" action="#{tripController.searchTrip()}"/>
+                </h:form>
             </section>
-            <section id="sTable" class="col-md-10">
-
-            </section>
-
 
         </section>
+
+
+        <p:dataTable var="trip" value="#{tripController.trips}" rendered="false">
+            <p:column headerText="#{msg.name}">
+                <h:outputText value="#{trip.name}"/>
+            </p:column>
+
+            <p:column headerText="#{msg.departure}">
+                <h:outputText value="#{trip.outwardFlight.departure.name}"/>
+            </p:column>
+
+            <p:column headerText="#{msg.destination}">
+                <h:outputText value="#{trip.outwardFlight.destination.name}"/>
+            </p:column>
+
+            <p:column headerText="#{msg.availablePlaces}">
+                <h:outputText value="#{trip.emptyPlaces}"/>
+            </p:column>
+            <p:column headerText="#{msg.details}">
+                <h:outputText value="#{trip.emptyPlaces}"/>
+            </p:column>
+        </p:dataTable>
+
         <footer class="container">
 
         </footer>

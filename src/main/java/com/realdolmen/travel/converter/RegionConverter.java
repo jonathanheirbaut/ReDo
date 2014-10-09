@@ -29,10 +29,11 @@ public class RegionConverter implements Converter {
 
     @Override
     public String getAsString(FacesContext facesContext, UIComponent uiComponent, Object value) {
-
         if (value == null || value.toString().isEmpty() || !(value instanceof Region)){
             return "";
         }
+        Long id = ((Region) value).getId();
+        logger.info("Converter get as String. Id = " + id);
         return String.valueOf(((Region) value).getId());
     }
 }

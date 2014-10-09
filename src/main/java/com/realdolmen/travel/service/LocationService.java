@@ -30,4 +30,7 @@ public class LocationService {
     }
 
 
+    public Collection<Location> getLocationsByRegion(Region region) {
+        return locationRepository.getLocationsByRegion(region);
+    }
 }

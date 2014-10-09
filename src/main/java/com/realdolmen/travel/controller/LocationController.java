@@ -49,6 +49,9 @@ public class LocationController {
 
     public Collection<Location> findAllLocations(){
         return locationService.findAllLocations();
+    }
 
+    public Collection<Location> getLocationsByRegion(Region region){
+        return locationService.getLocationsByRegion(region);
     }
 }
