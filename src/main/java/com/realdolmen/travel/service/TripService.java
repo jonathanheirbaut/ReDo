@@ -1,9 +1,11 @@
 package com.realdolmen.travel.service;
 
 import com.realdolmen.travel.controller.AddFlightController;
+import com.realdolmen.travel.domain.Flight;
 import com.realdolmen.travel.domain.Location;
 import com.realdolmen.travel.domain.Trip;
 import com.realdolmen.travel.exception.TripServiceException;
+import com.realdolmen.travel.repository.FlightRepository;
 import com.realdolmen.travel.repository.TripRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,6 +23,8 @@ import java.util.List;
 public class TripService {
     @Inject
     private TripRepository tripRepository;
+    @Inject
+    private FlightRepository flightRepository;
 
     public List<Trip> findAll() {
         return tripRepository.findAll();
@@ -30,6 +34,12 @@ public class TripService {
 
     public void create(Trip trip) throws TripServiceException {
 
+        if(trip.getEmptyPlaces()> trip.getOutwardFlight().getEmptySeats()){
+            throw new TripServiceException("You have to select an outward flight with enough empty seats!");
+        }
+        if(trip.getEmptyPlaces()> trip.getOutwardFlight().getEmptySeats()){
+            throw new TripServiceException("You have to select a return flight with enough empty seats!");
+        }
 
         if (trip.getOutwardFlight() == null || trip.getReturnFlight() == null) {
             throw new TripServiceException("You have to select 2 flights!");
@@ -41,6 +51,12 @@ public class TripService {
                 trip.getOutwardFlight().getArrivalDate() == trip.getReturnFlight().getDepartureDate()) {
             throw new TripServiceException("The 2 dates don't match");
         }
+        Flight outwardFlight = trip.getOutwardFlight();
+        Flight returnFlight = trip.getReturnFlight();
+        outwardFlight.setEmptySeats(outwardFlight.getEmptySeats() - trip.getEmptyPlaces());
+        returnFlight.setEmptySeats(returnFlight.getEmptySeats()-trip.getEmptyPlaces());
+        flightRepository.update(outwardFlight);
+        flightRepository.update(returnFlight);
         tripRepository.create(trip);
     }
 
@@ -48,5 +64,6 @@ public class TripService {
     public List<Trip> getAvailableTripsBySearchValues(Location departureLocation, Location destinationLocation, Date departureDate, Date returnDate, Integer numberOfPersons) {
         return tripRepository.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, returnDate, numberOfPersons);
     }
+   
 }
 

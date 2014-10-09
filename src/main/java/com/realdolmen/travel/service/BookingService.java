@@ -24,7 +24,5 @@ public class BookingService {
     public void createBooking(Booking booking) {
 
         bookingRepository.create(booking);
-
-
     }
 }
