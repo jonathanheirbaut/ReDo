@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.enterprise.context.RequestScoped;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -19,7 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Named
-@RequestScoped
+@ViewScoped
 public class AddFlightController {
     @Inject
     FlightService flightService;
@@ -142,4 +143,5 @@ public class AddFlightController {
         Date arrivalDate = new Date(dep.getTimeInMillis());
         return arrivalDate;
     }
+
 }

@@ -25,6 +25,7 @@
                 <li><h:link value="#{msg.flightsNavigation}" outcome="flights" rendered="#{userController.userIsOfTypeAirlineEmployee()}"/> </li>
                 <li><h:link value="#{msg.flightStatsNavigation}" outcome="flight_stats" rendered="#{userController.userIsOfTypeRDAirEmployee()}"/> </li>
                 <li><h:link value="#{msg.bookingNavigation}" outcome="addbooking" rendered="#{userController.userIsOfTypeCustomer()}"/> </li>
+                <li><h:link value="#{msg.tripNavigation}" outcome="add_trip" rendered="#{userController.userIsOfTypeRDTravelEmployee()}"/> </li>
             </ul>
 
             <h:form styleClass="navbar-form navbar-right" rendered="#{!userController.loggedIn}">

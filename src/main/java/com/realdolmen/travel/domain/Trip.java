@@ -20,7 +20,7 @@ public class Trip extends AbstractEntity {
     @JoinColumn(name="trip_id")
     private List<Booking> bookings = new ArrayList<>();
 
-    protected Trip() {
+    public Trip() {
     }
 
     public Trip(String name, Integer emptyPlaces, Flight outwardFlight, Flight returnFlight) {

@@ -41,6 +41,9 @@ public class AuthenticationFilter implements Filter {
             if (path.contains("/restricted/partner/") && !(user instanceof AirlineEmployee)) {
                 isAuthed = false;
             }
+            if (path.contains("/restricted/travel/") && !(user instanceof RDTravelEmployee)) {
+                isAuthed = false;
+            }
         } else {
             isAuthed = false;
         }
