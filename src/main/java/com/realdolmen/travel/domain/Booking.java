@@ -12,6 +12,7 @@ public class Booking extends AbstractEntity {
     private Customer customer;
     @ManyToOne
     private Trip trip;
+    private Integer numberOfPeople;
 
 
     public Booking() {
@@ -31,5 +32,13 @@ public class Booking extends AbstractEntity {
 
     public void setTrip(Trip trip) {
         this.trip = trip;
+    }
+
+    public Integer getNumberOfPeople() {
+        return numberOfPeople;
+    }
+
+    public void setNumberOfPeople(Integer numberOfPeople) {
+        this.numberOfPeople = numberOfPeople;
     }
 }

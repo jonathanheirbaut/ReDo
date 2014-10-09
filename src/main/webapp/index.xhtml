@@ -34,7 +34,7 @@
             <h3>#{msg.searchTrips}</h3>
 
             <h:form role="form">
-                <div id="sTable" class="col-md-4">
+                <div id="sTable" class="col-md-3">
                     <div class="form-group">
                         <p:outputLabel for="departureRegion" value="Departure Region"/><br/>
                         <p:selectOneMenu id="departureRegion" binding="#{departureRegion}" converter="regionConverter">
@@ -59,25 +59,10 @@
                         </p:selectOneMenu>
                     </div>
 
-                    <div class="form-group">
-                        <p:outputLabel for="dateFrom" value="From"/><br/>
-                        <p:calendar id="dateFrom"
-                                    value="#{tripController.departureDate}"
-                                    pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
-                    </div>
-
-                    <div class="form-group">
-                        <p:outputLabel for="numberOfPersons" value="numberOfPersons"/>
-                        <p:inputText class="form-control" id="numberOfPersons" value="#{tripController.numberOfPersons}"
-                                     required="true" requiredMessage="Number of persons is required"/>
-                    </div>
 
 
-                    <h:commandButton value="Search Trips" action="#{tripController.searchTrip()}">
-
-                    </h:commandButton>
                 </div>
-                <div id="sTable2" class="col-md-4">
+                <div id="sTable2" class="col-md-3">
                     <div class="form-group">
                         <p:outputLabel for="destinationRegion" value="Destination Region"/><br/>
                         <p:selectOneMenu id="destinationRegion" binding="#{destinationRegion}"
@@ -102,6 +87,15 @@
                         </p:selectOneMenu>
                     </div>
 
+
+                </div>
+                <div id="sTable3" class="col-md-3">
+                    <div class="form-group">
+                        <p:outputLabel for="dateFrom" value="From"/><br/>
+                        <p:calendar id="dateFrom"
+                                    value="#{tripController.departureDate}"
+                                    pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
+                    </div>
                     <div class="form-group">
                         <p:outputLabel for="dateTo" value="To"/><br/>
                         <p:calendar id="dateTo"
@@ -109,10 +103,25 @@
                                     pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
                     </div>
                 </div>
+                <div id="sTable4" class="col-md-3">
+                    <div class="form-group">
+                        <p:outputLabel for="numberOfPersons" value="numberOfPersons"/>
+                        <p:inputText class="form-control" id="numberOfPersons" value="#{tripController.numberOfPersons}"
+                                     required="true" requiredMessage="Number of persons is required"/>
+                    </div>
+                    <h:commandButton value="Search Trips" action="#{tripController.searchTrip()}">
+
+                    </h:commandButton>
+
+                </div>
+
+
             </h:form>
         </section>
-
+        <div class="col-md-2"></div>
+<section id="searchResults" class="col-md-8">
 <h:form id="form">
+    <p:messages></p:messages>
         <p:dataTable id="tripDataTable" var="trip" value="#{tripController.availableTrips}"
                      rendered="#{tripController.availableTrips!=null}" selection="#{bookingController.selectedTrip}" rowKey="#{trip.id}">
             <p:column headerText="#{msg.name}">
@@ -139,8 +148,9 @@
                 </p:commandButton>
             </p:column>
             <p:column headerText="Book" style="width:32px;text-align: center">
-                <p:commandButton action="#{bookingController.createBooking()}" icon="ui-icon-cart" title="View">
+                <p:commandButton action="#{bookingController.createBooking(tripController.numberOfPersons)}" icon="ui-icon-cart" title="View">
                     <f:setPropertyActionListener value="#{trip}" target="#{bookingController.selectedTrip}" />
+                    <p:confirm header="Confirmation" message="Are you sure you want to book this trip?" icon="ui-icon-alert" />
 
                 </p:commandButton>
             </p:column>
@@ -157,7 +167,12 @@
 
             </p:outputPanel>
         </p:dialog>
+    <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+        <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check" />
+        <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close" />
+    </p:confirmDialog>
 </h:form>
+</section>
         <footer class="container">
 
         </footer>
