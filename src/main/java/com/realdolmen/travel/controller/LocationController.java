@@ -22,29 +22,8 @@ public class LocationController {
 
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
-    private String test;
-    private Collection<Region> regions;
-    private Collection<Location> locations;
-
-    @PostConstruct
-    public void initialize() {
-        regions = locationService.findAllRegions();
-    }
-
-    public void setRegions(Collection<Region> regions) {
-        this.regions = regions;
-    }
-
-    public Collection<Region> getRegions() {
-        return regions;
-    }
-
-    public String getTest() {
-        return test;
-    }
-
-    public void setTest(String test) {
-        this.test = test;
+    public Collection<Region> findAllRegions(){
+        return locationService.findAllRegions();
     }
 
     public Collection<Location> findAllLocations(){

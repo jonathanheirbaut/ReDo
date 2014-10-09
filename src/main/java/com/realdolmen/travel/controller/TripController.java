@@ -1,14 +1,16 @@
 package com.realdolmen.travel.controller;
 
 import com.realdolmen.travel.domain.Location;
-import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.domain.Trip;
 import com.realdolmen.travel.service.TripService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.validation.constraints.Future;
 import java.util.Date;
 import java.util.List;
 
@@ -18,47 +20,40 @@ import java.util.List;
 @Named
 @RequestScoped
 public class TripController {
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Inject
     private TripService tripService;
-    private List<Trip> trips;
+    private List<Trip> allTrips;
+    private List<Trip> availableTrips;
 
-    private Region departureRegion;
     private Location departureLocation;
-    private Region destinationRegion;
     private Location destinationLocation;
+//    @Future
     private Date departureDate;
     private Date returnDate;
-    private int numberOfPersons;
+    private Integer numberOfPersons;
 
 
     @PostConstruct
     public void initialize() {
-        trips = tripService.findAll();
+        allTrips = tripService.findAll();
     }
 
-    public String saveTrip(){
+    public String saveTrip() {
         return null;
     }
 
-    public String searchTrip(){
-        return null;
+    public void searchTrip() {
+        availableTrips = tripService.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, returnDate, numberOfPersons);
+        for (Trip availableTrip : availableTrips) {
+            logger.info(availableTrip.getName());
+        }
     }
 
-    public void onDepartureRegionChange() {
-
+    public List<Trip> getAllTrips() {
+        return allTrips;
     }
 
-    public List<Trip> getTrips() {
-        return trips;
-    }
-
-    public Region getDepartureRegion() {
-        return departureRegion;
-    }
-
-    public void setDepartureRegion(Region departureRegion) {
-        this.departureRegion = departureRegion;
-    }
 
     public Location getDepartureLocation() {
         return departureLocation;
@@ -66,14 +61,6 @@ public class TripController {
 
     public void setDepartureLocation(Location departureLocation) {
         this.departureLocation = departureLocation;
-    }
-
-    public Region getDestinationRegion() {
-        return destinationRegion;
-    }
-
-    public void setDestinationRegion(Region destinationRegion) {
-        this.destinationRegion = destinationRegion;
     }
 
     public Location getDestinationLocation() {
@@ -100,11 +87,19 @@ public class TripController {
         this.returnDate = returnDate;
     }
 
-    public int getNumberOfPersons() {
+    public Integer getNumberOfPersons() {
         return numberOfPersons;
     }
 
-    public void setNumberOfPersons(int numberOfPersons) {
+    public void setNumberOfPersons(Integer numberOfPersons) {
         this.numberOfPersons = numberOfPersons;
+    }
+
+    public List<Trip> getAvailableTrips() {
+        return availableTrips;
+    }
+
+    public void setAvailableTrips(List<Trip> availableTrips) {
+        this.availableTrips = availableTrips;
     }
 }
