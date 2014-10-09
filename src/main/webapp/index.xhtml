@@ -35,13 +35,24 @@
                 <p:messages severity="info"/>
                 <h:form role="form">
                     <div class="form-group">
-                        <p:outputLabel for="depRegion" value="Departure Region"/><br/>
-                        <p:selectOneMenu id="depRegion" value="#{addFlightController.departure}"
-                                         converter="locationConverter" binding="#{departureRegion}">
-
-                            <f:selectItems value="#{locationController.findAllLocations()}" itemValue="#{location}"
+                        <p:outputLabel for="departureRegion" value="Departure Region"/><br/>
+                        <p:selectOneMenu id="departureRegion" binding="#{departureRegion}" converter="regionConverter">
+                            <p:ajax update="departureLocation"/>
+                            <f:selectItem itemLabel="Select Region" noSelectionOption="true"/>
+                            <f:selectItems value="#{locationController.regions}" itemValue="#{region}"
+                                           var="region"
+                                           itemLabel="#{region.name}"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="departureLocation" value="Departure Location"/><br/>
+                        <p:selectOneMenu id="departureLocation" value="#{tripController.departureLocation}"
+                                         converter="locationConverter">
+                            <f:selectItem itemLabel="Select Location" itemValue="" noSelectionOption="true"/>
+                            <f:selectItems value="#{locationController.getLocationsByRegion(departureRegion.value)}"
+                                           itemValue="#{location}"
                                            var="location"
-                                           itemLabel="#{location.name}" />
+                                           itemLabel="#{location.name}"/>
                         </p:selectOneMenu>
                     </div>
 
@@ -53,26 +64,26 @@
         </section>
 
 
-            <p:dataTable var="trip" value="#{tripController.trips}" rendered="false">
-                <p:column headerText="#{msg.name}">
-                    <h:outputText value="#{trip.name}"/>
-                </p:column>
+        <p:dataTable var="trip" value="#{tripController.trips}" rendered="false">
+            <p:column headerText="#{msg.name}">
+                <h:outputText value="#{trip.name}"/>
+            </p:column>
 
-                <p:column headerText="#{msg.departure}">
-                    <h:outputText value="#{trip.outwardFlight.departure.name}"/>
-                </p:column>
+            <p:column headerText="#{msg.departure}">
+                <h:outputText value="#{trip.outwardFlight.departure.name}"/>
+            </p:column>
 
-                <p:column headerText="#{msg.destination}">
-                    <h:outputText value="#{trip.outwardFlight.destination.name}"/>
-                </p:column>
+            <p:column headerText="#{msg.destination}">
+                <h:outputText value="#{trip.outwardFlight.destination.name}"/>
+            </p:column>
 
-                <p:column headerText="#{msg.availablePlaces}">
-                    <h:outputText value="#{trip.emptyPlaces}"/>
-                </p:column>
-                <p:column headerText="#{msg.details}">
-                    <h:outputText value="#{trip.emptyPlaces}"/>
-                </p:column>
-            </p:dataTable>
+            <p:column headerText="#{msg.availablePlaces}">
+                <h:outputText value="#{trip.emptyPlaces}"/>
+            </p:column>
+            <p:column headerText="#{msg.details}">
+                <h:outputText value="#{trip.emptyPlaces}"/>
+            </p:column>
+        </p:dataTable>
 
         <footer class="container">
 
