@@ -82,7 +82,7 @@ public class UserController implements Serializable {
             if (userIsOfTypeCustomer()) return "addbooking";
             if (userIsOfTypeAirlineEmployee()) return "flights";
             if (userIsOfTypeRDAirEmployee()) return "flight_stats";
-            if (userIsOfTypeRDTravelEmployee()) return "";
+            if (userIsOfTypeRDTravelEmployee()) return "add_trip";
             return "";
         } catch (UserServiceException ex) {
             // ResourceBundle bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());

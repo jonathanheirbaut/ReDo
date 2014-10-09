@@ -2,6 +2,8 @@ package com.realdolmen.travel.domain;
 
 import javax.persistence.*;
 import java.util.Date;
+import org.primefaces.model.SelectableDataModel;
+
 
 @Entity
 public class Flight extends AbstractEntity{

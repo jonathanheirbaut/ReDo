@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+<h:head>
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
+    <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="../../resources/css/site.css"/>
+    <title>Add trip</title>
+
+</h:head>
+
+<h:body>
+
+    <div id="page">
+        <ui:include src="/resources/template/header.xhtml"/>
+
+        <section id="body" class="container">
+
+            <div class="page-header">
+                <h1>Add trip</h1>
+            </div>
+            <section id="sidebar" class="col-md-8">
+
+
+            </section>
+            <section id="sTable" class="col-md-5">
+                <p:messages severity="error"></p:messages>
+                <h:form role="form" id="myForm">
+                    <div class="form-group">
+                        <p:outputLabel for="name" value="Name"/>
+                        <p:inputText class="form-control" id="name" value="#{addTripController.name}"
+                                     label="Name" required="true" requiredMessage="Please fill in the name of the trip"/>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="availablePlaces" value="Available places"/>
+                        <p:inputText class="form-control" id="availablePlaces" value="#{addTripController.emptyPlaces}"
+                                     label="Available places" required="true" requiredMessage="You have to enter a maximum amount of places"/>
+                    </div>
+
+
+                        <div class="form-group">
+                            <p:outputLabel for="flightDeparture" value="Flight departure"/><br/>
+                            <h:commandButton id="flightDeparture" value="Select flight" type="button"/>
+                        </div>
+                        <!--OVERLAY PANEL-->
+                        <p:overlayPanel widgetVar="opDeparture" for="flightDeparture" hideEffect="fade" dynamic="true" style="width:600px" dismissable="false" showCloseIcon="true">
+                            <p:dataTable id="dtFlightDeparture" var="flight" value="#{flightController.flights}" selectionMode="single" selection="#{addTripController.outwardFlight}" rows="5" paginator="true" rowKey="#{flight.id}">
+                                <p:ajax event="rowSelect" listener="#{addTripController.onSelectOutwardFlight}" update=":testForm"/>
+                                <p:column headerText="#{msg.departureDate}">
+                                    <h:outputText value="#{flight.departureDate}" />
+                                </p:column>
+                                <p:column headerText="#{msg.arrivalDate}">
+                                    <h:outputText value="#{flight.arrivalDate}" />
+                                </p:column>
+                                <p:column headerText="#{msg.departure}">
+                                    <h:outputText value="#{flight.departure.name}" />
+                                </p:column>
+                                <p:column headerText="#{msg.destination}">
+                                    <h:outputText value="#{flight.destination.name}" />
+                                </p:column>
+                                <p:column headerText="#{msg.availablePlaces}">
+                                    <h:outputText value="#{flight.emptySeats}" />
+                                </p:column>
+                                <f:facet name="footer">
+                                    <p:commandButton process="dtFlightDeparture"  value="Select" oncomplete="opDeparture.hide()"  />
+                                </f:facet>
+
+                            </p:dataTable>
+                        </p:overlayPanel>
+
+
+
+                    <div class="form-group">
+                        <p:outputLabel for="flightDestination" value="Flight destination"/><br/>
+                        <h:commandButton id="flightDestination" value="Select flight" type="button" />
+
+                    </div>
+                    <!--OVERLAY PANEL-->
+                    <p:overlayPanel widgetVar="opDestination" for="flightDestination" hideEffect="fade" dynamic="true" style="width:600px" dismissable="false" showCloseIcon="true">
+                        <p:dataTable id="dtDestination" var="flight" value="#{flightController.flights}" selectionMode="single" selection="#{addTripController.returnFlight}"  rows="5" paginator="true" rowKey="#{flight.id}">
+                            <p:ajax event="rowSelect" listener="#{addTripController.onSelectReturnFlight}" update=":testForm"/>
+                            <p:column headerText="#{msg.departureDate}">
+                                <h:outputText value="#{flight.departureDate}" />
+                            </p:column>
+                            <p:column headerText="#{msg.arrivalDate}">
+                                <h:outputText value="#{flight.arrivalDate}" />
+                            </p:column>
+                            <p:column headerText="#{msg.departure}">
+                                <h:outputText value="#{flight.departure.name}" />
+                            </p:column>
+                            <p:column headerText="#{msg.destination}">
+                                <h:outputText value="#{flight.destination.name}" />
+                            </p:column>
+                            <p:column headerText="#{msg.availablePlaces}">
+                                <h:outputText value="#{flight.emptySeats}" />
+                            </p:column>
+                            <f:facet name="footer">
+                                <p:commandButton process="dtDestination" update=":testForm"  value="Select" action="#{addTripController.doSomething()}" oncomplete="opDestination.hide()"/>
+                            </f:facet>
+                        </p:dataTable>
+
+                    </p:overlayPanel>
+
+                    <h:commandButton value="#{msg.submit}" action="#{addTripController.createTrip()}"/>
+                    <p:messages severity="info"></p:messages>
+
+                </h:form>
+            </section>
+            <h:form id="testForm">
+                #{addTripController.outwardFlight.departure.name}
+
+            </h:form>
+
+        </section>
+
+
+        <footer class="container">
+
+        </footer>
+    </div>
+
+    <!-- /container -->
+    <script src="../../resources/js/bootstrap.min.js"></script>
+</h:body>
+
+</html>

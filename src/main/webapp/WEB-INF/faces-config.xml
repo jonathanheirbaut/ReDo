@@ -47,6 +47,11 @@
             <to-view-id>/restricted/partner/add_flight.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>add_trip</from-outcome>
+            <to-view-id>/restricted/travel/add_trip.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
 
     </navigation-rule>
 
