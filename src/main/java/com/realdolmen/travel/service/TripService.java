@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +46,7 @@ public class TripService {
 
 
     public List<Trip> getAvailableTripsBySearchValues(Location departureLocation, Location destinationLocation, Date departureDate, Date returnDate, Integer numberOfPersons) {
-        return tripRepository.getAvailableTripsBySearchValues(departureLocation, departureLocation, departureDate, returnDate, numberOfPersons);
+        return tripRepository.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, returnDate, numberOfPersons);
     }
 }
 

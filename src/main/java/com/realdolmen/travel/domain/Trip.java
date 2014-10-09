@@ -16,9 +16,6 @@ public class Trip extends AbstractEntity {
     private Flight outwardFlight;
     @ManyToOne
     private Flight returnFlight;
-    @OneToMany
-    @JoinColumn(name="trip_id")
-    private List<Booking> bookings = new ArrayList<>();
 
     public Trip() {
     }
@@ -36,14 +33,6 @@ public class Trip extends AbstractEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public List<Booking> getBookings() {
-        return bookings;
-    }
-
-    public void setBookings(List<Booking> bookings) {
-        this.bookings = bookings;
     }
 
     public Flight getOutwardFlight() {
@@ -69,4 +58,5 @@ public class Trip extends AbstractEntity {
     public void setEmptyPlaces(Integer emptyPlaces) {
         this.emptyPlaces = emptyPlaces;
     }
+
 }

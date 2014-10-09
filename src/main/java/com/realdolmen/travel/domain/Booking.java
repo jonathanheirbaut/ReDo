@@ -10,8 +10,26 @@ import javax.persistence.ManyToOne;
 public class Booking extends AbstractEntity {
     @ManyToOne
     private Customer customer;
+    @ManyToOne
+    private Trip trip;
 
 
-    protected Booking() {
+    public Booking() {
+    }
+
+    public Customer getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
+    public Trip getTrip() {
+        return trip;
+    }
+
+    public void setTrip(Trip trip) {
+        this.trip = trip;
     }
 }

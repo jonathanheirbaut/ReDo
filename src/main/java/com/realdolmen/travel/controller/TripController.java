@@ -8,18 +8,23 @@ import org.slf4j.LoggerFactory;
 
 import javax.annotation.PostConstruct;
 import javax.enterprise.context.RequestScoped;
+import javax.enterprise.context.SessionScoped;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.validation.constraints.Future;
+import java.io.Serializable;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
 /**
  * Created by JHRAU70 on 8/10/2014.
  */
-@Named
-@RequestScoped
-public class TripController {
+@ManagedBean
+@ViewScoped
+public class TripController  {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Inject
     private TripService tripService;
@@ -32,6 +37,7 @@ public class TripController {
     private Date departureDate;
     private Date returnDate;
     private Integer numberOfPersons;
+    private Trip selectedTrip;
 
 
     @PostConstruct
@@ -44,7 +50,7 @@ public class TripController {
     }
 
     public void searchTrip() {
-        availableTrips = tripService.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, returnDate, numberOfPersons);
+        availableTrips = tripService.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, addHoursToDate(returnDate), numberOfPersons);
         for (Trip availableTrip : availableTrips) {
             logger.info(availableTrip.getName());
         }
@@ -101,5 +107,24 @@ public class TripController {
 
     public void setAvailableTrips(List<Trip> availableTrips) {
         this.availableTrips = availableTrips;
+    }
+
+    private Date addHoursToDate(Date returnDate) {
+        Calendar dep = Calendar.getInstance();
+        dep.setTime(returnDate);
+        dep.add(Calendar.HOUR, 23);
+        dep.add(Calendar.MINUTE,59);
+        dep.add(Calendar.SECOND,59);
+        Date newDate = new Date(dep.getTimeInMillis());
+        return newDate;
+    }
+
+    public Trip getSelectedTrip() {
+        if(selectedTrip!=null)logger.info("selected" + selectedTrip.getName());
+        return selectedTrip;
+    }
+
+    public void setSelectedTrip(Trip selectedTrip) {
+        this.selectedTrip = selectedTrip;
     }
 }

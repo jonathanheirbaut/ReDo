@@ -27,13 +27,14 @@
         <section id="body" class="container">
             <p:messages severity="error"/>
             <p:messages severity="info"/>
+
             <div class="page-header">
                 <h1>#{msg.homeTitle}</h1>
             </div>
             <h3>#{msg.searchTrips}</h3>
 
-        <h:form role="form">
-            <div id="sTable" class="col-md-4">
+            <h:form role="form">
+                <div id="sTable" class="col-md-4">
                     <div class="form-group">
                         <p:outputLabel for="departureRegion" value="Departure Region"/><br/>
                         <p:selectOneMenu id="departureRegion" binding="#{departureRegion}" converter="regionConverter">
@@ -48,7 +49,8 @@
                     <div class="form-group">
                         <p:outputLabel for="departureLocation" value="Departure Location"/><br/>
                         <p:selectOneMenu id="departureLocation" value="#{tripController.departureLocation}"
-                                         converter="locationConverter" required="true" requiredMessage="Please choose a departure">
+                                         converter="locationConverter" required="true"
+                                         requiredMessage="Please choose a departure">
                             <f:selectItem itemLabel="Select Location" noSelectionOption="true"/>
                             <f:selectItems value="#{locationController.getLocationsByRegion(departureRegion.value)}"
                                            itemValue="#{location}"
@@ -57,11 +59,11 @@
                         </p:selectOneMenu>
                     </div>
 
-                    <div class="form-group" >
+                    <div class="form-group">
                         <p:outputLabel for="dateFrom" value="From"/><br/>
-                        <p:calendar  id="dateFrom"
-                                     value="#{tripController.departureDate}"
-                                     pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
+                        <p:calendar id="dateFrom"
+                                    value="#{tripController.departureDate}"
+                                    pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
                     </div>
 
                     <div class="form-group">
@@ -74,43 +76,45 @@
                     <h:commandButton value="Search Trips" action="#{tripController.searchTrip()}">
 
                     </h:commandButton>
-            </div>
-        <div id="sTable2" class="col-md-4">
-            <div class="form-group">
-                <p:outputLabel for="destinationRegion" value="Destination Region"/><br/>
-                <p:selectOneMenu id="destinationRegion" binding="#{destinationRegion}"
-                                 converter="regionConverter">
-                    <p:ajax update="destinationLocation"/>
-                    <f:selectItem itemLabel="Select Region" noSelectionOption="true"/>
-                    <f:selectItems value="#{locationController.findAllRegions()}" itemValue="#{region}"
-                                   var="region"
-                                   itemLabel="#{region.name}"/>
-                </p:selectOneMenu>
-            </div>
-            <div class="form-group">
-                <p:outputLabel for="destinationLocation" value="Destination Location"/><br/>
-                <p:selectOneMenu id="destinationLocation" value="#{tripController.destinationLocation}"
-                                 converter="locationConverter" required="true" requiredMessage="Please choose a destination">
-                    <f:selectItem itemLabel="Select Location" noSelectionOption="true"/>
-                    <f:selectItems value="#{locationController.getLocationsByRegion(destinationRegion.value)}"
-                                   itemValue="#{location}"
-                                   var="location"
-                                   itemLabel="#{location.name}"/>
-                </p:selectOneMenu>
-            </div>
+                </div>
+                <div id="sTable2" class="col-md-4">
+                    <div class="form-group">
+                        <p:outputLabel for="destinationRegion" value="Destination Region"/><br/>
+                        <p:selectOneMenu id="destinationRegion" binding="#{destinationRegion}"
+                                         converter="regionConverter">
+                            <p:ajax update="destinationLocation"/>
+                            <f:selectItem itemLabel="Select Region" noSelectionOption="true"/>
+                            <f:selectItems value="#{locationController.findAllRegions()}" itemValue="#{region}"
+                                           var="region"
+                                           itemLabel="#{region.name}"/>
+                        </p:selectOneMenu>
+                    </div>
+                    <div class="form-group">
+                        <p:outputLabel for="destinationLocation" value="Destination Location"/><br/>
+                        <p:selectOneMenu id="destinationLocation" value="#{tripController.destinationLocation}"
+                                         converter="locationConverter" required="true"
+                                         requiredMessage="Please choose a destination">
+                            <f:selectItem itemLabel="Select Location" noSelectionOption="true"/>
+                            <f:selectItems value="#{locationController.getLocationsByRegion(destinationRegion.value)}"
+                                           itemValue="#{location}"
+                                           var="location"
+                                           itemLabel="#{location.name}"/>
+                        </p:selectOneMenu>
+                    </div>
 
-            <div class="form-group" >
-                <p:outputLabel for="dateTo" value="To"/><br/>
-                <p:calendar  id="dateTo"
-                             value="#{tripController.returnDate}"
-                             pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
-            </div>
-        </div>
-        </h:form>
+                    <div class="form-group">
+                        <p:outputLabel for="dateTo" value="To"/><br/>
+                        <p:calendar id="dateTo"
+                                    value="#{tripController.returnDate}"
+                                    pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
+                    </div>
+                </div>
+            </h:form>
         </section>
 
-
-        <p:dataTable id="tripDataTable" var="trip" value="#{tripController.availableTrips}" rendered="#{tripController.availableTrips!=null}">
+<h:form id="form">
+        <p:dataTable id="tripDataTable" var="trip" value="#{tripController.availableTrips}"
+                     rendered="#{tripController.availableTrips!=null}" selection="#{bookingController.selectedTrip}" rowKey="#{trip.id}">
             <p:column headerText="#{msg.name}">
                 <h:outputText value="#{trip.name}"/>
             </p:column>
@@ -123,14 +127,41 @@
                 <h:outputText value="#{trip.outwardFlight.destination.name}"/>
             </p:column>
 
-            <p:column headerText="#{msg.availablePlaces}">
-                <h:outputText value="#{trip.emptyPlaces}"/>
+            <p:column headerText="#{msg.departureDate}">
+                <h:outputText value="#{trip.outwardFlight.departureDate}"/>
             </p:column>
-            <p:column headerText="#{msg.details}">
-                <h:outputText value="#{trip.emptyPlaces}"/>
+            <p:column headerText="Return date">
+                <h:outputText value="#{trip.returnFlight.departureDate}"/>
+            </p:column>
+            <p:column headerText="#{msg.details}" style="width:32px;text-align: center">
+                <p:commandButton update=":form:tripDetail" oncomplete="PF('tripDialog').show()" icon="ui-icon-search" title="View">
+                    <f:setPropertyActionListener value="#{trip}" target="#{bookingController.selectedTrip}" />
+                </p:commandButton>
+            </p:column>
+            <p:column headerText="Book" style="width:32px;text-align: center">
+                <p:commandButton action="#{bookingController.createBooking()}" icon="ui-icon-cart" title="View">
+                    <f:setPropertyActionListener value="#{trip}" target="#{bookingController.selectedTrip}" />
+
+                </p:commandButton>
             </p:column>
         </p:dataTable>
 
+        <p:dialog header="Trip info" widgetVar="tripDialog" modal="true" showEffect="fade" hideEffect="fade" resizable="false">
+            <p:outputPanel id="tripDetail" style="text-align:center;">
+
+                <h:outputText value="Name:" />
+                <h:outputText value="#{bookingController.selectedTrip.name}" /><br/>
+
+                <h:outputText value="Available Seats:" />
+                <h:outputText value="#{bookingController.selectedTrip.emptyPlaces}" /><br/>
+
+
+
+
+
+            </p:outputPanel>
+        </p:dialog>
+</h:form>
         <footer class="container">
 
         </footer>
