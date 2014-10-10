@@ -26,8 +26,6 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-        System.out.println("in auth filter");
-
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
         final String path = httpRequest.getRequestURL().toString().toLowerCase();
         boolean isAuthed = true;
@@ -52,7 +50,7 @@ public class AuthenticationFilter implements Filter {
 
         if (!isAuthed) {
             final HttpServletResponse httpResponse = (HttpServletResponse) response;
-            httpResponse.sendError(HttpServletResponse.SC_FORBIDDEN);
+            httpResponse.sendRedirect(httpRequest.getContextPath()+"/index.xhtml");
         } else {
             chain.doFilter(request, response);
         }
