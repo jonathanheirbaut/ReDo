@@ -58,6 +58,14 @@ insert into partner(id,version, name) values( 4,0, 'Sunweb');
 insert into partner(id,version, name) values( 5,0, 'Jetair');
 insert into partner(id,version, name) values( 6,0, 'ReDo Travel');
 
+insert into discount(id, version, discount, threshold, partner_id) values(1,0,0.05,10,1);
+insert into discount(id, version, discount, threshold, partner_id) values(2,0,0.15,20,1);
+insert into discount(id, version, discount, threshold, partner_id) values(3,0,0.20,5,1);
+insert into discount(id, version, discount, threshold, partner_id) values(4,0,0.55,15,1);
+insert into discount(id, version, discount, threshold, partner_id) values(5,0,0.15,25,1);
+
+
+
 insert into user(DTYPE, id, version, password, userName, partner_id) values('AirlineEmployee', 1, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'partner', 1);
 insert into user(DTYPE, id, version, password, userName) values('Customer', 2, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'customer');
 insert into user(DTYPE, id, version, password, userName) values('RDAirEmployee', 3, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'airemp');

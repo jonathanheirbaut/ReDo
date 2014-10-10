@@ -20,7 +20,7 @@ import java.util.Calendar;
 import java.util.Date;
 
 @Named
-@ViewScoped
+@RequestScoped
 public class AddFlightController {
     @Inject
     FlightService flightService;

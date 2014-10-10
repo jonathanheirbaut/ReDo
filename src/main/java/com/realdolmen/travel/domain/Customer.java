@@ -8,7 +8,7 @@ import javax.persistence.Entity;
 @Entity
 public class Customer extends User {
 
-    protected Customer() {
+    public Customer() {
     }
 
     public Customer(String userName, String password) {
