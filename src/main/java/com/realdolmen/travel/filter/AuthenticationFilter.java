@@ -26,6 +26,8 @@ public class AuthenticationFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+        System.out.println("in auth filter");
+
         final HttpServletRequest httpRequest = (HttpServletRequest) request;
         final String path = httpRequest.getRequestURL().toString().toLowerCase();
         boolean isAuthed = true;
