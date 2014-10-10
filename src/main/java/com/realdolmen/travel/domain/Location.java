@@ -9,12 +9,10 @@ public class Location extends AbstractEntity {
 
     private String name;
     private String code;
+    private Double price;
 
     @ManyToOne
     private Region region;
-
-   // @OneToMany(mappedBy = "destination")
-    //private List<Flight> outgoingFlights = new ArrayList<Flight>();
 
     protected Location() {
     }
@@ -23,7 +21,6 @@ public class Location extends AbstractEntity {
         this.name = name;
         this.code = code;
         this.region = region;
-//        this.outgoingFlights = outgoingFlights;
 
     }
 
@@ -43,10 +40,6 @@ public class Location extends AbstractEntity {
         return region;
     }
 
-//    public List<Flight> getOutgoingFlights() {
-//        return outgoingFlights;
-//    }
-
 
     @Override
     public boolean equals(Object o) {
@@ -57,6 +50,7 @@ public class Location extends AbstractEntity {
 
         if (code != null ? !code.equals(location.code) : location.code != null) return false;
         if (name != null ? !name.equals(location.name) : location.name != null) return false;
+        if (price != null ? !price.equals(location.price) : location.price != null) return false;
         if (region != null ? !region.equals(location.region) : location.region != null) return false;
 
         return true;
@@ -66,7 +60,16 @@ public class Location extends AbstractEntity {
     public int hashCode() {
         int result = name != null ? name.hashCode() : 0;
         result = 31 * result + (code != null ? code.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
         result = 31 * result + (region != null ? region.hashCode() : 0);
         return result;
+    }
+
+    public Double getPrice() {
+        return price;
+    }
+
+    public void setPrice(Double price) {
+        this.price = price;
     }
 }
