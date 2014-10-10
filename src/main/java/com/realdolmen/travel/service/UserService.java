@@ -1,13 +1,14 @@
 package com.realdolmen.travel.service;
 
+import com.realdolmen.travel.domain.Customer;
 import com.realdolmen.travel.domain.User;
 import com.realdolmen.travel.exception.UserServiceException;
 import com.realdolmen.travel.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
-import javax.faces.context.FacesContext;
 import javax.inject.Inject;
-import javax.servlet.http.HttpSession;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 
@@ -17,7 +18,7 @@ import java.security.NoSuchAlgorithmException;
 @Stateless
 public class UserService {
     private static final String SALT = "ReDOtRaVel";
-
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Inject
     private UserRepository userRepository;
 
@@ -72,4 +73,15 @@ public class UserService {
     }
 
 
+    public void register(Customer customer, String password1) throws UserServiceException {
+        password1 = encryptPassword(password1);
+        customer.setPassword(password1);
+        User userByUsername = userRepository.findUserByUsername(customer.getUserName());
+        if(userByUsername==null){
+            userRepository.create(customer);
+        }else{
+            throw new UserServiceException("Username already exists.");
+        }
+        logger.info("customer " + customer.getUserName());
+    }
 }

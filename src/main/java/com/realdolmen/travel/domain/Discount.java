@@ -1,22 +1,16 @@
 package com.realdolmen.travel.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.Version;
+import javax.persistence.*;
 
 @Entity
 public class Discount extends AbstractEntity {
-    //HIER PARTNER BIJHOUDEN???
     private Integer threshold;
-    private Integer discount;
+    private Double discount;
+    @ManyToOne
+    private Partner partner;
 
-    protected Discount() {
-    }
 
-    public Discount(Integer threshold, Integer discount) {
-        this.threshold = threshold;
-        this.discount = discount;
+    public Discount() {
     }
 
     public Long getVersion() {
@@ -27,7 +21,23 @@ public class Discount extends AbstractEntity {
         return threshold;
     }
 
-    public Integer getDiscount() {
+    public Double getDiscount() {
         return discount;
+    }
+
+    public void setDiscount(Double discount) {
+        this.discount = discount;
+    }
+
+    public void setThreshold(Integer threshold) {
+        this.threshold = threshold;
+    }
+
+    public Partner getPartner() {
+        return partner;
+    }
+
+    public void setPartner(Partner partner) {
+        this.partner = partner;
     }
 }

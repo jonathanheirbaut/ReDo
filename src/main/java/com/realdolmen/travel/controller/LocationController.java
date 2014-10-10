@@ -12,6 +12,7 @@ import javax.faces.bean.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.Collection;
+import java.util.List;
 
 @Named
 @ViewScoped
@@ -19,7 +20,7 @@ public class LocationController {
 
     @Inject
     LocationService locationService;
-
+    private List<Region> regions;
     protected Logger logger = LoggerFactory.getLogger(getClass());
 
     public Collection<Region> findAllRegions(){
@@ -32,5 +33,13 @@ public class LocationController {
 
     public Collection<Location> getLocationsByRegion(Region region){
         return locationService.getLocationsByRegion(region);
+    }
+
+    public List<Region> getRegions() {
+        return regions;
+    }
+
+    public void setRegions(List<Region> regions) {
+        this.regions = regions;
     }
 }
