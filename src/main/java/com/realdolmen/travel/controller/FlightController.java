@@ -5,6 +5,7 @@ import com.realdolmen.travel.domain.Flight;
 import com.realdolmen.travel.domain.Partner;
 import com.realdolmen.travel.domain.Region;
 import com.realdolmen.travel.service.FlightService;
+import org.primefaces.model.LazyDataModel;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -19,6 +20,8 @@ import java.util.List;
 @Named
 @RequestScoped
 public class FlightController {
+    private LazyDataModel<Flight> lazyModel;
+
     @Inject
     FlightService flightService;
     private Logger logger = LoggerFactory.getLogger(getClass());
@@ -35,6 +38,11 @@ public class FlightController {
     @PostConstruct
     public void initialize() {
         flights = flightService.findAll();
+        lazyModel = new LazyFlightModel(flightService.findAll());
+    }
+
+    public LazyDataModel<Flight> getLazyModel() {
+        return lazyModel;
     }
 
     public Collection<Flight> getFlights() {

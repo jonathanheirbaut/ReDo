@@ -16,8 +16,8 @@ public class TripRepository extends AbstractRepository<Trip> {
 
     public List<Trip> getAvailableTripsBySearchValues(Location fromLocation, Location toLocation, Date from, Date to, Integer numberOfPersons) {
         TypedQuery<Trip> query = em.createQuery("SELECT t FROM Trip t WHERE t.outwardFlight.departure = :fromLocation" +
-                " AND t.outwardFlight.departure = :toLocation" +
-                " AND t.outwardFlight.arrivalDate > :from" +
+                " AND t.outwardFlight.destination = :toLocation" +
+                " AND t.outwardFlight.arrivalDate >= :from" +
                 " AND t.returnFlight.departureDate < :to" +
                 " AND t.emptyPlaces >= :numberOfPersons", Trip.class);
         query.setParameter("fromLocation", fromLocation);

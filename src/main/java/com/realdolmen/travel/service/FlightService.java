@@ -14,8 +14,6 @@ import java.util.List;
 
 @Stateless
 public class FlightService {
-    private Collection<Flight> flights;
-
     @Inject
     private FlightRepository flightRepository;
     @Inject
@@ -30,7 +28,7 @@ public class FlightService {
         return flightRepository.calculateMaximumPrice(departureRegion, destinationRegion, startDate, endDate, partner);
     }
 
-    public Collection<Flight> findAll() {
+    public List<Flight> findAll() {
         return flightRepository.findAll();
     }
 
