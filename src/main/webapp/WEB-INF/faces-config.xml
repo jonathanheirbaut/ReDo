@@ -28,8 +28,8 @@
             <redirect />
         </navigation-case>
         <navigation-case>
-            <from-outcome>addbooking</from-outcome>
-            <to-view-id>/restricted/customer/addbooking.xhtml</to-view-id>
+            <from-outcome>confirmBooking</from-outcome>
+            <to-view-id>/restricted/customer/confirmbooking.xhtml</to-view-id>
             <redirect />
         </navigation-case>
         <navigation-case>

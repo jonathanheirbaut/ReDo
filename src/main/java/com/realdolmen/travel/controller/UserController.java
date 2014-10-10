@@ -3,11 +3,15 @@ package com.realdolmen.travel.controller;
 import com.realdolmen.travel.domain.*;
 import com.realdolmen.travel.exception.UserServiceException;
 import com.realdolmen.travel.service.UserService;
+import org.primefaces.context.RequestContext;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
+import javax.faces.event.ActionEvent;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpSession;
@@ -19,11 +23,34 @@ import java.io.Serializable;
 @Named
 @SessionScoped
 public class UserController implements Serializable {
+    private Logger logger = LoggerFactory.getLogger(UserController.class);
     @EJB
     private UserService userService;
 
     private User user;
     private boolean loggedIn;
+
+    //Details about a selected trip before a booking
+    private Trip selectedTrip;
+    private Integer numberOfPersons;
+    private String username;
+    private String password;
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
 
     public UserController() {
     }
@@ -80,15 +107,44 @@ public class UserController implements Serializable {
             userService.checkLogin(username, password);
             user = userService.getUser(username);
             loggedIn = true;
-            if (userIsOfTypeCustomer()) return "addbooking";
+            if (userIsOfTypeCustomer()) return "index";
             if (userIsOfTypeAirlineEmployee()) return "flights";
             if (userIsOfTypeRDAirEmployee()) return "flight_stats";
             if (userIsOfTypeRDTravelEmployee()) return "add_trip";
-            return "";
+            return null;
         } catch (UserServiceException ex) {
             // ResourceBundle bundle = ResourceBundle.getBundle("com.realdolmen.travel.messages", FacesContext.getCurrentInstance().getViewRoot().getLocale());
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
                     FacesMessage.SEVERITY_WARN, "Foutief wachtwoord of gebruikersnaam", ""));
+            return null;
+        }
+    }
+
+    public String loginPopup(String username, String password) {
+        RequestContext context = RequestContext.getCurrentInstance();
+        try {
+            userService.checkLogin(username, password);
+            user = userService.getUser(username);
+            loggedIn = true;
+            if (userIsOfTypeCustomer()) {
+                context.addCallbackParam("loggedIn", true);
+                logger.info("Loggedin callback true");
+                return "confirmBooking";
+            }
+            else {
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                        FacesMessage.SEVERITY_INFO, "You have to be registered as a customer to make a booking", ""));
+                logger.info("You have to be registered as a customer to make a booking");
+            }
+            context.addCallbackParam("loggedIn", false);
+            logger.info("Loggedin callback false");
+            return null;
+        } catch (UserServiceException ex) {
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
+                    FacesMessage.SEVERITY_WARN, "Wrong credentials", ""));
+            logger.info("Wrong credentials");
+            context.addCallbackParam("loggedIn", false);
+            logger.info("Loggedin callback false");
             return null;
         }
     }
@@ -116,4 +172,19 @@ public class UserController implements Serializable {
         this.loggedIn = loggedIn;
     }
 
-   }
+    public Trip getSelectedTrip() {
+        return selectedTrip;
+    }
+
+    public void setSelectedTrip(Trip selectedTrip) {
+        this.selectedTrip = selectedTrip;
+    }
+
+    public Integer getNumberOfPersons() {
+        return numberOfPersons;
+    }
+
+    public void setNumberOfPersons(Integer numberOfPersons) {
+        this.numberOfPersons = numberOfPersons;
+    }
+}

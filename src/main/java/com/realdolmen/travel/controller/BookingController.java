@@ -28,20 +28,15 @@ public class BookingController {
     @Inject
     TripController tripController;
 
-    private Trip selectedTrip;
-    private Integer numberOfPersons;
 
 
-    private Booking booking;
-
-    public String createBooking(Integer numberOfPersons){
-
+    public String createBooking() {
         try {
-            booking = new Booking();
+            Booking booking = new Booking();
             booking.setCustomer(userController.getUserAsCustomer());
-            booking.setTrip(selectedTrip);
-booking.setNumberOfPeople(numberOfPersons);
-            logger.info("trip: " + selectedTrip);
+            booking.setTrip(userController.getSelectedTrip());
+            booking.setNumberOfPeople(userController.getNumberOfPersons());
+            logger.info("trip: " + userController.getSelectedTrip());
             bookingService.createBooking(booking);
             FacesContext context = FacesContext.getCurrentInstance();
             context.addMessage(null, new FacesMessage("Your booking has been submitted!"));
@@ -51,21 +46,5 @@ booking.setNumberOfPeople(numberOfPersons);
                     FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
         }
         return null;
-    }
-
-    public Trip getSelectedTrip() {
-        return selectedTrip;
-    }
-
-    public void setSelectedTrip(Trip selectedTrip) {
-        this.selectedTrip = selectedTrip;
-    }
-
-    public Integer getNumberOfPersons() {
-        return numberOfPersons;
-    }
-
-    public void setNumberOfPersons(Integer numberOfPersons) {
-        this.numberOfPersons = numberOfPersons;
     }
 }

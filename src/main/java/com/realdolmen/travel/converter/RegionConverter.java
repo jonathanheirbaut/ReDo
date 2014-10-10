@@ -23,7 +23,7 @@ public class RegionConverter implements Converter {
     public Object getAsObject(FacesContext facesContext, UIComponent uiComponent, String value) {
         Long id = Long.parseLong(value);
         Region region = repository.find(id);
-        logger.info("The name of the region is " + region.getName());
+//        logger.info("The name of the region is " + region.getName());
         return region;
     }
 
@@ -33,7 +33,7 @@ public class RegionConverter implements Converter {
             return "";
         }
         Long id = ((Region) value).getId();
-        logger.info("Converter get as String. Id = " + id);
+//        logger.info("Converter get as String. Id = " + id);
         return String.valueOf(((Region) value).getId());
     }
 }

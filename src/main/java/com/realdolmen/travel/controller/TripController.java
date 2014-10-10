@@ -28,16 +28,17 @@ public class TripController  {
     private Logger logger = LoggerFactory.getLogger(getClass());
     @Inject
     private TripService tripService;
+    @Inject
+    private UserController userController;
     private List<Trip> allTrips;
     private List<Trip> availableTrips;
 
     private Location departureLocation;
     private Location destinationLocation;
-//    @Future
+//  @Future
     private Date departureDate;
     private Date returnDate;
     private Integer numberOfPersons;
-    private Trip selectedTrip;
 
 
     @PostConstruct
@@ -51,6 +52,8 @@ public class TripController  {
 
     public void searchTrip() {
         availableTrips = tripService.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, addHoursToDate(returnDate), numberOfPersons);
+        userController.setNumberOfPersons(numberOfPersons);
+        userController.setSelectedTrip(null);
         for (Trip availableTrip : availableTrips) {
             logger.info(availableTrip.getName());
         }
@@ -109,22 +112,13 @@ public class TripController  {
         this.availableTrips = availableTrips;
     }
 
-    private Date addHoursToDate(Date returnDate) {
+    private Date addHoursToDate(Date date) {
         Calendar dep = Calendar.getInstance();
-        dep.setTime(returnDate);
+        dep.setTime(date);
         dep.add(Calendar.HOUR, 23);
         dep.add(Calendar.MINUTE,59);
         dep.add(Calendar.SECOND,59);
         Date newDate = new Date(dep.getTimeInMillis());
         return newDate;
-    }
-
-    public Trip getSelectedTrip() {
-        if(selectedTrip!=null)logger.info("selected" + selectedTrip.getName());
-        return selectedTrip;
-    }
-
-    public void setSelectedTrip(Trip selectedTrip) {
-        this.selectedTrip = selectedTrip;
     }
 }
