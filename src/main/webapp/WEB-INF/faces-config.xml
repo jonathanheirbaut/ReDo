@@ -72,7 +72,11 @@
             <to-view-id>/restricted/customer/booking_complete.xhtml</to-view-id>
             <redirect />
         </navigation-case>
-
+        <navigation-case>
+            <from-outcome>trips</from-outcome>
+            <to-view-id>/restricted/travel/trips.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
 
     </navigation-rule>
 
