@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../resources/css/site.css"/>
-    <title>Bookings</title>
+    <title>#{msg.bookingTitle}</title>
 
 </h:head>
 
@@ -26,7 +26,7 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Overview Bookings</h1>
+                <h1>#{msg.overviewBookings}</h1>
             </div>
             <section id="sidebar" class="col-md-8">
 
@@ -34,28 +34,28 @@
             <section id="sTable" class="col-md-10">
                 <div class="panel panel-primary">
                     <!-- Default panel contents -->
-                        <div class="panel-heading">My bookings</div>
+                        <div class="panel-heading">#{msg.myBookings}</div>
 
                         <p:dataTable var="booking"
                                      value="#{bookingController.findAllBookingsByCustomer(userController.userAsCustomer)}">
 
 
-                            <p:column headerText="Name">
+                            <p:column headerText="#{msg.name}">
                                 <h:outputText value="#{booking.trip.name}">
 
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Departure date">
+                            <p:column headerText="#{msg.departureDate}">
                                 <h:outputText value="#{booking.trip.outwardFlight.departureDate}">
 
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Return date">
+                            <p:column headerText="#{msg.returnDate}">
                                 <h:outputText value="#{booking.trip.returnFlight.departureDate}">
 
                                 </h:outputText>
                             </p:column>
-                            <p:column headerText="Number of persons">
+                            <p:column headerText="#{msg.numberOfPersons}">
                                 <h:outputText value="#{booking.numberOfPeople}">
 
                                 </h:outputText>

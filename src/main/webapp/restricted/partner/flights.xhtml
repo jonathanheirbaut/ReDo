@@ -34,7 +34,7 @@
             <section id="sTable" class="col-md-10">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">My Flights</h3>
+                        <h3 class="panel-title">#{msg.myFlights}</h3>
                     </div>
                         <p:dataTable paginator="true" rows="10" var="flight"
                                      value="#{flightController.findAllByPartner(userController.user.partner)}">

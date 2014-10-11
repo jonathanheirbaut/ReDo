@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../resources/css/site.css"/>
-    <title>Confirm Booking</title>
+    <title>#{msg.confirmBooking}</title>
 
 </h:head>
 
@@ -24,21 +24,21 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Confirm Booking</h1>
+                <h1>#{msg.confirmBooking}</h1>
             </div>
             <section id="sidebar" class="col-md-5">
 
             </section>
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                   <h3 class="panel-title">Outbound Flight</h3>
+                   <h3 class="panel-title">#{msg.outboundFlight}</h3>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>Departure:</strong> #{userController.selectedTrip.outwardFlight.departure.name}</li>
-                    <li class="list-group-item"><strong>Destination:</strong> #{userController.selectedTrip.outwardFlight.destination.name}</li>
-                    <li class="list-group-item"><strong>Departure Date:</strong> #{userController.selectedTrip.outwardFlight.departureDate}</li>
-                    <li class="list-group-item"><strong>Arrival Date: </strong>#{userController.selectedTrip.outwardFlight.arrivalDate}</li>
-                    <li class="list-group-item"><strong>Partner:</strong> #{userController.selectedTrip.outwardFlight.partner.name}</li>
+                    <li class="list-group-item"><strong>#{msg.departure}:</strong> #{userController.selectedTrip.outwardFlight.departure.name}</li>
+                    <li class="list-group-item"><strong>#{msg.destination}:</strong> #{userController.selectedTrip.outwardFlight.destination.name}</li>
+                    <li class="list-group-item"><strong>#{msg.departureDate}:</strong> #{userController.selectedTrip.outwardFlight.departureDate}</li>
+                    <li class="list-group-item"><strong>#{msg.arrivalDate}: </strong>#{userController.selectedTrip.outwardFlight.arrivalDate}</li>
+                    <li class="list-group-item"><strong>#{msg.partner}:</strong> #{userController.selectedTrip.outwardFlight.partner.name}</li>
                 </ul>
                 <div class="panel-body">
 
@@ -47,20 +47,20 @@
 
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Return Flight</h3>
+                    <h3 class="panel-title">#{msg.returnFlight}</h3>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>Departure:</strong> #{userController.selectedTrip.returnFlight.departure.name}</li>
-                    <li class="list-group-item"><strong>Destination:</strong> #{userController.selectedTrip.returnFlight.destination.name}</li>
-                    <li class="list-group-item"><strong>Departure Date:</strong> #{userController.selectedTrip.returnFlight.departureDate}</li>
-                    <li class="list-group-item"><strong>Arrival Date:</strong> #{userController.selectedTrip.returnFlight.arrivalDate}</li>
-                    <li class="list-group-item"><strong>Partner:</strong> #{userController.selectedTrip.returnFlight.partner.name}</li>
+                    <li class="list-group-item"><strong>#{msg.departure}:</strong> #{userController.selectedTrip.returnFlight.departure.name}</li>
+                    <li class="list-group-item"><strong>#{msg.destination}:</strong> #{userController.selectedTrip.returnFlight.destination.name}</li>
+                    <li class="list-group-item"><strong>#{msg.departureDate}:</strong> #{userController.selectedTrip.returnFlight.departureDate}</li>
+                    <li class="list-group-item"><strong>#{msg.arrivalDate}:</strong> #{userController.selectedTrip.returnFlight.arrivalDate}</li>
+                    <li class="list-group-item"><strong>#{msg.partner}:</strong> #{userController.selectedTrip.returnFlight.partner.name}</li>
                 </ul>
                 <div class="panel-body">
 
                 </div>
             </div>
-            <p:commandButton value="Confirm" action="#{bookingController.createBooking()}"></p:commandButton>
+            <p:commandButton value="#{msg.confirm}" styleClass="btn btn-success" action="#{bookingController.createBooking()}"></p:commandButton>
         </section>
         <footer class="container">
 

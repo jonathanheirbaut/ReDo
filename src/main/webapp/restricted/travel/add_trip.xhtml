@@ -24,7 +24,7 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Add trip</h1>
+                <h1>#{msg.addTrip}</h1>
             </div>
             <section id="sidebar" class="col-md-8">
 
@@ -34,20 +34,20 @@
                 <p:messages severity="error"></p:messages>
                 <h:form role="form" id="myForm">
                     <div class="form-group">
-                        <p:outputLabel for="name" value="Name"/>
+                        <p:outputLabel for="name" value="#{msg.name}"/>
                         <p:inputText class="form-control" id="name" value="#{addTripController.name}"
-                                     label="Name" required="true" requiredMessage="Please fill in the name of the trip"/>
+                                     label="#{msg.name}" required="true" requiredMessage="#{msg.errorNoNameTrip}"/>
                     </div>
                     <div class="form-group">
-                        <p:outputLabel for="availablePlaces" value="Available places"/>
+                        <p:outputLabel for="availablePlaces" value="#{msg.availablePlaces}"/>
                         <p:inputText class="form-control" id="availablePlaces" value="#{addTripController.emptyPlaces}"
-                                     label="Available places" required="true" requiredMessage="You have to enter a maximum amount of places"/>
+                                     label="#{msg.availablePlaces}" required="true" requiredMessage="#{msg.errorNoMaxAvailablePlaces}"/>
                     </div>
 
 
                         <div class="form-group">
-                            <p:outputLabel for="flightDeparture" value="Flight departure"/><br/>
-                            <h:commandButton id="flightDeparture" value="Select flight" type="button"/>
+                            <p:outputLabel for="flightDeparture" value="#{msg.flightDeparture}"/><br/>
+                            <h:commandButton id="flightDeparture" value="#{msg.selectFlight}" type="button"/>
                         </div>
                         <!--OVERLAY PANEL-->
                         <p:overlayPanel widgetVar="opDeparture" for="flightDeparture" hideEffect="fade" dynamic="true" style="width:600px" dismissable="false" showCloseIcon="true">
@@ -69,7 +69,7 @@
                                     <h:outputText value="#{flight.emptySeats}" />
                                 </p:column>
                                 <f:facet name="footer">
-                                    <p:commandButton  process="dtFlightDeparture"  value="Select" oncomplete="opDeparture.hide()"  />
+                                    <p:commandButton  process="dtFlightDeparture"  value="#{msg.select}" oncomplete="opDeparture.hide()"  />
                                 </f:facet>
 
                             </p:dataTable>
@@ -78,8 +78,8 @@
 
 
                     <div class="form-group">
-                        <p:outputLabel for="flightDestination" value="Flight destination"/><br/>
-                        <h:commandButton id="flightDestination" value="Select flight" type="button" />
+                        <p:outputLabel for="flightDestination" value="#{msg.flightDestination}"/><br/>
+                        <h:commandButton id="flightDestination" value="#{msg.selectFlight}" type="button" />
 
                     </div>
                     <!--OVERLAY PANEL-->
@@ -102,13 +102,13 @@
                                 <h:outputText value="#{flight.emptySeats}" />
                             </p:column>
                             <f:facet name="footer">
-                                <p:commandButton process="dtDestination" update=":testForm"  value="Select" action="#{addTripController.doSomething()}" oncomplete="opDestination.hide()"/>
+                                <p:commandButton process="dtDestination" update=":testForm"  value="#{msg.select}" action="#{addTripController.doSomething()}" oncomplete="opDestination.hide()"/>
                             </f:facet>
                         </p:dataTable>
 
                     </p:overlayPanel>
 
-                    <h:commandButton value="#{msg.submit}" action="#{addTripController.createTrip()}"/>
+                    <h:commandButton styleClass="btn btn-success" value="#{msg.submit}" action="#{addTripController.createTrip()}"/>
                     <p:messages severity="info"></p:messages>
 
                 </h:form>

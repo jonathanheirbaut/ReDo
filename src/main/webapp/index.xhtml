@@ -18,207 +18,212 @@
 </h:head>
 
 <h:body>
-    <p:growl id="growl" showDetail="false" showSummary="true" sticky="false" severity="warn"/>
+<p:growl id="growl" showDetail="false" showSummary="true" sticky="false" severity="warn"/>
 
-    <div id="page">
+<div id="page">
 
-        <ui:include src="/resources/template/header.xhtml"/>
+    <ui:include src="/resources/template/header.xhtml"/>
 
-        <section id="body" class="container">
-            <p:messages severity="error"/>
-            <p:messages severity="info"/>
+    <section id="body" class="container">
+        <p:messages severity="error"/>
+        <p:messages severity="info"/>
 
-            <div class="page-header">
-                <h1>#{msg.homeTitle}</h1>
+        <div class="page-header">
+            <h1>#{msg.redo}</h1>
+        </div>
+        <div class="panel panel-primary">
+            <div class="panel-heading">#{msg.searchYourTrips}</div>
+            <div class="panel-body">
+                <h:form role="form">
+                    <div id="sTable" class="col-md-3">
+                        <div class="form-group">
+                            <p:outputLabel for="departureRegion" value="#{msg.departureRegion}"/><br/>
+                            <p:selectOneMenu id="departureRegion" binding="#{departureRegion}"
+                                             converter="regionConverter">
+                                <p:ajax update="departureLocation"/>
+                                <f:selectItem itemLabel="#{msg.selectRegion}" noSelectionOption="true"/>
+                                <f:selectItems value="#{locationController.findAllRegions()}" itemValue="#{region}"
+                                               var="region"
+                                               itemLabel="#{region.name}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+                        <div class="form-group">
+                            <p:outputLabel for="departureLocation" value="#{msg.departureLocation}"/><br/>
+                            <p:selectOneMenu id="departureLocation" value="#{tripController.departureLocation}"
+                                             converter="locationConverter" required="true"
+                                             requiredMessage="#{msg.errorNoDeparture}">
+                                <f:selectItem itemLabel="#{msg.selectLocation}" noSelectionOption="true"/>
+                                <f:selectItems value="#{locationController.getLocationsByRegion(departureRegion.value)}"
+                                               itemValue="#{location}"
+                                               var="location"
+                                               itemLabel="#{location.name}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+
+                    </div>
+                    <div id="sTable2" class="col-md-3">
+                        <div class="form-group">
+                            <p:outputLabel for="destinationRegion" value="#{msg.destinationRegion}"/><br/>
+                            <p:selectOneMenu id="destinationRegion" binding="#{destinationRegion}"
+                                             converter="regionConverter">
+                                <p:ajax update="destinationLocation"/>
+                                <f:selectItem itemLabel="#{msg.selectRegion}" noSelectionOption="true"/>
+                                <f:selectItems value="#{locationController.findAllRegions()}" itemValue="#{region}"
+                                               var="region"
+                                               itemLabel="#{region.name}"/>
+                            </p:selectOneMenu>
+                        </div>
+                        <div class="form-group">
+                            <p:outputLabel for="destinationLocation" value="#{msg.destinationLocation}"/><br/>
+                            <p:selectOneMenu id="destinationLocation" value="#{tripController.destinationLocation}"
+                                             converter="locationConverter" required="true"
+                                             requiredMessage="#{msg.errorNoDestination}">
+                                <f:selectItem itemLabel="#{msg.selectLocation}" noSelectionOption="true"/>
+                                <f:selectItems
+                                        value="#{locationController.getLocationsByRegion(destinationRegion.value)}"
+                                        itemValue="#{location}"
+                                        var="location"
+                                        itemLabel="#{location.name}"/>
+                            </p:selectOneMenu>
+                        </div>
+
+
+                    </div>
+                    <div id="sTable3" class="col-md-3">
+                        <div class="form-group">
+                            <p:outputLabel for="dateFrom" value="#{msg.from}"/><br/>
+                            <p:calendar id="dateFrom"
+                                        value="#{tripController.departureDate}"
+                                        pattern="dd-MM-yyyy" required="true" requiredMessage="#{msg.errorNoDate}"/>
+                        </div>
+                        <div class="form-group">
+                            <p:outputLabel for="dateTo" value="#{msg.to}"/><br/>
+                            <p:calendar id="dateTo"
+                                        value="#{tripController.returnDate}"
+                                        pattern="dd-MM-yyyy" required="true" requiredMessage="#{msg.errorNoDate}"/>
+                        </div>
+                    </div>
+                    <div id="sTable4" class="col-md-3">
+                        <div class="form-group">
+                            <p:outputLabel for="numberOfPersons" value="#{msg.numberOfPersons}"/>
+                            <p:inputText class="form-control" id="numberOfPersons"
+                                         value="#{tripController.numberOfPersons}"
+                                         required="true" requiredMessage="#{msg.errorNoNumberOfPersons}"/>
+                        </div>
+                        <br/>
+                        <h:commandButton styleClass="btn btn-success" value="#{msg.searchTrips}"
+                                         action="#{tripController.searchTrip()}">
+
+                        </h:commandButton>
+                    </div>
+
+
+                </h:form>
             </div>
-            <div class="panel panel-primary">
-                <div class="panel-heading">Search your trip</div>
-                <div class="panel-body">
-                    <h:form role="form">
-                        <div id="sTable" class="col-md-3">
-                            <div class="form-group">
-                                <p:outputLabel for="departureRegion" value="Departure Region"/><br/>
-                                <p:selectOneMenu  id="departureRegion" binding="#{departureRegion}" converter="regionConverter">
-                                    <p:ajax update="departureLocation"/>
-                                    <f:selectItem itemLabel="Select Region" noSelectionOption="true"/>
-                                    <f:selectItems value="#{locationController.findAllRegions()}" itemValue="#{region}"
-                                                   var="region"
-                                                   itemLabel="#{region.name}"/>
-                                </p:selectOneMenu>
-                            </div>
+        </div>
 
-                            <div class="form-group">
-                                <p:outputLabel for="departureLocation" value="Departure Location"/><br/>
-                                <p:selectOneMenu id="departureLocation" value="#{tripController.departureLocation}"
-                                                 converter="locationConverter" required="true"
-                                                 requiredMessage="Please choose a departure">
-                                    <f:selectItem itemLabel="Select Location" noSelectionOption="true"/>
-                                    <f:selectItems value="#{locationController.getLocationsByRegion(departureRegion.value)}"
-                                                   itemValue="#{location}"
-                                                   var="location"
-                                                   itemLabel="#{location.name}"/>
-                                </p:selectOneMenu>
-                            </div>
+    </section>
+    <div class="col-md-2"></div>
+    <section id="searchResults" class="col-md-8">
+        <h:form id="form">
+            <p:dataTable id="tripDataTable" var="trip" value="#{tripController.availableTrips}"
+                         rendered="#{tripController.availableTrips!=null}"
+                         selection="#{userController.selectedTrip}" rowKey="#{trip.id}">
+                <p:column headerText="#{msg.name}">
+                    <h:outputText value="#{trip.name}"/>
+                </p:column>
+
+                <p:column headerText="#{msg.departure}">
+                    <h:outputText value="#{trip.outwardFlight.departure.name}"/>
+                </p:column>
+
+                <p:column headerText="#{msg.destination}">
+                    <h:outputText value="#{trip.outwardFlight.destination.name}"/>
+                </p:column>
+
+                <p:column headerText="#{msg.departureDate}">
+                    <h:outputText value="#{trip.outwardFlight.departureDate}"/>
+                </p:column>
+                <p:column headerText="#{msg.returnDate}">
+                    <h:outputText value="#{trip.returnFlight.departureDate}"/>
+                </p:column>
+                <p:column headerText="#{msg.details}" style="width:32px;text-align: center">
+                    <p:commandButton update=":form:tripDetail" oncomplete="PF('tripDialog').show()"
+                                     icon="ui-icon-search" title="View">
+                        <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
+                    </p:commandButton>
+                </p:column>
+                <p:column headerText="#{msg.book}" style="width:32px;text-align: center">
+                    <p:commandButton rendered="#{userController.userIsOfTypeCustomer()}"
+                                     action="#{bookingController.goToConfirmPage()}"
+                                     icon="ui-icon-cart" title="Book">
+                        <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
+                    </p:commandButton>
+                    <p:commandButton rendered="#{userController.userIsOfTypeCustomer()==false}"
+                                     icon="ui-icon-cart" onclick="PF('dlg').show();"
+                                     title="Book">
+                        <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
+                    </p:commandButton>
 
 
+                    <!--<h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
+                        <p:graphicImage name="/demo/images/login.png" alt="login"/>
+                    </h:outputLink>-->
+
+                    <p:dialog header="#{msg.login}" widgetVar="dlg" resizable="false">
+                        <p:growl id="growl2" showDetail="false" showSummary="true" sticky="false" severity="warn"/>
+
+                        <div class="form-group">
+                            <p:inputText value="#{userController.username}" binding="#{usernamePopup}" required="true"
+                                         autocomplete="off"
+                                         placeholder="#{msg.userName}"
+                                         class="form-control"/>
                         </div>
-                        <div id="sTable2" class="col-md-3">
-                            <div class="form-group">
-                                <p:outputLabel for="destinationRegion" value="Destination Region"/><br/>
-                                <p:selectOneMenu id="destinationRegion" binding="#{destinationRegion}"
-                                                 converter="regionConverter">
-                                    <p:ajax update="destinationLocation"/>
-                                    <f:selectItem itemLabel="Select Region" noSelectionOption="true"/>
-                                    <f:selectItems value="#{locationController.findAllRegions()}" itemValue="#{region}"
-                                                   var="region"
-                                                   itemLabel="#{region.name}"/>
-                                </p:selectOneMenu>
-                            </div>
-                            <div class="form-group">
-                                <p:outputLabel for="destinationLocation" value="Destination Location"/><br/>
-                                <p:selectOneMenu id="destinationLocation" value="#{tripController.destinationLocation}"
-                                                 converter="locationConverter" required="true"
-                                                 requiredMessage="Please choose a destination">
-                                    <f:selectItem itemLabel="Select Location" noSelectionOption="true"/>
-                                    <f:selectItems value="#{locationController.getLocationsByRegion(destinationRegion.value)}"
-                                                   itemValue="#{location}"
-                                                   var="location"
-                                                   itemLabel="#{location.name}"/>
-                                </p:selectOneMenu>
-                            </div>
-
-
+                        <div class="form-group">
+                            <p:password value="#{userController.password}" binding="#{passwordPopup}" required="true"
+                                        autocomplete="off"
+                                        placeholder="#{msg.password}"
+                                        class="form-control"/>
                         </div>
-                        <div id="sTable3" class="col-md-3">
-                            <div class="form-group">
-                                <p:outputLabel for="dateFrom" value="From"/><br/>
-                                <p:calendar id="dateFrom"
-                                            value="#{tripController.departureDate}"
-                                            pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
-                            </div>
-                            <div class="form-group">
-                                <p:outputLabel for="dateTo" value="To"/><br/>
-                                <p:calendar id="dateTo"
-                                            value="#{tripController.returnDate}"
-                                            pattern="dd-MM-yyyy" required="true" requiredMessage="You have to select a date"/>
-                            </div>
-                        </div>
-                        <div id="sTable4" class="col-md-3">
-                            <div class="form-group">
-                                <p:outputLabel for="numberOfPersons" value="numberOfPersons"/>
-                                <p:inputText class="form-control" id="numberOfPersons" value="#{tripController.numberOfPersons}"
-                                             required="true" requiredMessage="Number of persons is required"/>
-                            </div><br/>
-                            <h:commandButton styleClass="btn btn-success" value="Search Trips" action="#{tripController.searchTrip()}">
+                        <p:commandButton value="#{msg.signIn}"
+                                         style="margin-right: 15px"
+                                         action="#{userController.loginPopup(usernamePopup.value, passwordPopup.value)}"
+                                         oncomplete="handleLoginRequest(xhr, status, args)"/>
+                    </p:dialog>
+                </p:column>
+            </p:dataTable>
 
-                            </h:commandButton>
-                        </div>
+            <p:dialog header="#{msg.tripInfo}" widgetVar="tripDialog" modal="true" showEffect="fade" hideEffect="fade"
+                      resizable="false">
+                <p:outputPanel id="tripDetail" style="text-align:center;">
 
+                    <h:outputText value="#{msg.name}"/>
+                    <h:outputText value="#{userController.selectedTrip.name}"/><br/>
 
-                    </h:form>
-                </div>
-            </div>
+                    <h:outputText value="#{msg.availablePlaces}"/>
+                    <h:outputText value="#{userController.selectedTrip.emptyPlaces}"/><br/>
 
-        </section>
-        <div class="col-md-2"></div>
-        <section id="searchResults" class="col-md-8">
-            <h:form id="form">
-                <p:dataTable id="tripDataTable" var="trip" value="#{tripController.availableTrips}"
-                             rendered="#{tripController.availableTrips!=null}"
-                             selection="#{userController.selectedTrip}" rowKey="#{trip.id}">
-                    <p:column headerText="#{msg.name}">
-                        <h:outputText value="#{trip.name}"/>
-                    </p:column>
-
-                    <p:column headerText="#{msg.departure}">
-                        <h:outputText value="#{trip.outwardFlight.departure.name}"/>
-                    </p:column>
-
-                    <p:column headerText="#{msg.destination}">
-                        <h:outputText value="#{trip.outwardFlight.destination.name}"/>
-                    </p:column>
-
-                    <p:column headerText="#{msg.departureDate}">
-                        <h:outputText value="#{trip.outwardFlight.departureDate}"/>
-                    </p:column>
-                    <p:column headerText="Return date">
-                        <h:outputText value="#{trip.returnFlight.departureDate}"/>
-                    </p:column>
-                    <p:column headerText="#{msg.details}" style="width:32px;text-align: center">
-                        <p:commandButton update=":form:tripDetail" oncomplete="PF('tripDialog').show()"
-                                         icon="ui-icon-search" title="View">
-                            <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
-                        </p:commandButton>
-                    </p:column>
-                    <p:column headerText="Book" style="width:32px;text-align: center">
-                        <p:commandButton rendered="#{userController.userIsOfTypeCustomer()}"
-                                         action="#{bookingController.goToConfirmPage()}"
-                                         icon="ui-icon-cart" title="Book">
-                            <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
-                            <p:confirm header="Confirmation" message="Are you sure you want to book this trip?"
-                                       icon="ui-icon-alert"/>
-                        </p:commandButton>
-                        <p:commandButton rendered="#{userController.userIsOfTypeCustomer()==false}"
-                                         icon="ui-icon-cart" onclick="PF('dlg').show();"
-                                         title="Book">
-                            <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
-                        </p:commandButton>
+                </p:outputPanel>
+            </p:dialog>
+            <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
+                <p:commandButton value="#{msg.yes}" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
+                <p:commandButton value="#{msg.no}" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
+            </p:confirmDialog>
+        </h:form>
 
 
-                        <!--<h:outputLink value="javascript:void(0)" onclick="PF('dlg').show();" title="login">
-                            <p:graphicImage name="/demo/images/login.png" alt="login"/>
-                        </h:outputLink>-->
+    </section>
+    <footer class="container">
 
-                        <p:dialog header="Login" widgetVar="dlg" resizable="false">
-                            <p:growl id="growl2" showDetail="false" showSummary="true" sticky="false" severity="warn"/>
+    </footer>
+</div>
 
-                            <div class="form-group">
-                                <p:inputText value="#{userController.username}" binding="#{usernamePopup}" required="true" autocomplete="off"
-                                             placeholder="#{msg.userName}"
-                                             class="form-control"/>
-                            </div>
-                            <div class="form-group">
-                                <p:password value="#{userController.password}" binding="#{passwordPopup}" required="true" autocomplete="off"
-                                            placeholder="#{msg.password}"
-                                            class="form-control"/>
-                            </div>
-                            <p:commandButton value="#{msg.signIn}"
-                                             style="margin-right: 15px"
-                                             action="#{userController.loginPopup(usernamePopup.value, passwordPopup.value)}"
-                                             oncomplete="handleLoginRequest(xhr, status, args)" />
-                        </p:dialog>
-                    </p:column>
-                </p:dataTable>
+<!-- /container -->
+<script src="resources/js/bootstrap.min.js"></script>
 
-                <p:dialog header="Trip info" widgetVar="tripDialog" modal="true" showEffect="fade" hideEffect="fade"
-                          resizable="false">
-                    <p:outputPanel id="tripDetail" style="text-align:center;">
-
-                        <h:outputText value="Name:"/>
-                        <h:outputText value="#{userController.selectedTrip.name}"/><br/>
-
-                        <h:outputText value="Available Seats:"/>
-                        <h:outputText value="#{userController.selectedTrip.emptyPlaces}"/><br/>
-
-                    </p:outputPanel>
-                </p:dialog>
-                <p:confirmDialog global="true" showEffect="fade" hideEffect="explode">
-                    <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="ui-icon-check"/>
-                    <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="ui-icon-close"/>
-                </p:confirmDialog>
-            </h:form>
-
-
-        </section>
-        <footer class="container">
-
-        </footer>
-    </div>
-
-    <!-- /container -->
-    <script src="resources/js/bootstrap.min.js"></script>
-
-    <script src="resources/js/site.js"></script>
+<script src="resources/js/site.js"></script>
 
 </h:body>
 

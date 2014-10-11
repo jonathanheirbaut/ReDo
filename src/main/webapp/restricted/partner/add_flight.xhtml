@@ -38,24 +38,24 @@
                     <div class="form-group">
                         <p:outputLabel for="maxSeats" value="#{msg.maximumSeats}"/>
                         <p:inputText class="form-control" id="maxSeats" value="#{addFlightController.maxSeats}"
-                                     label="Maximum seats" required="true" requiredMessage="You have to enter a maximum amount of seats"/>
+                                     label="#{msg.maximumSeats}" required="true" requiredMessage="#{msg.errorNoMaxSeats}"/>
                     </div>
                     <div class="form-group" >
                         <p:outputLabel for="datetime" value="#{msg.departureDate}"/><br/>
                         <p:calendar  id="datetime" binding="#{startDateComponent}"
                                     value="#{addFlightController.departureDate}"
-                                    pattern="dd-MM-yyyy HH:mm" required="true" requiredMessage="You have to select a date"/>
+                                    pattern="dd-MM-yyyy HH:mm" required="true" requiredMessage="#{msg.errorNoDate}"/>
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="datetime2" value="#{msg.duration}"/><br/>
                         <p:calendar  timeOnly="true"  pattern="HH:mm" id="datetime2" binding="#{endDateComponent}"
-                                    value="#{addFlightController.duration}" validator="dateTimeValidator" required="true" requiredMessage="You have to give the duration of the flight"
+                                    value="#{addFlightController.duration}" validator="dateTimeValidator" required="true" requiredMessage="#{msg.errorNoDuration}"
                                 />
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="price" value="#{msg.price}"/>
                         <p:inputText class="form-control" id="price" value="#{addFlightController.price}"
-                                     label="Price: " required="true" requiredMessage="#{msg.errorPrice}"/>
+                                     label="#{msg.price}" required="true" requiredMessage="#{msg.errorPrice}"/>
 
                     </div>
                     <div class="form-group">

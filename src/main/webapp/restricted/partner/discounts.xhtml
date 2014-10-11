@@ -13,7 +13,7 @@
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../resources/css/site.css"/>
-    <title>Discounts</title>
+    <title>#{msg.discounts}</title>
 
 </h:head>
 
@@ -26,7 +26,7 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Overview Discounts</h1>
+                <h1>#{msg.overviewDiscounts}</h1>
             </div>
             <section id="sidebar" class="col-md-8">
 
@@ -34,17 +34,17 @@
             <section id="sTable" class="col-md-10">
                 <div class="panel panel-primary">
                     <div class="panel-heading">
-                        <h3 class="panel-title">My discounts</h3>
+                        <h3 class="panel-title">#{msg.myDiscounts}</h3>
                     </div>
                     <p:dataTable rows="10" var="discount"
                                  value="#{discountController.findAllByPartner(userController.user.partner)}"
                                  sortOrder="#{discount.threshold}">
-                        <p:column headerText="Threshold">
+                        <p:column headerText="#{msg.threshold}">
                             <h:outputText value="#{discount.threshold}">
 
                             </h:outputText>
                         </p:column>
-                        <p:column headerText="Discount">
+                        <p:column headerText="#{msg.discount}">
                             <h:outputText value="#{discount.discount}">
 
                             </h:outputText>
@@ -55,7 +55,7 @@
 
             </section>
 
-            <div class="col-md-5"><h:link styleClass="btn btn-success" value="Add discount" outcome="add_discount"/>
+            <div class="col-md-5"><h:link styleClass="btn btn-success" value="#{msg.addDiscount}" outcome="add_discount"/>
             </div>
 
 
