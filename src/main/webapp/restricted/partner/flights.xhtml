@@ -60,29 +60,7 @@
             <div class="col-md-5"><h:link value="#{msg.addFlight}" outcome="add_flight"/></div>
         </section>
 
-        <div>
-            <p:dataTable var="flight" value="#{flightController.lazyModel}" paginator="true" rows="10"
-                         paginatorTemplate="{RowsPerPageDropdown} {FirstPageLink} {PreviousPageLink} {CurrentPageReport} {NextPageLink} {LastPageLink}"
-                         rowsPerPageTemplate="5,10,15" selectionMode="single" id="flightTable" lazy="true">
-                <p:column headerText="Id">
-                    <h:outputText value="#{flight.id}"/>
-                </p:column>
-                <p:column headerText="DepartureDate">
-                    <h:outputText value="#{flight.departureDate}"/>
-                </p:column>
-                <p:column headerText="Departure">
-                    <h:outputText value="#{flight.departure.name}"/>
-                </p:column>
-                <p:column headerText="arrivalDate">
-                    <h:outputText value="#{flight.arrivalDate}"/>
-                </p:column>
-                <p:column headerText="Destination">
-                    <h:outputText value="#{flight.destination.name}"/>
-                </p:column>
 
-            </p:dataTable>
-
-        </div>
 
 
         <footer class="container">

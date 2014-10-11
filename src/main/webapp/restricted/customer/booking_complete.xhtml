@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml"
@@ -13,12 +12,13 @@
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../resources/css/site.css"/>
-    <title>Discounts</title>
+    <meta http-equiv="refresh" content="8;url=../../index.xhtml" />
+
+    <title>Confirm Booking</title>
 
 </h:head>
 
 <h:body>
-
 
     <div id="page">
         <ui:include src="/resources/template/header.xhtml"/>
@@ -26,32 +26,13 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Overview Discounts</h1>
+                <h1>congratulations your booking is complete</h1>
             </div>
-            <section id="sidebar" class="col-md-8">
-
+            <section id="sidebar" class="col-md-5">
+            <h2>You will be redirected to the homepage in 5 seconds</h2>
             </section>
-            <section id="sTable" class="col-md-10">
-                <p:dataTable rows="10" var="discount" value="#{discountController.findAllByPartner(userController.user.partner)}" sortOrder="#{discount.threshold}">
-                    <p:column headerText="Threshold">
-                        <h:outputText value="#{discount.threshold}" >
-
-                        </h:outputText>
-                    </p:column>
-                    <p:column headerText="Discount">
-                        <h:outputText value="#{discount.discount}">
-
-                        </h:outputText>
-                    </p:column>
-
-                </p:dataTable>
-            </section>
-
-            <div class="col-md-5"><h:link value="Add discount" outcome="add_discount"/></div>
-
 
         </section>
-
         <footer class="container">
 
         </footer>
