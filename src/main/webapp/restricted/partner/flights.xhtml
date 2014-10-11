@@ -32,35 +32,40 @@
 
             </section>
             <section id="sTable" class="col-md-10">
-                <p:dataTable paginator="true" rows="10" var="flight"
-                             value="#{flightController.findAllByPartner(userController.user.partner)}">
-                    <p:column headerText="#{msg.departureDate}">
-                        <h:outputText value="#{flight.departureDate}">
-                            <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm"/>
-                        </h:outputText>
-                    </p:column>
-                    <p:column headerText="#{msg.arrivalDate}">
-                        <h:outputText value="#{flight.arrivalDate}">
-                            <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm"/>
-                        </h:outputText>
-                    </p:column>
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">My Flights</h3>
+                    </div>
+                        <p:dataTable paginator="true" rows="10" var="flight"
+                                     value="#{flightController.findAllByPartner(userController.user.partner)}">
+                            <p:column headerText="#{msg.departureDate}">
+                                <h:outputText value="#{flight.departureDate}">
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm"/>
+                                </h:outputText>
+                            </p:column>
+                            <p:column headerText="#{msg.arrivalDate}">
+                                <h:outputText value="#{flight.arrivalDate}">
+                                    <f:convertDateTime type="date" pattern="dd-MM-yyyy HH:mm"/>
+                                </h:outputText>
+                            </p:column>
 
-                    <p:column headerText="#{msg.departure}">
-                        <h:outputText value="#{flight.departure.name}"/>
-                    </p:column>
+                            <p:column headerText="#{msg.departure}">
+                                <h:outputText value="#{flight.departure.name}"/>
+                            </p:column>
 
-                    <p:column headerText="#{msg.destination}">
-                        <h:outputText value="#{flight.destination.name}"/>
-                    </p:column>
-                    <p:column headerText="#{msg.partner}">
-                        <h:outputText value="#{flight.partner.name}"/>
-                    </p:column>
-                </p:dataTable>
+                            <p:column headerText="#{msg.destination}">
+                                <h:outputText value="#{flight.destination.name}"/>
+                            </p:column>
+                            <p:column headerText="#{msg.partner}">
+                                <h:outputText value="#{flight.partner.name}"/>
+                            </p:column>
+                        </p:dataTable><br/>
+
+                </div>
+
             </section>
-            <div class="col-md-5"><h:link value="#{msg.addFlight}" outcome="add_flight"/></div>
+            <div class="col-md-5"><h:link styleClass="btn btn-success" value="#{msg.addFlight}" outcome="add_flight"/></div>
         </section>
-
-
 
 
         <footer class="container">
