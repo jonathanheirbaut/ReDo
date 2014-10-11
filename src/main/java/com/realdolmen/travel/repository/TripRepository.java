@@ -52,11 +52,16 @@ public class TripRepository extends AbstractRepository<Trip> {
 
         //Calculate price of the flights
         Double discountOutwardFlight = getGrantedDiscount(outwardFlight, numberOfPeople);
+        logger.info("discountOutwardFlight " + discountOutwardFlight);
+
         Double discountreturnFlight = getGrantedDiscount(returnFlight, numberOfPeople);
+        logger.info("discountreturnFlight " + discountreturnFlight);
 
 
-        BigDecimal priceOutwardFlight = new BigDecimal(outwardFlight.getPrice() * (1 - discountOutwardFlight));
-        BigDecimal priceReturnFlight = new BigDecimal(returnFlight.getPrice() * (1 - discountreturnFlight));
+        BigDecimal priceOutwardFlight = new BigDecimal(outwardFlight.getPrice() * (1 - discountOutwardFlight)* numberOfPeople);
+        BigDecimal priceReturnFlight = new BigDecimal(returnFlight.getPrice() * (1 - discountreturnFlight)* numberOfPeople);
+        logger.info("priceOutwardFlight " + priceOutwardFlight);
+        logger.info("priceReturnFlight " + priceReturnFlight);
 
         //Calculate end price for the number of people
         tripPrice = pricePerDay.multiply(new BigDecimal(numberOfPeople)).multiply(numberOfDays).add(priceOutwardFlight).add(priceReturnFlight);
@@ -83,7 +88,7 @@ public class TripRepository extends AbstractRepository<Trip> {
         query2.setParameter("partner_id", flight.getPartner().getId());
         Double result = query2.getSingleResult();
 
-        logger.info("Bla: " + result);
+        logger.info("granted discount: " + result);
         if (result == null) return 0.0;
         return result;
     }

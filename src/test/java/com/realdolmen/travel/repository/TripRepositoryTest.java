@@ -23,7 +23,7 @@ public class TripRepositoryTest extends AbstractArquillianTestCase {
     private FlightRepository flightRepository;
     @Inject
     private LocationRepository locationRepository;
-
+    private BigDecimal expectedTripPrice;
 
 
     @Test
@@ -46,7 +46,10 @@ public class TripRepositoryTest extends AbstractArquillianTestCase {
     public void canCalculateTripPriceWith5PersonsWithDiscount() throws Exception {
         Integer numberOfPeople = 5;
         BigDecimal priceOutboundFlight = new BigDecimal(10*numberOfPeople*0.8);
+        logger.info("Price outboundflight= = " + priceOutboundFlight);
         BigDecimal priceReturnFlight = new BigDecimal(5*numberOfPeople*0.8);
+        logger.info("Price ReturnFlight= = " + priceReturnFlight);
+
         BigDecimal priceLocation = new BigDecimal(50);
         BigDecimal days = new BigDecimal(11);
         Flight outwardFlight = flightRepository.find(1L);
@@ -54,7 +57,8 @@ public class TripRepositoryTest extends AbstractArquillianTestCase {
         Location location = locationRepository.find(1l);
 
         BigDecimal tripPrice = tripRepository.calculateTripPrice(location, outwardFlight, returnFlight, numberOfPeople);
+        expectedTripPrice = new BigDecimal(numberOfPeople).multiply(priceLocation).multiply(days).add(priceOutboundFlight).add(priceReturnFlight);
 
-        assertEquals("Price of a trip could not be calculated", new BigDecimal(numberOfPeople).multiply(priceLocation).multiply(days).add(priceOutboundFlight).add(priceReturnFlight), tripPrice);
+        assertEquals("Price of a trip could not be calculated", expectedTripPrice, tripPrice);
     }
 }
