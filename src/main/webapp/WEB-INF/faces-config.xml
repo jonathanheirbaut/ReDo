@@ -28,6 +28,11 @@
             <redirect />
         </navigation-case>
         <navigation-case>
+            <from-outcome>bookings</from-outcome>
+            <to-view-id>/restricted/customer/bookings.xhtml</to-view-id>
+            <redirect/>
+          </navigation-case>
+        <navigation-case>
             <from-outcome>confirmBooking</from-outcome>
             <to-view-id>/restricted/customer/confirmbooking.xhtml</to-view-id>
             <redirect />
@@ -60,6 +65,11 @@
         <navigation-case>
             <from-outcome>discounts</from-outcome>
             <to-view-id>/restricted/partner/discounts.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>bookingComplete</from-outcome>
+            <to-view-id>/restricted/customer/booking_complete.xhtml</to-view-id>
             <redirect />
         </navigation-case>
 

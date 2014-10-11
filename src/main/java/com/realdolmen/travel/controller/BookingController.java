@@ -1,6 +1,7 @@
 package com.realdolmen.travel.controller;
 
 import com.realdolmen.travel.domain.Booking;
+import com.realdolmen.travel.domain.Customer;
 import com.realdolmen.travel.domain.Trip;
 import com.realdolmen.travel.exception.BookingServiceException;
 import com.realdolmen.travel.service.BookingService;
@@ -12,6 +13,7 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.util.List;
 
 /**
  * Created by KVEAU50 on 9/10/2014.
@@ -31,20 +33,27 @@ public class BookingController {
 
 
     public String createBooking() {
-        try {
+
             Booking booking = new Booking();
             booking.setCustomer(userController.getUserAsCustomer());
             booking.setTrip(userController.getSelectedTrip());
             booking.setNumberOfPeople(userController.getNumberOfPersons());
             logger.info("trip: " + userController.getSelectedTrip());
+        try {
             bookingService.createBooking(booking);
-            FacesContext context = FacesContext.getCurrentInstance();
-            context.addMessage(null, new FacesMessage("Your booking has been submitted!"));
-
-        } catch (BookingServiceException ex) {
-            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(
-                    FacesMessage.SEVERITY_ERROR, ex.getMessage(), ""));
+        } catch (BookingServiceException e) {
+            e.printStackTrace();
         }
-        return null;
+
+
+        return "bookingComplete";
     }
+
+    public String goToConfirmPage(){
+        return "confirmBooking";
+    }
+    public List<Booking> findAllBookingsByCustomer(Customer customer){
+        return bookingService.findAllBookingsByCustomer(customer);
+    }
+
 }

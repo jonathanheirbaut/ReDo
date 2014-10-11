@@ -19,4 +19,15 @@ public class DiscountRepository  extends AbstractRepository<Discount> {
         query.setParameter("partner_id", partner.getId());
         return query.getResultList();
     }
+
+    public Discount findByThreshold(Discount discount) {
+        TypedQuery<Discount> query = null;
+        String jpqlQuery = "Select d from Discount d where d.threshold = :threshold and d.partner.id = :partner_id";
+        query = em.createQuery(jpqlQuery, Discount.class);
+        query.setParameter("threshold", discount.getThreshold());
+        query.setParameter("partner_id", discount.getPartner().getId());
+
+
+        return query.getSingleResult();
+    }
 }
