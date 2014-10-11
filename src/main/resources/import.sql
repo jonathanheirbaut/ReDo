@@ -6,14 +6,14 @@ insert into region(version, id, code, name) values(0,5,'OC', 'Oceania');
 insert into region(version, id, code, name) values(0,6,'NA', 'North America');
 insert into region(version, id, code, name) values(0,7,'SA', 'South America');
 
-insert into location(version, id, code, name, region_id) values(0, 1, 'LON', 'London', 1);
-insert into location(version, id, code, name, region_id) values(0, 3, 'PAR', 'Paris', 1);
+insert into location(version, id, code, name, region_id, price) values(0, 1, 'LON', 'London', 1, 50);
+insert into location(version, id, code, name, region_id, price) values(0, 3, 'PAR', 'Paris', 1, 50);
 insert into location(version, id, code, name, region_id) values(0, 4, 'MAD', 'Madrid', 1);
 insert into location(version, id, code, name, region_id) values(0, 5, 'MIL', 'Milan', 1);
 insert into location(version, id, code, name, region_id) values(0, 7, 'DUB', 'Dublin', 1);
 insert into location(version, id, code, name, region_id) values(0, 6, 'PRA', 'Prague', 1);
 insert into location(version, id, code, name, region_id) values(0, 9, 'BER', 'Berlin', 1);
-insert into location(version, id, code, name, region_id) values(0, 2, 'BRU', 'Brussels', 1);
+insert into location(version, id, code, name, region_id, price) values(0, 2, 'BRU', 'Brussels', 1, 50);
 insert into location(version, id, code, name, region_id) values(0, 10, 'ROM', 'Rome', 1);
 insert into location(version, id, code, name, region_id) values(0, 11, 'STO', 'Stockholm', 1);
 insert into location(version, id, code, name, region_id) values(0, 12, 'MAR', 'Marseille', 1);
@@ -71,8 +71,8 @@ insert into user(DTYPE, id, version, password, userName) values('Customer', 2, 0
 insert into user(DTYPE, id, version, password, userName) values('RDAirEmployee', 3, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'airemp');
 insert into user(DTYPE, id, version, password, userName) values('RDTravelEmployee', 4, 0, 'afc6ab787c7ccdae7e4a738db7d32e1b', 'travelemp');
 
-insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 1,200,6,'2014-03-20 09:00','2014-03-20 15:00', 10.0, 1, 2);
-insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 2,200,6,'2014-03-30 09:00','2014-03-30 15:00', 5.0, 2, 1);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 1,200,1,'2014-03-20 09:00','2014-03-20 15:00', 10.0, 1, 2);
+insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 2,200,1,'2014-03-30 09:00','2014-03-30 15:00', 5.0, 2, 1);
 insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 3,200,6,'2014-10-25 09:00','2014-10-25 15:00', 20.0, 5, 1);
 insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 4,200,6,'2014-11-05 09:00','2014-11-05 15:00', 10.0, 1, 5);
 insert into flight(version, id, emptySeats, partner_id, departureDate, arrivalDate, price, departure_id, destination_id) values(0, 5,200,6,'2014-11-01 09:00','2014-11-01 15:00', 5.0, 2, 5);
