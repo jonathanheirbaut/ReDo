@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import javax.ejb.Stateless;
 import javax.inject.Inject;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
@@ -58,6 +59,10 @@ public class TripService {
         flightRepository.update(outwardFlight);
         flightRepository.update(returnFlight);
         tripRepository.create(trip);
+    }
+
+    public BigDecimal calculateTripPrice(Trip trip, int numberOfPersons) {
+        return tripRepository.calculateTripPrice(trip.getOutwardFlight().getDestination(), trip.getOutwardFlight(), trip.getReturnFlight(), numberOfPersons);
     }
 
 

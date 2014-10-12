@@ -59,6 +59,10 @@ public class TripController  {
         }
     }
 
+    public Double getTripPrice(Trip trip, int numberOfPersons){
+       return tripService.calculateTripPrice(trip, numberOfPersons).doubleValue();
+    }
+
     public List<Trip> getAllTrips() {
         return allTrips;
     }

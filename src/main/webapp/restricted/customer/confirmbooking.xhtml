@@ -6,20 +6,20 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
+      xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:c="http://java.sun.com/jstl/core">
 <h:head>
     <link rel="icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="../../resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="../../resources/css/site.css"/>
     <title>#{msg.confirmBooking}</title>
-
 </h:head>
 
 <h:body>
 
     <div id="page">
         <ui:include src="/resources/template/header.xhtml"/>
+        <p:messages/>
 
         <section id="body" class="container">
 
@@ -29,16 +29,43 @@
             <section id="sidebar" class="col-md-5">
 
             </section>
+
             <div class="panel panel-primary">
                 <div class="panel-heading">
-                   <h3 class="panel-title">#{msg.outboundFlight}</h3>
+                    <h3 class="panel-title">#{msg.bookingDetails}</h3>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>#{msg.departure}:</strong> #{userController.selectedTrip.outwardFlight.departure.name}</li>
-                    <li class="list-group-item"><strong>#{msg.destination}:</strong> #{userController.selectedTrip.outwardFlight.destination.name}</li>
-                    <li class="list-group-item"><strong>#{msg.departureDate}:</strong> #{userController.selectedTrip.outwardFlight.departureDate}</li>
-                    <li class="list-group-item"><strong>#{msg.arrivalDate}: </strong>#{userController.selectedTrip.outwardFlight.arrivalDate}</li>
-                    <li class="list-group-item"><strong>#{msg.partner}:</strong> #{userController.selectedTrip.outwardFlight.partner.name}</li>
+                    <li class="list-group-item"><strong>#{msg.yourName}:</strong> #{userController.user.userName}</li>
+                    <li class="list-group-item"><strong>#{msg.numberOfPersons}:</strong> #{userController.numberOfPersons}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.tripPice}:</strong> €#{tripController.getTripPrice(userController.selectedTrip, userController.numberOfPersons)}
+                    </li>
+                </ul>
+                <div class="panel-body">
+
+                </div>
+            </div>
+
+            <div class="panel panel-primary">
+                <div class="panel-heading">
+                    <h3 class="panel-title">#{msg.outboundFlight}</h3>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>#{msg.departure}:</strong> #{userController.selectedTrip.outwardFlight.departure.name}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.destination}:</strong> #{userController.selectedTrip.outwardFlight.destination.name}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.departureDate}:</strong> #{userController.selectedTrip.outwardFlight.departureDate}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.arrivalDate}: </strong>#{userController.selectedTrip.outwardFlight.arrivalDate}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.partner}:</strong> #{userController.selectedTrip.outwardFlight.partner.name}</li>
                 </ul>
                 <div class="panel-body">
 
@@ -50,17 +77,27 @@
                     <h3 class="panel-title">#{msg.returnFlight}</h3>
                 </div>
                 <ul class="list-group">
-                    <li class="list-group-item"><strong>#{msg.departure}:</strong> #{userController.selectedTrip.returnFlight.departure.name}</li>
-                    <li class="list-group-item"><strong>#{msg.destination}:</strong> #{userController.selectedTrip.returnFlight.destination.name}</li>
-                    <li class="list-group-item"><strong>#{msg.departureDate}:</strong> #{userController.selectedTrip.returnFlight.departureDate}</li>
-                    <li class="list-group-item"><strong>#{msg.arrivalDate}:</strong> #{userController.selectedTrip.returnFlight.arrivalDate}</li>
-                    <li class="list-group-item"><strong>#{msg.partner}:</strong> #{userController.selectedTrip.returnFlight.partner.name}</li>
+                    <li class="list-group-item">
+                        <strong>#{msg.departure}:</strong> #{userController.selectedTrip.returnFlight.departure.name}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.destination}:</strong> #{userController.selectedTrip.returnFlight.destination.name}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.departureDate}:</strong> #{userController.selectedTrip.returnFlight.departureDate}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.arrivalDate}:</strong> #{userController.selectedTrip.returnFlight.arrivalDate}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>#{msg.partner}:</strong> #{userController.selectedTrip.returnFlight.partner.name}</li>
                 </ul>
                 <div class="panel-body">
 
                 </div>
             </div>
-            <p:commandButton value="#{msg.confirm}" styleClass="btn btn-success" action="#{bookingController.createBooking()}"></p:commandButton>
+            <p:commandButton value="#{msg.confirm}" styleClass="btn btn-success"
+                             action="#{bookingController.createBooking()}"></p:commandButton>
         </section>
         <footer class="container">
 

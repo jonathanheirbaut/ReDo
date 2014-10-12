@@ -28,6 +28,11 @@
             <redirect />
         </navigation-case>
         <navigation-case>
+            <from-outcome>bookingSoldOut</from-outcome>
+            <to-view-id>/error/bookingSoldOut.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
             <from-outcome>bookings</from-outcome>
             <to-view-id>/restricted/customer/bookings.xhtml</to-view-id>
             <redirect/>

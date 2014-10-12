@@ -5,6 +5,7 @@ import com.realdolmen.travel.domain.Customer;
 import com.realdolmen.travel.domain.Trip;
 import com.realdolmen.travel.exception.BookingServiceException;
 import com.realdolmen.travel.service.BookingService;
+import com.realdolmen.travel.service.TripService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,33 +27,41 @@ public class BookingController {
     @Inject
     BookingService bookingService;
     @Inject
+    TripService tripService;
+    @Inject
     UserController userController;
     @Inject
     TripController tripController;
 
 
-
     public String createBooking() {
+        Trip selectedTrip = userController.getSelectedTrip();
+        Integer numberOfPersons = userController.getNumberOfPersons();
+        boolean bookingSuccess = false;
 
-            Booking booking = new Booking();
-            booking.setCustomer(userController.getUserAsCustomer());
-            booking.setTrip(userController.getSelectedTrip());
-            booking.setNumberOfPeople(userController.getNumberOfPersons());
-            logger.info("trip: " + userController.getSelectedTrip());
+        Booking booking = new Booking();
+        booking.setCustomer(userController.getUserAsCustomer());
+        booking.setTrip(selectedTrip);
+        booking.setNumberOfPeople(numberOfPersons);
+        booking.setPrice(tripService.calculateTripPrice(selectedTrip, numberOfPersons).doubleValue());
+        logger.info("trip: " + selectedTrip);
         try {
-            bookingService.createBooking(booking);
+          bookingSuccess =  bookingService.createBooking(booking);
         } catch (BookingServiceException e) {
-            e.printStackTrace();
+           bookingSuccess = false;
         }
-
-
-        return "bookingComplete";
+        userController.resetBooking();
+        if (bookingSuccess){
+            return "bookingComplete";
+        }
+        else return "bookingSoldOut";
     }
 
-    public String goToConfirmPage(){
+    public String goToConfirmPage() {
         return "confirmBooking";
     }
-    public List<Booking> findAllBookingsByCustomer(Customer customer){
+
+    public List<Booking> findAllBookingsByCustomer(Customer customer) {
         return bookingService.findAllBookingsByCustomer(customer);
     }
 

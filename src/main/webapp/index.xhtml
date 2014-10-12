@@ -163,7 +163,7 @@
                     </p:commandButton>
                     <p:commandButton rendered="#{userController.userIsOfTypeCustomer()==false}"
                                      icon="ui-icon-cart" onclick="PF('dlg').show();"
-                                     title="Book">
+                                     title="Book" >
                         <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
                     </p:commandButton>
 

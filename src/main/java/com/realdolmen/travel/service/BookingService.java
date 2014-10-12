@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import javax.ejb.Stateless;
 import javax.inject.Inject;
+import javax.persistence.OptimisticLockException;
 import java.util.List;
 
 /**
@@ -26,15 +27,28 @@ public class BookingService {
 
     private Logger logger = LoggerFactory.getLogger(getClass());
 
-    public void createBooking(Booking booking) throws BookingServiceException {
-        if(booking.getNumberOfPeople()>booking.getTrip().getEmptyPlaces()){
+    public boolean createBooking(Booking booking) throws BookingServiceException {
+        if (booking.getNumberOfPeople() > booking.getTrip().getEmptyPlaces()) {
             throw new BookingServiceException("There are not enough places on this trip!");
         }
-        Trip trip = booking.getTrip();
-        trip.setEmptyPlaces(trip.getEmptyPlaces()-booking.getNumberOfPeople());
-        tripRepository.update(trip);
-        bookingRepository.create(booking);
+
+        Trip trip = tripRepository.find(booking.getTrip().getId());
+
+        if (trip.getEmptyPlaces()<booking.getNumberOfPeople()){
+            throw new BookingServiceException("The trip was already sold out");
+        }
+
+        trip.setEmptyPlaces(trip.getEmptyPlaces() - booking.getNumberOfPeople());
+
+        try {
+            tripRepository.update(trip);
+            bookingRepository.create(booking);
+        } catch (OptimisticLockException exception) {
+            throw new BookingServiceException("The trip was already sold out");
+        }
+        return true;
     }
+
     public List<Booking> findAllBookingsByCustomer(Customer customer) {
         return bookingRepository.findAllBookingsByCustomer(customer);
     }

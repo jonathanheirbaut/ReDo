@@ -7,6 +7,7 @@ import org.primefaces.context.RequestContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
@@ -35,6 +36,12 @@ public class UserController implements Serializable {
     private Integer numberOfPersons;
     private String username;
     private String password;
+
+    @PostConstruct
+    public void init(){
+        logger.info("UserController created");
+
+    }
 
     public String getUsername() {
         return username;
@@ -177,7 +184,9 @@ public class UserController implements Serializable {
     }
 
     public void setSelectedTrip(Trip selectedTrip) {
-        this.selectedTrip = selectedTrip;
+        if (selectedTrip != null){
+            this.selectedTrip = selectedTrip;
+        }
     }
 
     public Integer getNumberOfPersons() {
@@ -186,5 +195,10 @@ public class UserController implements Serializable {
 
     public void setNumberOfPersons(Integer numberOfPersons) {
         this.numberOfPersons = numberOfPersons;
+    }
+
+    public void resetBooking() {
+        numberOfPersons = null;
+        selectedTrip = null;
     }
 }
