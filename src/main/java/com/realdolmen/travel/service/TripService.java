@@ -33,7 +33,12 @@ public class TripService {
     Logger logger = LoggerFactory.getLogger(AddFlightController.class);
 
     public void create(Trip trip) throws TripServiceException {
-
+        if (trip.getOutwardFlight() == null || trip.getReturnFlight() == null) {
+            throw new TripServiceException("You have to select 2 flights!");
+        }
+        if (trip.getOutwardFlight().getId().equals(trip.getReturnFlight().getId())) {
+            throw new TripServiceException("You have to select 2 different flights!");
+        }
         if(trip.getEmptyPlaces()> trip.getOutwardFlight().getEmptySeats()){
             throw new TripServiceException("You have to select an outward flight with enough empty seats!");
         }
@@ -41,12 +46,7 @@ public class TripService {
             throw new TripServiceException("You have to select a return flight with enough empty seats!");
         }
 
-        if (trip.getOutwardFlight() == null || trip.getReturnFlight() == null) {
-            throw new TripServiceException("You have to select 2 flights!");
-        }
-        if (trip.getOutwardFlight().getId().equals(trip.getReturnFlight().getId())) {
-            throw new TripServiceException("You have to select 2 different flights!");
-        }
+
         if (trip.getOutwardFlight().getArrivalDate().compareTo(trip.getReturnFlight().getDepartureDate()) == 1 ||
                 trip.getOutwardFlight().getArrivalDate() == trip.getReturnFlight().getDepartureDate()) {
             throw new TripServiceException("The 2 dates don't match");

@@ -47,7 +47,7 @@
 
                         <div class="form-group">
                             <p:outputLabel for="flightDeparture" value="#{msg.flightDeparture}"/><br/>
-                            <h:commandButton id="flightDeparture" value="#{msg.selectFlight}" type="button"/>
+                            <h:commandButton id="flightDeparture" styleClass="btn btn-primary" value="#{msg.selectFlight}" type="button" icon="ui-icon-check"/>
                         </div>
                         <!--OVERLAY PANEL-->
                         <p:overlayPanel widgetVar="opDeparture" for="flightDeparture" hideEffect="fade" dynamic="true" style="width:600px" dismissable="false" showCloseIcon="true">
@@ -79,7 +79,7 @@
 
                     <div class="form-group">
                         <p:outputLabel for="flightDestination" value="#{msg.flightDestination}"/><br/>
-                        <h:commandButton id="flightDestination" value="#{msg.selectFlight}" type="button" />
+                        <h:commandButton id="flightDestination" styleClass="btn btn-primary"  value="#{msg.selectFlight}" type="button" icon="ui-icon-check" />
 
                     </div>
                     <!--OVERLAY PANEL-->
@@ -113,10 +113,6 @@
 
                 </h:form>
             </section>
-            <h:form id="testForm">
-                #{addTripController.outwardFlight.departure.name}
-
-            </h:form>
 
         </section>
 
