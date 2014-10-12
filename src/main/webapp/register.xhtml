@@ -12,7 +12,7 @@
     <link rel="shortcut icon" href="favicon.ico" type="image/x-icon"/>
     <link rel="stylesheet" href="resources/css/bootstrap.min.css"/>
     <link rel="stylesheet" href="resources/css/site.css"/>
-    <title>Register</title>
+    <title>#{msg.register}</title>
 
 </h:head>
 
@@ -24,7 +24,7 @@
         <section id="body" class="container">
 
             <div class="page-header">
-                <h1>Register</h1>
+                <h1>#{msg.registerAsCustomer}</h1>
             </div>
             <section id="sidebar" class="col-md-8">
 
@@ -36,22 +36,22 @@
 
                 <h:form role="form">
                     <div class="form-group">
-                        <p:outputLabel for="username" value="Username"/>
+                        <p:outputLabel for="username" value="#{msg.userName}"/>
                         <p:inputText class="form-control" id="username" value="#{registerController.userName}"
-                                     label="Username" required="true" requiredMessage="You have to enter a username"/>
+                                     label="#{msg.userName}" required="true" requiredMessage="#{msg.errorNoUsername}"/>
                     </div>
 
 
 
                     <div class="form-group">
-                        <h:outputLabel for="pwd1" value="Password: *" />
-                        <p:password id="pwd1" value="#{registerController.password1}" match="pwd2" label="Password" required="true" feedback="true"/>
+                        <h:outputLabel for="pwd1" value="#{msg.password}: *" /><br/>
+                        <p:password id="pwd1" value="#{registerController.password1}" match="pwd2" label="#{msg.password}" required="true" feedback="true"/>
                     </div>
                     <div class="form-group">
-                        <h:outputLabel for="pwd2" value="Repeat password: *" />
-                        <p:password id="pwd2" value="#{registerController.password2}" label="Repeat password" required="true" />
+                        <h:outputLabel for="pwd2" value="#{msg.repeatPassword}: *" /><br/>
+                        <p:password id="pwd2" value="#{registerController.password2}" label="#{msg.repeatPassword}" required="true" />
                     </div>
-                    <h:commandButton value="Register" action="#{registerController.register()}" />
+                    <h:commandButton styleClass="btn btn-success" value="#{msg.register}" action="#{registerController.register()}" />
 
                 </h:form>
             </section>

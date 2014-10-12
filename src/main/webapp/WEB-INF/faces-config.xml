@@ -77,6 +77,11 @@
             <to-view-id>/restricted/travel/trips.xhtml</to-view-id>
             <redirect />
         </navigation-case>
+        <navigation-case>
+            <from-outcome>register</from-outcome>
+            <to-view-id>/register.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
 
     </navigation-rule>
 
