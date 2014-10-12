@@ -37,16 +37,16 @@
                 <h:form role="form">
                     <div class="form-group">
                         <p:outputLabel for="threshold" value="#{msg.threshold}"/>
-                        <p:inputText class="form-control" id="threshold" value="#{addDiscountController.threshold}"
+                        <p:inputText class="form-control" id="threshold" value="#{addDiscountsController.threshold}"
                                      label="#{msg.threshold}" required="true" requiredMessage="#{msg.errorNoThreshold}"/>
                     </div>
                     <div class="form-group">
                         <p:outputLabel for="discount" value="#{msg.discount}"/>
-                        <p:inputMask class="form-control" id="discount" mask="99%" value="#{addDiscountController.discountPercentage}"
+                        <p:inputMask class="form-control" id="discount" mask="99%" value="#{addDiscountsController.discountPercentage}"
                                      label="#{msg.discount}" required="true" requiredMessage="#{msg.errorNoDiscount}"/>
                     </div>
 
-                    <h:commandButton styleClass="btn btn-success" value="#{msg.submit}" action="#{addDiscountController.addDiscount()}"/>
+                    <h:commandButton styleClass="btn btn-success" value="#{msg.submit}" action="#{addDiscountsController.addDiscount()}"/>
 
                 </h:form>
             </section>
