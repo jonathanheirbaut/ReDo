@@ -20,7 +20,14 @@ public class DiscountService {
     @Inject
     private DiscountRepository discountRepository;
     public void addDiscount(Discount discount) {
-    discountRepository.create(discount);
+        Discount discountFound = null;
+        if (discountRepository.findByThreshold(discount)!=null)discountFound = discountRepository.findByThreshold(discount);
+        if(discountFound ==null){
+            discountRepository.create(discount);
+        }else{
+            discountFound.setDiscount(discount.getDiscount());
+            discountRepository.update(discountFound);
+        }
 
     }
 
