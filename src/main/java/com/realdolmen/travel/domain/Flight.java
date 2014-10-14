@@ -103,4 +103,38 @@ public class Flight extends AbstractEntity{
     public void setEmptySeats(Integer emptySeats) {
         this.emptySeats = emptySeats;
     }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Flight flight = (Flight) o;
+
+        if (arrivalDate != null ? !arrivalDate.equals(flight.arrivalDate) : flight.arrivalDate != null) return false;
+        if (departure != null ? !departure.equals(flight.departure) : flight.departure != null) return false;
+        if (departureDate != null ? !departureDate.equals(flight.departureDate) : flight.departureDate != null)
+            return false;
+        if (destination != null ? !destination.equals(flight.destination) : flight.destination != null) return false;
+        if (emptySeats != null ? !emptySeats.equals(flight.emptySeats) : flight.emptySeats != null) return false;
+        if (overriddenPrice != null ? !overriddenPrice.equals(flight.overriddenPrice) : flight.overriddenPrice != null)
+            return false;
+        if (partner != null ? !partner.equals(flight.partner) : flight.partner != null) return false;
+        if (price != null ? !price.equals(flight.price) : flight.price != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = departureDate != null ? departureDate.hashCode() : 0;
+        result = 31 * result + (arrivalDate != null ? arrivalDate.hashCode() : 0);
+        result = 31 * result + (price != null ? price.hashCode() : 0);
+        result = 31 * result + (overriddenPrice != null ? overriddenPrice.hashCode() : 0);
+        result = 31 * result + (destination != null ? destination.hashCode() : 0);
+        result = 31 * result + (departure != null ? departure.hashCode() : 0);
+        result = 31 * result + (partner != null ? partner.hashCode() : 0);
+        result = 31 * result + (emptySeats != null ? emptySeats.hashCode() : 0);
+        return result;
+    }
 }

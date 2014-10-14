@@ -149,22 +149,17 @@
                 <p:column headerText="#{msg.returnDate}">
                     <h:outputText value="#{trip.returnFlight.departureDate}"/>
                 </p:column>
-                <p:column headerText="#{msg.details}" style="width:32px;text-align: center">
-                    <p:commandButton update=":form:tripDetail" oncomplete="PF('tripDialog').show()"
-                                     icon="ui-icon-search" title="View">
-                        <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
-                    </p:commandButton>
-                </p:column>
+
                 <p:column headerText="#{msg.book}" style="width:32px;text-align: center">
-                    <p:commandButton rendered="#{userController.userIsOfTypeCustomer()}"
-                                     action="#{bookingController.goToConfirmPage()}"
-                                     icon="ui-icon-cart" title="Book">
-                        <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
-                    </p:commandButton>
+                    <h:commandButton rendered="#{userController.userIsOfTypeCustomer()}"
+                                     action="#{userController.trip(trip)}"
+                                     value="Book" icon="ui-icon-cart" title="Book" immediate="true">
+                        <f:param name="id" value="#{trip.id}"/>
+                    </h:commandButton>
                     <p:commandButton rendered="#{userController.userIsOfTypeCustomer()==false}"
+                                     action="#{userController.trip(trip)}" immediate="false"
                                      icon="ui-icon-cart" onclick="PF('dlg').show();"
-                                     title="Book" >
-                        <f:setPropertyActionListener value="#{trip}" target="#{userController.selectedTrip}"/>
+                                     title="Book" value="Book">
                     </p:commandButton>
 
 
@@ -221,7 +216,11 @@
 </div>
 
 <!-- /container -->
-<script src="resources/js/bootstrap.min.js"></script>
+<f:facet name="first">
+    <h:outputScript library="js" name="bootstrap.js"/>
+</f:facet>
+<h:outputScript library="primefaces" name="jquery/jquery.js"/>
+<h:outputScript library="js" name="bootstrap.js"/>
 
 <script src="resources/js/site.js"></script>
 

@@ -70,5 +70,8 @@ public class TripService {
         return tripRepository.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, returnDate, numberOfPersons);
     }
 
+    public Trip findById(Long tripId) {
+       return tripRepository.find(tripId);
+    }
 }
 

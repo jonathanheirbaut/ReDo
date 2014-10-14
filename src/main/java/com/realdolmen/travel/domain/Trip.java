@@ -59,4 +59,29 @@ public class Trip extends AbstractEntity {
         this.emptyPlaces = emptyPlaces;
     }
 
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Trip trip = (Trip) o;
+
+        if (emptyPlaces != null ? !emptyPlaces.equals(trip.emptyPlaces) : trip.emptyPlaces != null) return false;
+        if (name != null ? !name.equals(trip.name) : trip.name != null) return false;
+        if (outwardFlight != null ? !outwardFlight.equals(trip.outwardFlight) : trip.outwardFlight != null)
+            return false;
+        if (returnFlight != null ? !returnFlight.equals(trip.returnFlight) : trip.returnFlight != null) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = name != null ? name.hashCode() : 0;
+        result = 31 * result + (emptyPlaces != null ? emptyPlaces.hashCode() : 0);
+        result = 31 * result + (outwardFlight != null ? outwardFlight.hashCode() : 0);
+        result = 31 * result + (returnFlight != null ? returnFlight.hashCode() : 0);
+        return result;
+    }
 }

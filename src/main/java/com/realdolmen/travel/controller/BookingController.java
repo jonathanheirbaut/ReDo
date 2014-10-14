@@ -9,6 +9,7 @@ import com.realdolmen.travel.service.TripService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ViewScoped;
@@ -32,6 +33,15 @@ public class BookingController {
     UserController userController;
     @Inject
     TripController tripController;
+
+    private Trip trip;
+
+    @PostConstruct
+    public void init(){
+//        Long tripId = Long.parseLong(FacesContext.getCurrentInstance().getExternalContext().getRequestParameterMap().get("id"));
+//        trip = tripService.findById(tripId);
+
+    }
 
 
     public String createBooking() {

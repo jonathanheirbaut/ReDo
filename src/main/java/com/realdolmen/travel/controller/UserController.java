@@ -185,8 +185,15 @@ public class UserController implements Serializable {
 
     public void setSelectedTrip(Trip selectedTrip) {
         if (selectedTrip != null){
+            logger.info("trip: " + selectedTrip.getName());
             this.selectedTrip = selectedTrip;
         }
+    }
+
+    public String trip(Trip trip){
+        logger.info("Trip is " + trip);
+        setSelectedTrip(trip);
+        return "confirmBooking";
     }
 
     public Integer getNumberOfPersons() {

@@ -48,7 +48,6 @@ public class AddFlightController {
         flight.setArrivalDate(addDurationToDate(departureDate, duration));
         logger.info(departure.getName());
         flight.setPrice(price);
-        System.out.println(((AirlineEmployee)userController.getUser()).getPartner());
         flight.setDeparture(departure);
         flight.setDestination(destination);
         flight.setPartner(((AirlineEmployee)userController.getUser()).getPartner());

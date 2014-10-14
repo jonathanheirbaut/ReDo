@@ -53,7 +53,7 @@ public class TripController  {
     public void searchTrip() {
         availableTrips = tripService.getAvailableTripsBySearchValues(departureLocation, destinationLocation, departureDate, addHoursToDate(returnDate), numberOfPersons);
         userController.setNumberOfPersons(numberOfPersons);
-        userController.setSelectedTrip(null);
+//        userController.setSelectedTrip(null);
         for (Trip availableTrip : availableTrips) {
             logger.info(availableTrip.getName());
         }
